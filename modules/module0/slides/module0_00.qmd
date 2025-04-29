@@ -1,0 +1,40 @@
+---
+format: revealjs
+title: Welcome!
+title-slide-attributes:
+  data-notes: |
+    Welcome to Data Visualization!
+
+    You can navigate these slides
+    by clicking the arrows in the bottom right corner
+    or by using the arrow keys on your keyboard.
+    You can enter fullscreen mode by pressing **F**
+    and leave it with **Esc**.
+    More shortcuts can be found by pressing **?**.
+---
+
+## Course Learning Outcomes
+
+By the end of the course, students are expected to be able to:
+
+- Use the Altair grammar of graphics to create data visualizations.
+- Select an appropriate visualization for the data.
+- Perform exploratory data analysis on a dataset.
+- Effectively communicate findings with figures.
+- Interpret data visualizations to answer questions and formulate follow-up questions.
+
+::: {.notes}
+In this module, you will learn how to use Altair to create data visualizations, choose the right visualizations for your data, explore datasets, and effectively communicate your analytical findings.
+:::
+
+---
+
+## Prerequisites
+
+Before we proceed to Module 1, it is important to make sure you have a solid foundation of coding in Python.
+
+---
+
+## Have you taken Programming in Python for Data Science?
+
+Make sure you are familiar with basic Python programming concepts as they are essential for this course.

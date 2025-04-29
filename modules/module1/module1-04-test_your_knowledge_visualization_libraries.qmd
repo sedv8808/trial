@@ -1,0 +1,162 @@
+---
+format:
+  live-html
+---
+
+<script src='../../src/quiz.js'></script>  <!-- Only needed once per page -->
+
+# 2.1. Exercises
+
+## Test Your Knowledge: Visualization Libraries
+
+<div id='mcq1'></div> <!-- The quiz will be inserted here -->
+<script>
+    generateQuiz(
+        'mcq1', // Must be unique and match the ID above
+        'Question 1',  // Question title
+        'What is another way of describing high-level visualization libraries?',  // Question/statement text
+        { // Option: Explanation
+        'Imperative': 'This is low-level plotting',
+        'Declarative': '',
+        'Immediate': 'This isn’t quite right. We made this part up!',
+        'Definitive': 'This isn’t quite right. We made this part up!'
+        },
+        'Declarative',  // Correction answer
+    );
+</script>
+
+
+<div id='mcq2'></div> <!-- The quiz will be inserted here -->
+<script>
+    generateQuiz(
+        'mcq2', // Must be unique and match the ID above
+        'Question 2',  // Question title
+        'What kind of components are combined in declarative plotting to create visualizations?',  // Question/statement text
+        { // Option: Explanation
+        'Dictionary Keys': 'This refers to a data structure, not a plotting structure.<br>',
+        'Block Components': 'Consider a more language-oriented approach.',
+        'Grammatical Components': '',
+        'Grouping Components': 'This term does not have a clear definition—we made it up!'
+        },
+        'Grammatical Components',  // Correct answer
+    );
+</script>
+
+## True or False: Visualization Libraries
+
+<div id='mcq3'></div> <!-- The quiz will be inserted here -->
+<script>
+    generateQuiz(
+        'mcq3', // Must be unique and match the ID above
+        'True or False',  // Question title
+        'A low-level visualization library focuses on plot construction details.',  // Question/statement text
+        { // Option: Explanation
+        'True': '',
+        'False': 'Hmmm. It’s possible you got mixed up with high-level visualization',
+        },
+        'True',  // Correct answer
+    );
+</script>
+
+<div id='mcq4'></div> <!-- The quiz will be inserted here -->
+<script>
+    generateQuiz(
+        'mcq4', // Must be unique and match the ID above
+        'True of False',  // Question title
+        'A high-level visualization library focuses on data and relationships.',  // Question/statement text
+        { // Option: Explanation
+        'True': '',
+        'False': 'High-level visualization libraries concentrate on the data and the relationships between them. ',
+        },
+        'True',  // Correct answer
+    );
+</script>
+
+## Your First Plot
+
+**Instructions:**
+Be patient when running a coding exercise for the first time, it can take a few minutes.
+
+**When you see `____` in a coding exercise, replace it with what you assume to be the correct code. Run the code to see if you obtain the desired output
+and submit it to validate if you were correct.**
+
+
+Let's use the same vehicle dataset we saw in the lecture, but visualize the relationship between two different columns.
+
+The data has already been imported for you in this exercise.
+
+Here is what it looks like:
+
+```{pyodide}
+import altair as alt
+from vega_datasets import data
+
+cars = data.cars()
+cars.head()
+```
+
+**Tasks:**<br>
+
+- Fill out the missing fields in the Altair plot in order to create a scatter plot.<br>
+- The cars' `Horsepower` should be on the y-axis and their `Weight_in_lbs` on the x-axis.<br>
+- Color the points by the `Origin` of the cars.
+
+
+
+```{pyodide}
+#| setup: true
+#| exercise: your_first_plot
+
+import altair as alt
+from vega_datasets import data
+from src.utils import assert_chart_equal
+
+cars = data.cars()
+```
+
+```{pyodide}
+#| exercise: your_first_plot
+alt.Chart(______).mark_point().encode(
+    x=______,
+    y=______,
+    color=_____
+)
+```
+
+```{pyodide}
+#| exercise: your_first_plot
+#| check: true
+
+solution = alt.Chart(cars).mark_point().encode(
+    x='Weight_in_lbs',
+    y='Horsepower',
+    color='Origin'
+)
+assert_chart_equal(solution, result)
+```
+
+:::: { .hint exercise="your_first_plot"}
+::: { .callout-note collapse="false"}
+
+## Hint 1
+
+Are the column names expressed in quotes, e.g. `y='Horsepower'`?
+
+:::
+::::
+
+:::: { .solution exercise="your_first_plot" }
+::: { .callout-tip collapse="false"}
+
+## Fully worked solution:
+
+```{pyodide}
+alt.Chart(cars).mark_point().encode(
+    x='Weight_in_lbs',
+    y='Horsepower',
+    color='Origin'
+)
+```
+
+:::
+::::
