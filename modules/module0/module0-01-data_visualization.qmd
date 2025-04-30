@@ -6,7 +6,6 @@ format:
 
 # 1. Introducción a Neotoma
 
-:::
 <!-- ::: {.panel-tabset .nav-pills} -->
 
 <!-- ## Video
@@ -27,4 +26,3 @@ format:
     src="slides/module0_00.html"
 ></iframe>
 
-:::
