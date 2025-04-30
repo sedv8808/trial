@@ -1,6 +1,9 @@
 name: neotoma-workshop
 channels:
   - conda-forge
+  - bioconda
+  - r
+  - defaults
 dependencies:
   - r-base=4.3
   - r-tidyverse
@@ -9,11 +12,9 @@ dependencies:
   - r-analogue
   - r-rioja
   - r-vegan
-  - r-bacon
   - r-remotes
   - r-pacman
   - r-leaflet
-  - r-bchron
   - r-dt
   - r-raster
   - r-terra

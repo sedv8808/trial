@@ -47,6 +47,7 @@ jobs:
         run: |
           Rscript -e "remotes::install_github('NeotomaDB/neotoma2@CRANv1.0.2b')"
 
+
       - name: Build the PR version of the website
         if: github.event.action != 'closed' # Skip the build if the PR has been closed; just run the clean up steps
         run: quarto render
