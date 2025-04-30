@@ -95,6 +95,7 @@ dependencies:
   - r-progress
   - r-uuid
   - r-tidyr
+  - r-webR
 
   - python>=3.11,<3.13
   - altair-all=5.5.*
