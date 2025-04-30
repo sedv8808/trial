@@ -21,9 +21,9 @@ dependencies:
   - r-devtools
   - r-knitr
   - python>=3.11,<3.13
-    - altair-all=5.5.*
-    - vega_datasets=0.9.0
-    - pandas=1.5.*
-    - jupyter
-    - quarto
-    - pip
+  - altair-all=5.5.*
+  - vega_datasets=0.9.0
+  - pandas=1.5.*
+  - jupyter
+  - quarto
+  - pip
