@@ -1,4 +1,4 @@
-name: 'neotoma-workshop'
+name: neotoma-workshop
 channels:
   - conda-forge
 dependencies:
