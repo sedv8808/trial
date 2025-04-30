@@ -47,7 +47,7 @@ jobs:
       
       - name: Install R packages from GitHub
         run: |
-          Rscript -e "remotes::install_github('NeotomaDB/neotoma2@CRANv1.0.2b')"
+          Rscript -e "remotes::install_github('NeotomaDB/neotoma2@/webr')"
           Rscript -e "install.packages('curl')"
       - name: Build the PR version of the website
         if: github.event.action != 'closed' # Skip the build if the PR has been closed; just run the clean up steps
