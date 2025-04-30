@@ -24,6 +24,16 @@ jobs:
       - name: Checkout the PR version of the website repository
         uses: actions/checkout@v4
 
+      - name: Install system dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y \
+            libudunits2-dev \
+            libgdal-dev \
+            libgeos-dev \
+            libproj-dev \
+            libglpk-dev
+
       - name: Setup the environment
         if: github.event.action != 'closed' # Skip the build if the PR has been closed; just run the clean up steps
         uses: mamba-org/setup-micromamba@v1
@@ -32,6 +42,10 @@ jobs:
           init-shell: bash
           cache-environment: true
           post-cleanup: none
+      
+      - name: Install R packages from GitHub
+        run: |
+          Rscript -e "remotes::install_github('NeotomaDB/neotoma2@CRANv1.0.2b')"
 
       - name: Build the PR version of the website
         if: github.event.action != 'closed' # Skip the build if the PR has been closed; just run the clean up steps

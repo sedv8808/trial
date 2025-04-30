@@ -6,9 +6,9 @@ format:
 
 # 0. Module Learning Outcomes
 
-::: {.panel-tabset .nav-pills}
+<!-- ::: {.panel-tabset .nav-pills} -->
 
-## Video
+<!-- ## Video
 
 <iframe
     class="video"
@@ -17,7 +17,7 @@ format:
     frameborder="0"
     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
     allowfullscreen
-></iframe>
+></iframe> -->
 
 ## Slides
 
@@ -26,4 +26,4 @@ format:
     src="slides/module1_00.html"
 ></iframe>
 
-:::
+<!-- ::: -->

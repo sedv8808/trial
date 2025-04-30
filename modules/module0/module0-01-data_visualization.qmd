@@ -4,11 +4,12 @@ format:
     page-layout: full
 ---
 
-# 1. Data Visualization
+# 1. Introducción a Neotoma
 
-::: {.panel-tabset .nav-pills}
+:::
+<!-- ::: {.panel-tabset .nav-pills} -->
 
-## Video
+<!-- ## Video
 
 <iframe
     class="video"
@@ -17,7 +18,7 @@ format:
     frameborder="0"
     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
     allowfullscreen
-></iframe>
+></iframe> -->
 
 ## Slides
 

@@ -4,9 +4,9 @@ format: html
 
 <script src='../../src/quiz.js'></script>  <!-- Only needed once per page -->
 
-# 1.1. Exercises
+# 1.1. Ejercicios
 
-## True or False: Data Visualization
+## verdadero o falso
 
 <div id='mcq1'></div> <!-- The quiz will be inserted here -->
 <script>

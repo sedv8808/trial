@@ -4,9 +4,10 @@ format:
     page-layout: full
 ---
 
-# 2. How can we visualize data?
+# 2. Como?
 
-::: {.panel-tabset .nav-pills}
+
+<!-- {.panel-tabset .nav-pills}
 
 ## Video
 
@@ -17,7 +18,7 @@ format:
     frameborder="0"
     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
     allowfullscreen>
-</iframe>
+</iframe> -->
 
 ## Slides
 
@@ -26,4 +27,4 @@ format:
     src="slides/module1_03.html"
 ></iframe>
 
-:::
+<!-- ::: -->

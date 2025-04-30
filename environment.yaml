@@ -1,9 +1,25 @@
-name: 'kcds-viz'
+name: 'neotoma-workshop'
 channels:
-    - conda-forge
-    - defaults
+  - conda-forge
 dependencies:
-    - python>=3.11,<3.13
+  - r-base=4.3
+  - r-tidyverse
+  - r-sf
+  - r-geojsonsf
+  - r-analogue
+  - r-rioja
+  - r-vegan
+  - r-bacon
+  - r-remotes
+  - r-pacman
+  - r-leaflet
+  - r-bchron
+  - r-dt
+  - r-raster
+  - r-terra
+  - r-devtools
+  - r-knitr
+  - python>=3.11,<3.13
     - altair-all=5.5.*
     - vega_datasets=0.9.0
     - pandas=1.5.*

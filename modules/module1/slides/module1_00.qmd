@@ -6,10 +6,10 @@ title-slide-attributes:
     ...
 ---
 
-## Module Learning Outcomes
+## Que aprenderemos
 
-In this module students will learn how to
+...
 
 - ...
 
-# Let's Start!
+# Iniciemos!

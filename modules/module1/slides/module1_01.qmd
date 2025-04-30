@@ -3,13 +3,7 @@ format: revealjs
 title: What is Data Visualization?
 title-slide-attributes:
   data-notes: |
-    At its core,
-    data visualization is about representing numbers with graphical elements
-    such as the position of a line, the length of a bar, or the colour of a point.
-
-    We often use visualizations to explore data ourselves,
-    and to effectively communicate our insights to others,
-    as we will learn in later modules of this course.
+    At its core
 ---
 
 ```{python}
@@ -17,43 +11,13 @@ title-slide-attributes:
 %run src/utils.py
 ```
 
-## What is the purpose of visualizing data?
+## Como bajar datos en Neotoma?
 
-Visualizing data can be used to
 
-- Answer a specific question
-- Explore data more generally to generate new questions
-
-To create an effective visualization, start by
-
-- Looking at the data
-- Thinking about what you want to achieve by making the visualization
-- Drawing it out with pen and paper
+Los datos...
 
 ::: {.notes}
-We often visualize data in order to help us answer a specific question
-we have about our dataset,
-but it can also help us generate new questions.
-
-Before creating a visualization,
-it is important that you
-think about why you are making it,
-and what you want to achieve from creating this plot.
-
-Is there a specific question you are trying to answer,
-like comparing the relationship between two dataframe columns?
-Or are you creating a plot
-to help you understand the structure of your data more in general,
-such as plotting the distribution of each dataframe column?
-
-In either case,
-it can be extremely helpful to draw out your plot with pen and paper first.
-This helps you think about if the plot you are creating makes sense
-or if there is another plot better suited for the task at hand.
-
-Drawing with pen and paper also makes it easier to write the code afterwards,
-since you clearly know what you are expecting
-the visualization to look like.
+ notas
 :::
 
 ---
@@ -62,186 +26,31 @@ the visualization to look like.
 
 ### Can you see any differences in the general trends of these four sets of numbers?
 
-```{python}
+```{webr}
 #| echo: false
-import altair as alt
-from vega_datasets import data
+library('dplyr')
+# Load the iris dataset
+data(iris)
+library(knitr)
 
-anscombe = data.anscombe()
-anscombe['Set'] = anscombe['Series'].map({'I': 'A', 'II': 'B', 'III': 'C', 'IV': 'D'})
-anscombe = anscombe.drop(columns='Series')
-anscombe.loc[anscombe['Y'] == anscombe['Y'].max(), 'Y'] = 8.5
+# View the first few rows of the dataset
+head(iris)
 
-for set_name, df in anscombe.groupby('Set'):
-    df = df.drop(columns='Set')
-    df.columns = pd.MultiIndex.from_tuples([(set_name, 'X'), (set_name, 'Y')])
-    # Ugly hack to add spacing between columns instead of having to mock around wit the CSS
-    if set_name == 'A':
-        df[' '] = ''
-        df[' ' * 5] = ''
-        dfs = df.copy()
-    else:
-        if set_name == 'B':
-            df['  '] = ''
-            df[' ' * 6] = ''
-        elif set_name == 'C':
-            df['   '] = ''
-            df[' ' * 7] = ''
-        elif set_name == 'D':
-            df['    '] = ''
-            df[' ' * 8] = ''
-        dfs = dfs.merge(df.reset_index(drop='index'), left_index=True, right_index=True)
-(
-    dfs
-    .to_html()
-    .replace('class="dataframe"', 'style="width:70px; float:left; margin-right:40px"')
-    .replace('<thead>',  '<thead style="text-align: center">')
-)
+html_table <- kable(dfs, format = "html") %>%
+  # Apply styling to the table
+  gsub('class="dataframe"', 'style="width:70px; float:left; margin-right:40px"', .) %>%
+  # Modify the header style
+  gsub('<thead>', '<thead style="text-align: center">', .)
+
+# Print the styled HTML table
+html_table
 ```
 
 ::: {.notes}
-Why do we need visualizations to help answer our questions?
-
-Is it not enough to look at numbers in tables?
-
-To understand why visualizations are so powerful,
-it is helpful to remember that to answer a question,
-we often have to put the data in a format that is easy for us humans to interpret.
-
-Because our number systems have only been around for about 5,000 years,
-we need to assert effort and train ourselves
-to recognize structure in numerical data.
-
-Visual systems,
-on the other hand,
-have undergone refinement during 500,000,000 years of evolution,
-so we can instinctively recognize visual patterns
-and accurately estimate visual properties
-such as colours and distances.
-
-Practically,
-this means that we can arrive at correct conclusions faster
-from studying visual rather than numerical
-representations of the same data.
-
-For example, have a look at the
-four sets of numbers in the table on the slide.
-Can you see the differences in the general trends between these four sets of numbers?
-This is a slightly modified version of the original,
+,,,
 <a href="https://en.wikipedia.org/wiki/Anscombe%27s_quartet" target="_blank">which was put together by statistician Francis Anscombe in the
 70s.</a>
-:::
 
-
----
-
-## Although summary statistics are often useful, they don't tell the whole story
-
-### C is the only set with a different mean and standard deviation
-
-```{python}
-#| echo: false
-dfs = []
-for set_name, df in anscombe.groupby('Set'):
-    df = df.drop(columns='Set')
-    df.columns = pd.MultiIndex.from_tuples([(set_name, 'X'), (set_name, 'Y')])
-    dfs.append(df.agg(['mean', 'std']).round(2))
-    # Ugly hack to add spacing between columns instead of having to mock around wit the CSS
-    dfs[-1][' '] = ''
-    dfs[-1]['  '] = ''
-(
-    pd.concat(
-        dfs,
-        axis=1
-    )
-    .to_html()
-    .replace('class="dataframe"', 'style="width:70px; float:left; margin-right:40px"')
-    .replace('<thead>',  '<thead style="text-align: center">')
-    .replace('>7.11',  ' style="background-color:#4853a4; color:#ffffff"> <b>7.11</b>')
-    .replace('>1.15',  ' style="background-color:#4853a4; color:#ffffff"> <b>1.15</b>')
-)
-```
-
-::: {.notes}
-Summaries,
-such as the mean and standard deviation,
-are helpful statistical tools
-that are often useful for detecting the differences between datasets.
-
-However,
-since they collapse the data into just a few numbers,
-statistical summaries can't tell the whole story about the data
-and there can be important differences between datasets
-that summaries fail to reveal.
-
-Here,
-the mean and standard deviation indicate that set C
-is slightly different from the other sets of data
-in terms of the centre of the sample distribution and the spread of that distribution,
-while the remaining three sets of data have a similar centre and spread.
-:::
-
----
-
-## Plotting the data immediately reveals patterns in the data 
-
-### We could not detect these patterns from only looking at the raw numbers or summary statistics
-
-```{python}
-#| echo: false
-(alt.Chart(anscombe).mark_circle(size=80, opacity=1).encode(
-    x='X',
-    y='Y')
- .properties(width=300, height=200)
- .facet('Set', columns=2)
- .configure_axis(grid=True)
- .configure_header(title=None)
- )
-```
-
-::: {.notes}
-Humans are not good at detecting patterns in raw numbers,
-and we don't have good intuition about how different distributions of data
-can contribute to identical statistical summaries.
-
-But guess what we excel at?
-
-Detecting visual patterns!
-
-It is immediately clear to us how these sets of numbers differ
-once they are shown as graphical elements
-instead of textual objects.
-
-This is one of the main reasons why data visualization
-is such a powerful tool for data exploration and communication.
-
-In our example here,
-we would come to widely different conclusions about the behaviour of the data
-for the four different data sets.
-
-Sets A and C are roughly linearly increasing at similar rates,
-whereas set B reaches a plateau and starts to drop,
-and set D has a constant X-value for all numbers except one big outlier.
-:::
-
----
-
-## More examples of plotting versus statistical summaries
-
-![](https://blog.revolutionanalytics.com/downloads/DataSaurus%20Dozen.gif){fig-alt="The Datasaurus is a modern take on Anscombe's quartet with additional datasets"}
-
-<a href="https://www.autodesk.com/research/publications/same-stats-different-graphs" target="_blank">Source: Matejka and Fitzmaurice, 2017</a>
-
-
-::: {.notes}
-A more recent and dynamic illustration of
-how graphical representations are much easier for us to interpret
-compared to statistical summaries,
-is the Datasaurus GIF <a href="https://www.autodesk.com/research/publications/same-stats-different-graphs" target="_blank">from Autodesk's research team</a>  in this slide.
-
-It displays several different datasets,
-all with the same mean, standard deviation and correlation between X and Y,
-but looking at the data graphically shows us how different these datasets actually are.
 :::
 
 # Let's apply what we learned!

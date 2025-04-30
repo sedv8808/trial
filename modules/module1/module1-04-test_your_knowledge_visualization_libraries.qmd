@@ -87,12 +87,9 @@ The data has already been imported for you in this exercise.
 
 Here is what it looks like:
 
-```{pyodide}
-import altair as alt
-from vega_datasets import data
-
-cars = data.cars()
-cars.head()
+```{webr}
+data(iris)
+head(iris)
 ```
 
 **Tasks:**<br>
