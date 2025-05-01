@@ -32,8 +32,6 @@ dependencies:
   - r-wk
   - r-s2
   - r-units
-  - r-sf
-  - r-geojsonsf
   - r-cli
   - r-glue
   - r-lifecycle
@@ -49,7 +47,6 @@ dependencies:
   - r-askpass
   - r-openssl
   - r-R6
-  - r-httr
   - r-utf8
   - r-pillar
   - r-fansi
@@ -76,8 +73,6 @@ dependencies:
   - r-png
   - r-lattice
   - r-sp
-  - r-terra
-  - r-raster
   - r-RColorBrewer
   - r-farver
   - r-labeling
@@ -94,8 +89,6 @@ dependencies:
   - r-prettyunits
   - r-progress
   - r-uuid
-  - r-tidyr
-  - r-webR
 
   - python>=3.11,<3.13
   - altair-all=5.5.*
