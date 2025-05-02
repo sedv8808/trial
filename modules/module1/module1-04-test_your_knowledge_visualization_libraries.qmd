@@ -3,6 +3,18 @@ format:
   live-html
 ---
 
+<!-- <script type="module"> -->
+<!-- //   import { WebR } from "https://webr.r-wasm.org/latest/webr.mjs";
+  
+//   globalThis.webR = new WebR();
+//   await globalThis.webR.init();
+
+//   // install from your own repo
+//   await webR.installPackages(["neotoma2"], {
+//     repos: ["https://sedv8808.github.io/trial/webr_repo"]
+//   });
+// </script> -->
+
 <script src='../../src/quiz.js'></script>  <!-- Only needed once per page -->
 
 # 2.1. Exercises
@@ -86,17 +98,15 @@ Let's use the same vehicle dataset we saw in the lecture, but visualize the rela
 The data has already been imported for you in this exercise.
 
 Here is what it looks like:
-<script type="module">
-  import webR from "https://webr.r-wasm.org/latest/webr.mjs";
 
-  globalThis.webR = new webR();
-  await globalThis.webR.init();
-
-  // install from your own repo
-  await webR.installPackages(["neotoma2"], {
-    repos: ["https://sedv8808.github.io/trial/webr_repo"]
-  });
-</script>
+```{webr setup}
+# Setup environment and install neotoma2 from your hosted repo
+install.packages(
+  "neotoma2",
+  repos = c("https://sedv8808.github.io/trial/webr_repo", "https://webr.r-wasm.org/cran"),
+  type = "source"
+)
+```
 
 ```{webr}
 data(iris)
