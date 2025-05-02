@@ -52,7 +52,7 @@ jobs:
       
       - name: Install neotoma2 package
         run: |
-          Rscript -e "install.packages('./neotoma2_1.0.6.tgz', repos = NULL, type = 'source')"
+          Rscript -e "install.packages('./neotoma2_1.0.6.tar.gz', repos = NULL, type = 'source')"
 
       - name: Generate PACKAGES metadata for WebR
         run: |
