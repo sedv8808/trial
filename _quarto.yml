@@ -13,7 +13,7 @@ project:
     - styles.scss
     - src/utils.py
     - data
-    - webr_repo
+    - webr_repo/**/*
 
 # Setting the pyodide resources allows live code cells to see files
 # previously copied into `_site`
