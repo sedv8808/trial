@@ -119,7 +119,7 @@ head(iris)
 options(repos = c(CRAN = "https://ht-data.com/trial/webr_repo"))
 install.packages("neotoma2")
 library(neotoma2)
-get_sites(24)
+packageVersion('neotoma2')
 ```
 
 **Tasks:**<br>

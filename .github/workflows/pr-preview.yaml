@@ -58,6 +58,12 @@ jobs:
         run: |
           Rscript -e "tools::write_PACKAGES('webr_repo/bin/emscripten/contrib/4.4', type = 'source', compress = 'none')"
 
+      - name: Copy WebR repo into Quarto output
+        run: |
+          mkdir -p _site/trial/webr_repo/bin/emscripten/contrib/4.4
+          cp -r webr_repo/bin/emscripten/contrib/4.4/*.tar.gz _site/trial/webr_repo/bin/emscripten/contrib/4.4/
+          cp -r webr_repo/bin/emscripten/contrib/4.4/PACKAGES* _site/trial/webr_repo/bin/emscripten/contrib/4.4/
+    
       - name: Build the PR version of the website
         if: github.event.action != 'closed' # Skip the build if the PR has been closed; just run the clean up steps
         run: quarto render
