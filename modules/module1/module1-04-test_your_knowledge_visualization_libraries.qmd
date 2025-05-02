@@ -99,6 +99,10 @@ The data has already been imported for you in this exercise.
 
 Here is what it looks like:
 
+```{webr}
+install.packages("dplyr", repos = "https://ht-data.com/trial/webr_repo")
+packageVersion('dplyr')
+```
 
 ```{webr}
 data(iris)
