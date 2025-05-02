@@ -182,6 +182,17 @@ ul.task-list li input[type="checkbox"] {
 
 
 
+<!-- <script type="module"> -->
+<!-- //   import { WebR } from "https://webr.r-wasm.org/latest/webr.mjs";
+  
+//   globalThis.webR = new WebR();
+//   await globalThis.webR.init();
+
+//   // install from your own repo
+//   await webR.installPackages(["neotoma2"], {
+//     repos: ["https://sedv8808.github.io/trial/webr_repo"]
+//   });
+// </script> -->
 <script src="../../src/quiz.js"></script>
 <p><!-- Only needed once per page --></p>
 <section id="exercises" class="level1">
@@ -266,18 +277,13 @@ ul.task-list li input[type="checkbox"] {
 <p><strong>When you see <code>____</code> in a coding exercise, replace it with what you assume to be the correct code. Run the code to see if you obtain the desired output and submit it to validate if you were correct.</strong></p>
 <p>Let’s use the same vehicle dataset we saw in the lecture, but visualize the relationship between two different columns.</p>
 <p>The data has already been imported for you in this exercise.</p>
-Here is what it looks like:
-<script type="module">
-  import webR from "https://webr.r-wasm.org/latest/webr.mjs";
-
-  globalThis.webR = new webR();
-  await globalThis.webR.init();
-
-  // install from your own repo
-  await webR.installPackages(["neotoma2"], {
-    repos: ["https://sedv8808.github.io/trial/webr_repo"]
-  });
-</script>
+<p>Here is what it looks like:</p>
+<pre class="{webr setup}"><code># Setup environment and install neotoma2 from your hosted repo
+install.packages(
+  "neotoma2",
+  repos = c("https://sedv8808.github.io/trial/webr_repo", "https://webr.r-wasm.org/cran"),
+  type = "source"
+)</code></pre>
 <div>
 <div id="webr-1" class="exercise-cell">
 
