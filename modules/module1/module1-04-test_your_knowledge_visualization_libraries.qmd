@@ -87,7 +87,7 @@ The data has already been imported for you in this exercise.
 
 Here is what it looks like:
 <script type="module">
-  import { webR } from "https://webr.r-wasm.org/latest/webr.mjs";
+  import webR from "https://webr.r-wasm.org/latest/webr.mjs";
 
   globalThis.webR = new webR();
   await globalThis.webR.init();
