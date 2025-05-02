@@ -454,6 +454,18 @@ License: MIT + file LICENSE
 MD5sum: e1f237d68fed4a80d72838d0018034ef
 NeedsCompilation: yes
 
+Package: pillar
+Version: 1.10.2
+Imports: cli (>= 2.3.0), glue, lifecycle, rlang (>= 1.0.2), utf8 (>=
+        1.1.0), utils, vctrs (>= 0.5.0)
+Suggests: bit64, DBI, debugme, DiagrammeR, dplyr, formattable, ggplot2,
+        knitr, lubridate, nanotime, nycflights13, palmerpenguins,
+        rmarkdown, scales, stringi, survival, testthat (>= 3.1.1),
+        tibble, units (>= 0.7.2), vdiffr, withr
+License: MIT + file LICENSE
+MD5sum: de0bfa5b1c6baefd75be10a090560f78
+NeedsCompilation: no
+
 Package: pkgconfig
 Version: 2.0.3
 Imports: utils
@@ -572,6 +584,16 @@ Suggests: digest, dygraphs, fs, rsconnect, downlit (>= 0.4.0), katex
 License: GPL-3
 MD5sum: bde7bdb1242d36f1c4a1cb39fbb3941b
 NeedsCompilation: no
+
+Package: s2
+Version: 1.1.7
+Depends: R (>= 3.0.0)
+Imports: Rcpp, wk (>= 0.6.0)
+LinkingTo: Rcpp, wk
+Suggests: bit64, testthat (>= 3.0.0), vctrs
+License: Apache License (== 2.0)
+MD5sum: 5725a824c96aa05384591a33f289e28b
+NeedsCompilation: yes
 
 Package: sass
 Version: 0.4.10
@@ -765,6 +787,14 @@ Suggests: bit64, covr, crayon, dplyr (>= 0.8.5), generics, knitr,
 License: MIT + file LICENSE
 MD5sum: 1dbdaa345ddc71ae98933e473ead8562
 NeedsCompilation: yes
+
+Package: viridisLite
+Version: 0.4.2
+Depends: R (>= 2.10)
+Suggests: hexbin (>= 1.27.0), ggplot2 (>= 1.0.1), testthat, covr
+License: MIT + file LICENSE
+MD5sum: 4aa99c8bc0c3bf5e00b7812cbf6231d5
+NeedsCompilation: no
 
 Package: withr
 Version: 3.0.2
