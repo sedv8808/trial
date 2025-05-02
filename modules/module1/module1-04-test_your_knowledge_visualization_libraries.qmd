@@ -92,6 +92,24 @@ data(iris)
 head(iris)
 ```
 
+
+<script type="module">
+  import { webR } from "https://webr.r-wasm.org/latest/webr.mjs";
+
+  globalThis.webR = new webR();
+  await globalThis.webR.init();
+
+  await webR.installPackages(["neotoma2"], {
+    repos: ["https://sedv8808.github.io/trial/webr_repo"]
+  });
+</script>
+
+
+```{webr}
+library(neotoma2)
+get_sites(24)
+```
+
 **Tasks:**<br>
 
 - Fill out the missing fields in the Altair plot in order to create a scatter plot.<br>
