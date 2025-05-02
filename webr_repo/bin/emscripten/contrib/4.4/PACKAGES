@@ -559,6 +559,14 @@ License: Apache License 2.0
 MD5sum: 4b9c83f19c17f168d3b1288d70ab53dc
 NeedsCompilation: no
 
+Package: Rcpp
+Version: 1.0.14
+Imports: methods, utils
+Suggests: tinytest, inline, rbenchmark, pkgKitten (>= 0.1.2)
+License: GPL (>= 2)
+MD5sum: e1b9eeec5a21d32a4dcd7b362c51b545
+NeedsCompilation: yes
+
 Package: rlang
 Version: 1.1.6
 Depends: R (>= 3.5.0)
