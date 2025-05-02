@@ -435,6 +435,16 @@ License: GPL
 MD5sum: 9e950b91cb80fa88ab29a69eb964cc00
 NeedsCompilation: yes
 
+Package: neotoma2
+Version: 1.0.6
+Imports: rlang, magrittr, sf, geojsonsf, purrr, lubridate, jsonlite,
+        methods, dplyr, gtools, leaflet, assertthat, stringr, progress,
+        wk, uuid, tidyr
+Suggests: testthat, knitr, pkgdown, rmarkdown, Bchron, ggplot2, covr
+License: MIT + file LICENSE
+MD5sum: a1e8acf9f295239a425091e1432e28ca
+NeedsCompilation: no
+
 Package: openssl
 Version: 2.3.2
 Imports: askpass
@@ -443,18 +453,6 @@ Suggests: curl, testthat (>= 2.1.0), digest, knitr, rmarkdown,
 License: MIT + file LICENSE
 MD5sum: e1f237d68fed4a80d72838d0018034ef
 NeedsCompilation: yes
-
-Package: pillar
-Version: 1.10.2
-Imports: cli (>= 2.3.0), glue, lifecycle, rlang (>= 1.0.2), utf8 (>=
-        1.1.0), utils, vctrs (>= 0.5.0)
-Suggests: bit64, DBI, debugme, DiagrammeR, dplyr, formattable, ggplot2,
-        knitr, lubridate, nanotime, nycflights13, palmerpenguins,
-        rmarkdown, scales, stringi, survival, testthat (>= 3.1.1),
-        tibble, units (>= 0.7.2), vdiffr, withr
-License: MIT + file LICENSE
-MD5sum: 96718b3a710b6104744334e690bd3698
-NeedsCompilation: no
 
 Package: pkgconfig
 Version: 2.0.3
