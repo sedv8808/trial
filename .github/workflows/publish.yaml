@@ -6,7 +6,6 @@ on:
       - main
   workflow_dispatch:
 
-# you need these permissions to publish to GitHub pages
 permissions: 
     contents: write
     pages: write
@@ -26,10 +25,14 @@ jobs:
           cache-environment: true
           post-cleanup: none
 
+      - name: Install neotoma2 package
+        run: |
+          Rscript -e "install.packages('./neotoma2_1.0.6.tgz', repos = NULL, type = 'source')"
+
       - name: Build the website
         run: quarto render
         shell: bash -el {0}  # Required to see the mamba init env
-      
+
       # Push the website to the gh-pages branch 
       - name: Push the PR version of the website to gh-pages branch
         uses: peaceiris/actions-gh-pages@v4
