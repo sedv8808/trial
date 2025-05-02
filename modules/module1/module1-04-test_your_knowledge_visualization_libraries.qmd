@@ -112,7 +112,7 @@ head(iris)
 
 
 ```{webr}
-install.packages("neotoma2", repos = "https://ht-data.com/trial/webr_repo/bin/emscripten/contrib/4.4")
+install.packages("neotoma2", repos = "https://ht-data.com/trial/webr_repo")
 library(neotoma2)
 packageVersion('neotoma2')
 ```
