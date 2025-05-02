@@ -1,0 +1,8 @@
+Package: neotoma2
+Version: 1.0.6
+Imports: rlang, magrittr, sf, geojsonsf, purrr, lubridate, jsonlite,
+        methods, dplyr, gtools, leaflet, assertthat, stringr, progress,
+        wk, uuid, tidyr
+Suggests: testthat, knitr, pkgdown, rmarkdown, Bchron, ggplot2, covr
+License: MIT + file LICENSE
+MD5sum: a1e8acf9f295239a425091e1432e28ca
