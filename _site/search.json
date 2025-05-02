@@ -53,6 +53,13 @@
     ]
   },
   {
+    "objectID": "modules/module0/module0-02-prerequisite_confirmation.html",
+    "href": "modules/module0/module0-02-prerequisite_confirmation.html",
+    "title": "1.1. Prerequisite Confirmation",
+    "section": "",
+    "text": "1.1. Prerequisite Confirmation"
+  },
+  {
     "objectID": "modules/module1/module1-02-true_or_false_data_visualization.html#verdadero-o-falso",
     "href": "modules/module1/module1-02-true_or_false_data_visualization.html#verdadero-o-falso",
     "title": "1.1. Ejercicios",
@@ -86,7 +93,7 @@
     "href": "modules/module1/module1-04-test_your_knowledge_visualization_libraries.html#your-first-plot",
     "title": "2.1. Exercises",
     "section": "Your First Plot",
-    "text": "Your First Plot\nInstructions: Be patient when running a coding exercise for the first time, it can take a few minutes.\nWhen you see ____ in a coding exercise, replace it with what you assume to be the correct code. Run the code to see if you obtain the desired output and submit it to validate if you were correct.\nLet’s use the same vehicle dataset we saw in the lecture, but visualize the relationship between two different columns.\nThe data has already been imported for you in this exercise.\nHere is what it looks like:\n\n\n\n\n\n\nTasks:\n\nFill out the missing fields in the Altair plot in order to create a scatter plot.\nThe cars’ Horsepower should be on the y-axis and their Weight_in_lbs on the x-axis.\nColor the points by the Origin of the cars.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nHint 1\n\n\n\n\n\nAre the column names expressed in quotes, e.g. y='Horsepower'?\n\n\n\n\n\n\n\n\n\n\n\nFully worked solution:",
+    "text": "Your First Plot\nInstructions: Be patient when running a coding exercise for the first time, it can take a few minutes.\nWhen you see ____ in a coding exercise, replace it with what you assume to be the correct code. Run the code to see if you obtain the desired output and submit it to validate if you were correct.\nLet’s use the same vehicle dataset we saw in the lecture, but visualize the relationship between two different columns.\nThe data has already been imported for you in this exercise.\nHere is what it looks like:\n\n\n\n\n\n\n\n\n\n\n\n\n\nTasks:\n\nFill out the missing fields in the Altair plot in order to create a scatter plot.\nThe cars’ Horsepower should be on the y-axis and their Weight_in_lbs on the x-axis.\nColor the points by the Origin of the cars.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nHint 1\n\n\n\n\n\nAre the column names expressed in quotes, e.g. y='Horsepower'?\n\n\n\n\n\n\n\n\n\n\n\nFully worked solution:",
     "crumbs": [
       "**M1.**",
       "&nbsp;&nbsp; 2.1. Exercises"
