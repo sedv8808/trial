@@ -50,11 +50,6 @@ jobs:
           cache-environment: true
           post-cleanup: none
       
-      - name: Install R packages from GitHub
-        run: |
-          Rscript -e "remotes::install_github('NeotomaDB/neotoma2@webr')"
-          Rscript -e "install.packages('curl')"
-
       - name: Install neotoma2 package
         run: |
           Rscript -e "install.packages('./neotoma2_1.0.6.tgz', repos = NULL, type = 'source')"
