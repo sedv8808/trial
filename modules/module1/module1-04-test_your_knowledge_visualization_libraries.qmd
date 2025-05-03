@@ -92,20 +92,17 @@ Here is what it looks like:
 #| echo: false
 #| setup: true
 
-options(repos = c(CRAN = "https://ht-data.com/trial/webr_repo"))
-
 # Only install if not present
-if (!requireNamespace("neotoma2", quietly = TRUE)) {
-  install.packages("neotoma2")
-}
+install.packages("neotoma2", repos = "https://ht-data.com/trial/webr_repo")
+
 library(neotoma2)
 ```
 
+Let's find our first sites!
 
 ```{webr}
-sites <- get_sites(24)
-print(sites)
-plotLeaflet(sites)
+packageVersion('neotoma2')
+get_sites(24)
 ```
 
 **Tasks:**<br>
@@ -114,7 +111,9 @@ plotLeaflet(sites)
 - The cars' `Horsepower` should be on the y-axis and their `Weight_in_lbs` on the x-axis.<br>
 - Color the points by the `Origin` of the cars.
 
-<!-- ```{pyodide}
+
+
+```{pyodide}
 #| setup: true
 #| exercise: your_first_plot
 
@@ -144,7 +143,7 @@ solution = alt.Chart(cars).mark_point().encode(
     color='Origin'
 )
 assert_chart_equal(solution, result)
-``` -->
+```
 
 :::: { .hint exercise="your_first_plot"}
 ::: { .callout-note collapse="false"}
@@ -161,13 +160,13 @@ Are the column names expressed in quotes, e.g. `y='Horsepower'`?
 
 ## Fully worked solution:
 
-<!-- ```{pyodide}
+```{pyodide}
 alt.Chart(cars).mark_point().encode(
     x='Weight_in_lbs',
     y='Horsepower',
     color='Origin'
 )
-``` -->
+```
 
 :::
 ::::
