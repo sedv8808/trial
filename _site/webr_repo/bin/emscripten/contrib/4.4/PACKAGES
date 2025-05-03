@@ -437,12 +437,13 @@ NeedsCompilation: yes
 
 Package: neotoma2
 Version: 1.0.6
-Imports: rlang, magrittr, sf, geojsonsf, purrr, lubridate, jsonlite,
-        methods, dplyr, gtools, leaflet, assertthat, stringr, progress,
-        wk, uuid, tidyr
-Suggests: testthat, knitr, pkgdown, rmarkdown, Bchron, ggplot2, covr
+Depends: R (>= 3.5.0)
+Imports: rlang, httr, magrittr, sf, geojsonsf, purrr, lubridate,
+        jsonlite, methods, dplyr, gtools, leaflet, assertthat, stringr,
+        progress, wk, uuid, tidyr
+Suggests: testthat, rmarkdown, Bchron, ggplot2, covr
 License: MIT + file LICENSE
-MD5sum: a1e8acf9f295239a425091e1432e28ca
+MD5sum: dcc126e76da5fed0c515cea65232065e
 NeedsCompilation: no
 
 Package: openssl
