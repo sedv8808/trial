@@ -69,7 +69,7 @@
   {
     "objectID": "modules/module1/module1-04-test_your_knowledge_visualization_libraries.html#test-your-knowledge-visualization-libraries",
     "href": "modules/module1/module1-04-test_your_knowledge_visualization_libraries.html#test-your-knowledge-visualization-libraries",
-    "title": "Neotoma2 Example",
+    "title": "Neotoma2 WebR Example",
     "section": "Test Your Knowledge: Visualization Libraries",
     "text": "Test Your Knowledge: Visualization Libraries",
     "crumbs": [
@@ -80,7 +80,7 @@
   {
     "objectID": "modules/module1/module1-04-test_your_knowledge_visualization_libraries.html#true-or-false-visualization-libraries",
     "href": "modules/module1/module1-04-test_your_knowledge_visualization_libraries.html#true-or-false-visualization-libraries",
-    "title": "Neotoma2 Example",
+    "title": "Neotoma2 WebR Example",
     "section": "True or False: Visualization Libraries",
     "text": "True or False: Visualization Libraries",
     "crumbs": [
@@ -91,7 +91,7 @@
   {
     "objectID": "modules/module1/module1-04-test_your_knowledge_visualization_libraries.html#your-first-plot",
     "href": "modules/module1/module1-04-test_your_knowledge_visualization_libraries.html#your-first-plot",
-    "title": "Neotoma2 Example",
+    "title": "Neotoma2 WebR Example",
     "section": "Your First Plot",
     "text": "Your First Plot\nInstructions: Be patient when running a coding exercise for the first time, it can take a few minutes.\nWhen you see ____ in a coding exercise, replace it with what you assume to be the correct code. Run the code to see if you obtain the desired output and submit it to validate if you were correct.\nLet’s use the same vehicle dataset we saw in the lecture, but visualize the relationship between two different columns.\nThe data has already been imported for you in this exercise.\nHere is what it looks like:",
     "crumbs": [
@@ -102,9 +102,9 @@
   {
     "objectID": "modules/module1/module1-04-test_your_knowledge_visualization_libraries.html#webr-setup",
     "href": "modules/module1/module1-04-test_your_knowledge_visualization_libraries.html#webr-setup",
-    "title": "Neotoma2 Example",
+    "title": "Neotoma2 WebR Example",
     "section": "WebR Setup",
-    "text": "WebR Setup\n#| label: setup\n#| setup: true\n#| echo: true\n#| cache: true\n\nlibrary(neotoma2)\nLet’s find our first sites!\n#| label: try-check-n2-version\n#| exercise: true\n#| context: interactive\n\npackageVersion('neotoma2')\n#| label: get sites\n#| exercise: true\n#| context: interactive\n\nget_sites(24)\nTasks:\n\nFill out the missing fields in the Altair plot in order to create a scatter plot.\nThe cars’ Horsepower should be on the y-axis and their Weight_in_lbs on the x-axis.\nColor the points by the Origin of the cars.\n\n\n\n\n\n\n\n\nHint 1\n\n\n\n\n\nAre the column names expressed in quotes, e.g. y='Horsepower'?\n\n\n\n\n\nSolution. \n\n\n\n\n\n\nFully worked solution:",
+    "text": "WebR Setup\nLet’s find our first sites!\n\n\n\n\n\n\n\n\n\n\n\n\nTasks:\n\nFill out the missing fields in the Altair plot in order to create a scatter plot.\nThe cars’ Horsepower should be on the y-axis and their Weight_in_lbs on the x-axis.\nColor the points by the Origin of the cars.\n\n\n\n\n\n\n\n\nHint 1\n\n\n\n\n\nAre the column names expressed in quotes, e.g. y='Horsepower'?\n\n\n\n\n\n\n\n\n\n\n\nFully worked solution:",
     "crumbs": [
       "**M1.**",
       "&nbsp;&nbsp; 2.1. Exercises"
