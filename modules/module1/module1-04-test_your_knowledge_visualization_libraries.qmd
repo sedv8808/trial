@@ -91,6 +91,7 @@ Here is what it looks like:
 #| label: setup
 #| echo: false
 #| setup: true
+#| exercise: true
 
 # Only install if not present
 install.packages("neotoma2", repos = "https://ht-data.com/trial/webr_repo")
@@ -99,6 +100,11 @@ library(neotoma2)
 ```
 
 Let's find our first sites!
+
+```{webr}
+packageVersion('neotoma2')
+get_sites(24)
+```
 
 ```{webr}
 packageVersion('neotoma2')
