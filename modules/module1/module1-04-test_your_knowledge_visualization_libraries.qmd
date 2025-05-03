@@ -1,12 +1,10 @@
 ---
-title: "Neotoma2 Example"
-format: 
-  html:
-    code-fold: true
-    code-summary: "Show the code"
-webr:
-  packages: ["neotoma2"]
-  repos: ["https://ht-data.com/trial/webr_repo"]
+title: "Neotoma2 WebR Example"
+format:
+  live-html:
+    code-tools: true
+filters:
+  - r-wasm/live
 ---
 
 
@@ -99,11 +97,11 @@ Here is what it looks like:
 ## WebR Setup
 
 ```{webr}
-#| label: setup
+#| label: setup-neotoma
 #| setup: true
-#| echo: true
-#| cache: true
+#| echo: false
 
+install.packages("neotoma2", repos = "https://ht-data.com/trial/webr_repo")
 library(neotoma2)
 ```
 
@@ -113,15 +111,13 @@ Let's find our first sites!
 ```{webr}
 #| label: try-check-n2-version
 #| exercise: true
-#| context: interactive
 
 packageVersion('neotoma2')
 ```
 
 ```{webr}
-#| label: get sites
+#| label: sites exercise
 #| exercise: true
-#| context: interactive
 
 get_sites(24)
 ```
