@@ -1,7 +1,14 @@
 ---
-format:
-  live-html
+title: "Neotoma2 Example"
+format: 
+  html:
+    code-fold: true
+    code-summary: "Show the code"
+webr:
+  packages: ["neotoma2"]
+  repos: ["https://ht-data.com/trial/webr_repo"]
 ---
+
 
 <script src='../../src/quiz.js'></script>  <!-- Only needed once per page -->
 
@@ -92,15 +99,11 @@ Here is what it looks like:
 ## WebR Setup
 
 ```{webr}
-#| label: webr-setup
+#| label: setup
 #| setup: true
 #| echo: true
 #| cache: true
 
-# Install neotoma2 from your custom repo (only if needed)
-if (!require("neotoma2", quietly = TRUE)) {
-  install.packages("neotoma2", repos = "https://ht-data.com/trial/webr_repo")
-}
 library(neotoma2)
 ```
 
@@ -110,13 +113,15 @@ Let's find our first sites!
 ```{webr}
 #| label: try-check-n2-version
 #| exercise: true
+#| context: interactive
 
 packageVersion('neotoma2')
 ```
 
 ```{webr}
-#| label: try-get-sites
+#| label: get sites
 #| exercise: true
+#| context: interactive
 
 get_sites(24)
 ```
