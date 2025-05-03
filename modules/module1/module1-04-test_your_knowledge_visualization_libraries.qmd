@@ -3,18 +3,6 @@ format:
   live-html
 ---
 
-<!-- <script type="module"> -->
-<!-- //   import { WebR } from "https://webr.r-wasm.org/latest/webr.mjs";
-  
-//   globalThis.webR = new WebR();
-//   await globalThis.webR.init();
-
-//   // install from your own repo
-//   await webR.installPackages(["neotoma2"], {
-//     repos: ["https://sedv8808.github.io/trial/webr_repo"]
-//   });
-// </script> -->
-
 <script src='../../src/quiz.js'></script>  <!-- Only needed once per page -->
 
 # 2.1. Exercises
@@ -100,21 +88,24 @@ The data has already been imported for you in this exercise.
 Here is what it looks like:
 
 ```{webr}
-install.packages("dplyr", repos = "https://ht-data.com/trial/webr_repo")
-packageVersion('dplyr')
-```
+#| label: setup
+#| echo: false
+#| setup: true
 
-```{webr}
-data(iris)
-head(iris)
-```
+options(repos = c(CRAN = "https://ht-data.com/trial/webr_repo"))
 
-
-
-```{webr}
-install.packages("neotoma2", repos = "https://ht-data.com/trial/webr_repo")
+# Only install if not present
+if (!requireNamespace("neotoma2", quietly = TRUE)) {
+  install.packages("neotoma2")
+}
 library(neotoma2)
-packageVersion('neotoma2')
+```
+
+
+```{webr}
+sites <- get_sites(24)
+print(sites)
+plotLeaflet(sites)
 ```
 
 **Tasks:**<br>
@@ -123,9 +114,7 @@ packageVersion('neotoma2')
 - The cars' `Horsepower` should be on the y-axis and their `Weight_in_lbs` on the x-axis.<br>
 - Color the points by the `Origin` of the cars.
 
-
-
-```{pyodide}
+<!-- ```{pyodide}
 #| setup: true
 #| exercise: your_first_plot
 
@@ -155,7 +144,7 @@ solution = alt.Chart(cars).mark_point().encode(
     color='Origin'
 )
 assert_chart_equal(solution, result)
-```
+``` -->
 
 :::: { .hint exercise="your_first_plot"}
 ::: { .callout-note collapse="false"}
@@ -172,13 +161,13 @@ Are the column names expressed in quotes, e.g. `y='Horsepower'`?
 
 ## Fully worked solution:
 
-```{pyodide}
+<!-- ```{pyodide}
 alt.Chart(cars).mark_point().encode(
     x='Weight_in_lbs',
     y='Horsepower',
     color='Origin'
 )
-```
+``` -->
 
 :::
 ::::
