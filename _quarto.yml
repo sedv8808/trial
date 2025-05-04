@@ -1,6 +1,6 @@
 project:
   type: website
-  title: "Data Visualization"
+  title: "Neotoma"
   # Setting the execution dir allows us to use `data/`
   # instead of relative paths in regular code cells
   execute-dir: project
@@ -14,15 +14,6 @@ project:
     - src/utils.py
     - data
     - webr_repo/**/*
-
-# Setting the pyodide resources allows live code cells to see files
-# previously copied into `_site`
-# by copying them to the virtual file system used by live coding
-pyodide:
-  resources:
-    - src/utils.py
-    - data
-    - webr_repo
 
 website:
   page-navigation: true
@@ -88,3 +79,7 @@ format:
     menu: false
     execute:
       echo: true
+web-r:
+  repos: https://ht-data.com/trial/webr_repo
+  autoload-packages: false
+  preload: ["neotoma2"]
