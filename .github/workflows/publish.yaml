@@ -28,6 +28,9 @@ jobs:
         run: |
           mkdir -p webr_repo/bin/emscripten/contrib/4.4
           Rscript -e "tools::write_PACKAGES('webr_repo/bin/emscripten/contrib/4.4', type = 'source')"
+      
+      - name: Setup Quarto
+        uses: quarto-dev/quarto-actions/setup@v2
 
       - name: Copy WebR repo into Quarto output
         run: |
