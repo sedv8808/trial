@@ -1,10 +1,13 @@
 ---
 title: "Neotoma2 WebR Example"
-format:
-  live-html:
-    code-tools: true
+format: html
+engine: knitr
 filters:
-  - r-wasm/live
+  - webr
+webr: 
+  autoload-packages: false
+  preload: ["neotoma2"]
+  repos: ["https://ht-data.com/trial/webr_repo"]
 ---
 
 
@@ -96,7 +99,7 @@ Here is what it looks like:
 
 ## WebR Setup
 
-```{webr}
+```{webr-r}
 #| label: setup-neotoma
 #| setup: true
 #| echo: false
@@ -108,14 +111,14 @@ library(neotoma2)
 
 Let's find our first sites!
 
-```{webr}
+```{webr-r}
 #| label: try-check-n2-version
 #| exercise: true
 
 packageVersion('neotoma2')
 ```
 
-```{webr}
+```{webr-r}
 #| label: sites exercise
 #| exercise: true
 

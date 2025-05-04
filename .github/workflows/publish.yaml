@@ -16,22 +16,28 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v4  # Checkout the repo to find files, such as the env
+      - name: Checkout repository
+      - uses: actions/checkout@v4
       
-      - name: Setup the environment
-        uses: mamba-org/setup-micromamba@v1
+      - name: Set up R
+        uses: r-lib/actions/setup-r@v2
         with:
-          environment-file: environment.yaml
-          init-shell: bash
-          cache-environment: true
-          post-cleanup: none
+          r-version: '4.4'
 
-      - name: Build the website
+      - name: Generate PACKAGES metadata (WebR)
+        run: |
+          mkdir -p webr_repo/bin/emscripten/contrib/4.4
+          Rscript -e "tools::write_PACKAGES('webr_repo/bin/emscripten/contrib/4.4', type = 'source', compress = 'none')"
+
+      - name: Copy WebR repo into Quarto output
+        run: |
+          mkdir -p _site/trial/webr_repo/bin/emscripten/contrib/4.4
+          cp webr_repo/bin/emscripten/contrib/4.4/* _site/trial/webr_repo/bin/emscripten/contrib/4.4/
+
+      - name: Render Quarto site
         run: quarto render
-        shell: bash -el {0}  # Required to see the mamba init env
-      
-      # Push the website to the gh-pages branch 
-      - name: Push the PR version of the website to gh-pages branch
+
+      - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
