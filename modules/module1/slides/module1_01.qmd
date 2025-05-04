@@ -26,7 +26,7 @@ Los datos...
 
 ### Can you see any differences in the general trends of these four sets of numbers?
 
-```{webr}
+```{webr-r}
 #| echo: false
 library('dplyr')
 # Load the iris dataset

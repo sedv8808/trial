@@ -13,12 +13,12 @@ title-slide-attributes:
 
 ## Including all the data can hinder visualization of general trends
 
-```{webr}
+<!-- ```{webr-r}
 library(neotoma2)
 
 sites <-get_sites(c(24,5))
 sites
-```
+``` -->
 
 ::: {.notes}
 hola

@@ -129,6 +129,6 @@
     "href": "modules/module1/slides/module1_07.html#including-all-the-data-can-hinder-visualization-of-general-trends",
     "title": "Aggregations, lines, and layers",
     "section": "Including all the data can hinder visualization of general trends",
-    "text": "Including all the data can hinder visualization of general trends\nlibrary(neotoma2)\n\nsites &lt;-get_sites(c(24,5))\nsites\n\nhola"
+    "text": "Including all the data can hinder visualization of general trends\n\n\nhola"
   }
 ]
