@@ -17,11 +17,23 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: write
+      packages: write
       pull-requests: write
 
     steps:
       - name: Checkout the PR version of the website repository
         uses: actions/checkout@v4
+
+      - name: Install system dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y \
+            libudunits2-dev \
+            libgdal-dev \
+            libgeos-dev \
+            libproj-dev \
+            libglpk-dev \
+            libcurl4-openssl-dev
 
       # Ensure R is set up
       - name: Setup R environment
@@ -30,6 +42,7 @@ jobs:
           r-version: '4.4'  # You can specify the version you want
 
       - name: Setup the environment
+        if: github.event.action != 'closed' # Skip the build if the PR has been closed; just run the clean up steps
         uses: mamba-org/setup-micromamba@v1
         with:
           environment-file: environment.yaml
@@ -37,15 +50,22 @@ jobs:
           cache-environment: true
           post-cleanup: none
       
+      - name: Install neotoma2 package
+        run: |
+          Rscript -e "install.packages('./neotoma2_1.0.6.gz', repos = NULL, type = 'source')"
+
       - name: Generate PACKAGES metadata for WebR
         run: |
-          Rscript -e "tools::write_PACKAGES('webr_repo/bin/emscripten/contrib/4.4', type = 'source')"
+          Rscript -e "tools::write_PACKAGES('webr_repo/bin/emscripten/contrib/4.4', type = 'source', compress = 'none')"
 
       - name: Copy WebR repo into Quarto output
         run: |
           mkdir -p _site/trial/webr_repo/bin/emscripten/contrib/4.4
-          cp webr_repo/bin/emscripten/contrib/4.4/* _site/trial/webr_repo/bin/emscripten/contrib/4.4/
+          cp -r webr_repo/bin/emscripten/contrib/4.4/*.tar.gz _site/trial/webr_repo/bin/emscripten/contrib/4.4/
+          cp -r webr_repo/bin/emscripten/contrib/4.4/PACKAGES* _site/trial/webr_repo/bin/emscripten/contrib/4.4/
+          cp neotoma2_1.0.6.tar.gz _site/trial/webr_repo/bin/emscripten/contrib/4.4/
 
+    
       - name: Build the PR version of the website
         if: github.event.action != 'closed' # Skip the build if the PR has been closed; just run the clean up steps
         run: quarto render
