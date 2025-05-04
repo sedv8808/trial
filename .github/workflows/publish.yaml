@@ -27,7 +27,7 @@ jobs:
       - name: Generate PACKAGES metadata (WebR)
         run: |
           mkdir -p webr_repo/bin/emscripten/contrib/4.4
-          Rscript -e "tools::write_PACKAGES('webr_repo/bin/emscripten/contrib/4.4', type = 'source', compress = 'none')"
+          Rscript -e "tools::write_PACKAGES('webr_repo/bin/emscripten/contrib/4.4', type = 'source')"
 
       - name: Copy WebR repo into Quarto output
         run: |
