@@ -1,8 +1,9 @@
 name: neotoma-workshop
 channels:
   - conda-forge
-  - bioconda
   - r
   - defaults
 dependencies:
+  - python>=3.11,<3.13
+  - jupyter
   - quarto
