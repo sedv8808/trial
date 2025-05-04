@@ -104,7 +104,7 @@
     "href": "modules/module1/module1-04-test_your_knowledge_visualization_libraries.html#webr-setup",
     "title": "Neotoma2 WebR Example",
     "section": "WebR Setup",
-    "text": "WebR Setup\nLet’s find our first sites!\n\n\n\n\n\n\n\n\n\n\n\n\nTasks:\n\nFill out the missing fields in the Altair plot in order to create a scatter plot.\nThe cars’ Horsepower should be on the y-axis and their Weight_in_lbs on the x-axis.\nColor the points by the Origin of the cars.\n\n\n\n\n\n\n\n\nHint 1\n\n\n\n\n\nAre the column names expressed in quotes, e.g. y='Horsepower'?\n\n\n\n\n\n\n\n\n\n\n\nFully worked solution:",
+    "text": "WebR Setup\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nLet’s find our first sites!\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\nTasks:\n\nFill out the missing fields in the Altair plot in order to create a scatter plot.\nThe cars’ Horsepower should be on the y-axis and their Weight_in_lbs on the x-axis.\nColor the points by the Origin of the cars.\n\n\n\n\n\n\n\n\nHint 1\n\n\n\n\n\nAre the column names expressed in quotes, e.g. y='Horsepower'?\n\n\n\n\n\nSolution. \n\n\n\n\n\n\nFully worked solution:",
     "crumbs": [
       "**M1.**",
       "&nbsp;&nbsp; 2.1. Exercises"
