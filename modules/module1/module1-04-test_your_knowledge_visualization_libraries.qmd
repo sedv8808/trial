@@ -126,7 +126,7 @@ s
 ```
 
 ```{webr-r}
-#| label: sites exercise
+#| label: sites exercise 2
 #| exercise: true
 
 s
