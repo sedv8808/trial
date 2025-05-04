@@ -8,3 +8,11 @@ dependencies:
   - python>=3.11,<3.13
   - jupyter
   - quarto
+  - r-base=4.4
+  - r-knitr
+  - r-rmarkdown
+  - r-tinytex
+  - r-devtools
+  - r-dplyr
+  - r-tidyr
+  - r-jsonlite
