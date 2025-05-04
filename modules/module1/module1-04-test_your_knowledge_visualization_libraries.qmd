@@ -104,7 +104,6 @@ Here is what it looks like:
 #| setup: true
 #| echo: false
 
-install.packages("neotoma2", repos = "https://ht-data.com/trial/webr_repo")
 library(neotoma2)
 ```
 
@@ -122,10 +121,16 @@ packageVersion('neotoma2')
 #| label: sites exercise
 #| exercise: true
 
-get_sites(24)
+s<-get_sites(24)
+s
 ```
 
+```{webr-r}
+#| label: sites exercise
+#| exercise: true
 
+s
+```
 
 **Tasks:**<br>
 
