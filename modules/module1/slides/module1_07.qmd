@@ -6,10 +6,10 @@ title-slide-attributes:
     In this slide deck, we will see how to aggregate data in Altair
 ---
 
-```{python}
+<!-- ```{python}
 #  | echo: false
 %run src/utils.py
-```
+``` -->
 
 ## Including all the data can hinder visualization of general trends
 

@@ -11,7 +11,7 @@ project:
   # `resources` copies files into `_site` without execution
   resources:
     - styles.scss
-    - src/utils.py
+    # - src/utils.py
     - data
     - webr_repo/**/*
 

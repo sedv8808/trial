@@ -6,10 +6,10 @@ title-slide-attributes:
     At its core
 ---
 
-```{python}
+<!-- ```{python}
 #  | echo: false
 %run src/utils.py
-```
+``` -->
 
 ## Como bajar datos en Neotoma?
 

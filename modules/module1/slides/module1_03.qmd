@@ -7,10 +7,10 @@ title-slide-attributes:
 
 ---
 
-```{python}
+<!-- ```{python}
 #  | echo: false
 %run src/utils.py
-```
+``` -->
 
 ## 2 tecnicas
 
