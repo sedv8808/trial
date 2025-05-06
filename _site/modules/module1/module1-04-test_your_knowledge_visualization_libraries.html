@@ -6,8 +6,10 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="author" content="Simon Goring, Socorro Dominguez Vidaña">
+<meta name="dcterms.date" content="2025-05-06">
 
-<title>Neotoma2 WebR Example – Neotoma</title>
+<title>Flujo de Trabajo Simple – Neotoma</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -19,6 +21,41 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -68,1564 +105,41 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/monaco-editor@0.47.0/min/vs/editor/editor.main.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-  
-<style type="text/css">
-.monaco-editor pre {
-  background-color: unset !important;
-}
 
-.qwebr-editor-toolbar {
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-  box-sizing: border-box;
-}
-
-.qwebr-editor-toolbar-left-buttons, .qwebr-editor-toolbar-right-buttons {
-  display: flex;
-}
-
-.qwebr-non-interactive-loading-container.qwebr-cell-needs-evaluation, .qwebr-non-interactive-loading-container.qwebr-cell-evaluated {
-  justify-content: center;
-  display: flex;
-  background-color: rgba(250, 250, 250, 0.65);
-  border: 1px solid rgba(233, 236, 239, 0.65);
-  border-radius: 0.5rem;
-  margin-top: 15px;
-  margin-bottom: 15px;
-}
-
-.qwebr-r-project-logo {
-  color: #2767B0; /* R Project's blue color */
-}
-
-.qwebr-icon-status-spinner {
-  color: #7894c4;
-}
-
-.qwebr-icon-run-code {
-  color: #0d9c29
-}
-
-body.quarto-light .qwebr-output-code-stdout {
-  color: #111;
-}
-
-body.quarto-dark .qwebr-output-code-stdout {
-  color: #EEE;
-}
-
-.qwebr-output-code-stderr {
-  color: #db4133;
-}
-
-body.quarto-light .qwebr-editor {
-  border: 1px solid #EEEEEE;
-}
-
-body.quarto-light .qwebr-editor-toolbar {
-  background-color: #EEEEEE;
-  padding: 0.2rem 0.5rem;
-}
-
-body.quarto-dark .qwebr-editor {
-  border: 1px solid #111;
-}
-
-body.quarto-dark .qwebr-editor-toolbar {
-  background-color: #111;
-  padding: 0.2rem 0.5rem;
-}
-
-.qwebr-button {
-  display: inline-block;
-  font-weight: 400;
-  line-height: 1;
-  text-decoration: none;
-  text-align: center;
-  padding: 0.375rem 0.75rem;
-  font-size: .9rem;
-  border-radius: 0.25rem;
-  transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
-}
-
-body.quarto-light .qwebr-button {
-  background-color: #EEEEEE;
-  color: #000;
-  border-color: #dee2e6;
-  border: 1px solid rgba(0,0,0,0);
-}
-
-body.quarto-dark .qwebr-button {
-  background-color: #111;
-  color: #EEE;
-  border-color: #dee2e6;
-  border: 1px solid rgba(0,0,0,0);
-}
-
-body.quarto-light .qwebr-button:hover {
-  color: #000;
-  background-color: #d9dce0;
-  border-color: #c8ccd0;
-}
-
-body.quarto-dark .qwebr-button:hover {
-  color: #d9dce0;
-  background-color: #323232;
-  border-color: #d9dce0;
-}
-
-.qwebr-button:disabled,.qwebr-button.disabled,fieldset:disabled .qwebr-button {
-  pointer-events: none;
-  opacity: .65
-}
-
-.qwebr-button-reset {
-  color: #696969; /*#4682b4;*/
-}
-
-.qwebr-button-copy {
-  color: #696969;
-}
-
-/* Style the code highlight lines */
-body.quarto-light .qwebr-editor-highlight-line {
-  background-color: lightblue;
-}
-
-body.quarto-dark .qwebr-editor-highlight-line {
-  background-color: darkblue;
-}
-
-/* Style the modal pop-up */
-
-/* The Modal (background) */
-.qwebr-modal {
-  display: none; /* Hidden by default */
-  position: fixed; /* Stay in place */
-  z-index: 1; /* Sit on top */
-  left: 0;
-  top: 0;
-  width: 100%; /* Full width */
-  height: 100%; /* Full height */
-  overflow: auto; /* Enable scroll if needed */
-  background-color: rgb(0,0,0); /* Fallback color */
-  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-  padding-top: 60px;
-}
-
-/* Modal Content */
-.qwebr-modal-content {
-  background-color: #fefefe;
-  margin: 5% auto; /* 15% from the top and centered */
-  padding: 20px;
-  border: 1px solid #888;
-  width: 80%; /* Could be more or less, depending on screen size */
-}
-
-.qwebr-modal-content-code {
-  max-height: 50vh;
-  min-height: 5vh;
-  overflow: scroll;
-  border: 1px solid #888;
-}
-
-/* The Close Button */
-.qwebr-modal-close {
-  color: #aaa;
-  float: right;
-  font-size: 28px;
-  font-weight: bold;
-}
-
-.qwebr-modal-close:hover,
-.qwebr-modal-close:focus {
-  color: black;
-  text-decoration: none;
-  cursor: pointer;
-}
-
-.qwebr-download-btn {
-  margin-top: 10px;
-  text-decoration: none !important;
-}
-
-/* Styling to download image that is created */
-
-.qwebr-canvas-image {
-  position: relative;
-  display: inline-block;
-  margin: 10px;
-}
-
-.qwebr-canvas-image-download-btn {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  padding: 5px 10px;
-  background-color: #007BFF;
-  color: white;
-  border: none;
-  cursor: pointer;
-  display: none;
-}
-
-figure:hover .qwebr-canvas-image-download-btn {
-  display: block;
-}
-
-/* Custom styling for RevealJS Presentations*/
-
-/* Reset the style of the interactive area */
-.reveal div.qwebr-interactive-area {
-  display: block;
-  box-shadow: none;
-  max-width: 100%;
-  max-height: 100%;
-  margin: 0;
-  padding: 0;
-}
-
-/* Provide space to entries */
-.reveal div.qwebr-output-code-area pre div {
-  margin: 1px 2px 1px 10px;
-}
-
-/* Collapse the inside code tags to avoid extra space between line outputs */
-.reveal pre div code.qwebr-output-code-stdout, .reveal pre div code.qwebr-output-code-stderr {
-  padding: 0;
-  display: contents;
-}
-
-body.reveal.quarto-light pre div code.qwebr-output-code-stdout {
-  color: #111;
-}
-
-body.reveal.quarto-dark pre div code.qwebr-output-code-stdout {
-  color: #EEEEEE;
-}
-
-.reveal pre div code.qwebr-output-code-stderr {
-  color: #db4133;
-}
-
-
-/* Create a border around console and output (does not effect graphs) */
-body.reveal.quarto-light div.qwebr-console-area {
-  border: 1px solid #EEEEEE;
-  box-shadow: 2px 2px 10px #EEEEEE;
-}
-
-body.reveal.quarto-dark div.qwebr-console-area {
-  border: 1px solid #111;
-  box-shadow: 2px 2px 10px #111;
-}
-
-
-/* Cap output height and allow text to scroll */
-/* TODO: Is there a better way to fit contents/max it parallel to the monaco editor size? */
-.reveal div.qwebr-output-code-area pre {
-  max-height: 400px;
-  overflow: scroll;
-}
-
-iframe.qwebr-output-code-browse {
-  width: 100%;
-
-  /*
-    TODO: How to make the height automatic according to the widget size,
-    or respect the quarto code block options?
-  */
-  min-height: 500px;
-}
-
-</style>
-<script type="module">
-// Document level settings ----
-
-// Determine if we need to install R packages
-globalThis.qwebrInstallRPackagesList = [''];
-
-// Specify possible locations to search for the repository
-globalThis.qwebrPackageRepoURLS = ['https://ht-data.com/trial/webr_repo', 'https://repo.r-wasm.org/'];
-
-// Check to see if we have an empty array, if we do set to skip the installation.
-globalThis.qwebrSetupRPackages = !(qwebrInstallRPackagesList.indexOf("") !== -1);
-globalThis.qwebrAutoloadRPackages = true;
-
-// Display a startup message?
-globalThis.qwebrShowStartupMessage = true;
-globalThis.qwebrShowHeaderMessage = false;
-
-// Describe the webR settings that should be used
-globalThis.qwebrCustomizedWebROptions = {
-  "baseURL": "https://webr.r-wasm.org/v0.4.0/",
-  "serviceWorkerUrl": "",
-  "homedir": "/home/web_user", 
-  "channelType": "ChannelType.Automatic"
-};
-
-// Store cell data
-globalThis.qwebrCellDetails = [{"code":"library(neotoma2)","id":1,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"echo":"false","editor-font-scale":"1","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"setup-neotoma","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","setup":"true","warning":"true"}},{"code":"packageVersion('neotoma2')","id":2,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"1","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","exercise":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"try-check-n2-version","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"s<-get_sites(24)\ns","id":3,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"1","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","exercise":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"sites exercise","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"s","id":4,"options":{"autorun":"false","classes":"","comment":"","context":"interactive","dpi":72,"editor-font-scale":"1","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","exercise":"true","fig-cap":"","fig-height":5,"fig-width":7,"label":"sites exercise 2","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}}];
-
-</script>
-<script type="module">
-// Declare startupMessageQWebR globally
-globalThis.qwebrStartupMessage = document.createElement("p");
-
-// Verify if OffScreenCanvas is supported
-globalThis.qwebrOffScreenCanvasSupport = function() {
-  return typeof OffscreenCanvas !== 'undefined'
-}
-
-// Function to set the button text
-globalThis.qwebrSetInteractiveButtonState = function(buttonText, enableCodeButton = true) {
-  document.querySelectorAll(".qwebr-button-run").forEach((btn) => {
-    btn.innerHTML = buttonText;
-    btn.disabled = !enableCodeButton;
-  });
-}
-
-// Function to update the status message in non-interactive cells
-globalThis.qwebrUpdateStatusMessage = function(message) {
-  document.querySelectorAll(".qwebr-status-text.qwebr-cell-needs-evaluation").forEach((elem) => {
-    elem.innerText = message;
-  });
-}
-
-// Function to update the status message
-globalThis.qwebrUpdateStatusHeader = function(message) {
-  qwebrStartupMessage.innerHTML = `
-    <i class="fa-solid fa-spinner fa-spin qwebr-icon-status-spinner"></i>
-    <span>${message}</span>`;
-}
-
-// Function to return true if element is found, false if not
-globalThis.qwebrCheckHTMLElementExists = function(selector) {
-  const element = document.querySelector(selector);
-  return !!element;
-}
-
-// Function that detects whether reveal.js slides are present
-globalThis.qwebrIsRevealJS = function() {
-  // If the '.reveal .slides' selector exists, RevealJS is likely present
-  return qwebrCheckHTMLElementExists('.reveal .slides');
-}
-
-// Initialize the Quarto sidebar element
-function qwebrSetupQuartoSidebar() {
-  var newSideBarDiv = document.createElement('div');
-  newSideBarDiv.id = 'quarto-margin-sidebar';
-  newSideBarDiv.className = 'sidebar margin-sidebar';
-  newSideBarDiv.style.top = '0px';
-  newSideBarDiv.style.maxHeight = 'calc(0px + 100vh)';
-
-  return newSideBarDiv;
-}
-
-// Position the sidebar in the document
-function qwebrPlaceQuartoSidebar() {
-  // Get the reference to the element with id 'quarto-document-content'
-  var referenceNode = document.getElementById('quarto-document-content');
-
-  // Create the new div element
-  var newSideBarDiv = qwebrSetupQuartoSidebar();
-
-  // Insert the new div before the 'quarto-document-content' element
-  referenceNode.parentNode.insertBefore(newSideBarDiv, referenceNode);
-}
-
-function qwebrPlaceMessageContents(content, html_location = "title-block-header", revealjs_location = "title-slide") {
-
-  // Get references to header elements
-  const headerHTML = document.getElementById(html_location);
-  const headerRevealJS = document.getElementById(revealjs_location);
-
-  // Determine where to insert the quartoTitleMeta element
-  if (headerHTML || headerRevealJS) {
-    // Append to the existing "title-block-header" element or "title-slide" div
-    (headerHTML || headerRevealJS).appendChild(content);
-  } else {
-    // If neither headerHTML nor headerRevealJS is found, insert after "webr-monaco-editor-init" script
-    const monacoScript = document.getElementById("qwebr-monaco-editor-init");
-    const header = document.createElement("header");
-    header.setAttribute("id", "title-block-header");
-    header.appendChild(content);
-    monacoScript.after(header);
-  }
-}
-
-
-
-function qwebrOffScreenCanvasSupportWarningMessage() {
-  
-  // Verify canvas is supported.
-  if(qwebrOffScreenCanvasSupport()) return;
-
-  // Create the main container div
-  var calloutContainer = document.createElement('div');
-  calloutContainer.classList.add('callout', 'callout-style-default', 'callout-warning', 'callout-titled');
-
-  // Create the header div
-  var headerDiv = document.createElement('div');
-  headerDiv.classList.add('callout-header', 'd-flex', 'align-content-center');
-
-  // Create the icon container div
-  var iconContainer = document.createElement('div');
-  iconContainer.classList.add('callout-icon-container');
-
-  // Create the icon element
-  var iconElement = document.createElement('i');
-  iconElement.classList.add('callout-icon');
-
-  // Append the icon element to the icon container
-  iconContainer.appendChild(iconElement);
-
-  // Create the title container div
-  var titleContainer = document.createElement('div');
-  titleContainer.classList.add('callout-title-container', 'flex-fill');
-  titleContainer.innerText = 'Warning: Web Browser Does Not Support Graphing!';
-
-  // Append the icon container and title container to the header div
-  headerDiv.appendChild(iconContainer);
-  headerDiv.appendChild(titleContainer);
-
-  // Create the body container div
-  var bodyContainer = document.createElement('div');
-  bodyContainer.classList.add('callout-body-container', 'callout-body');
-
-  // Create the paragraph element for the body content
-  var paragraphElement = document.createElement('p');
-  paragraphElement.innerHTML = 'This web browser does not have support for displaying graphs through the <code>quarto-webr</code> extension since it lacks an <code>OffScreenCanvas</code>. Please upgrade your web browser to one that supports <code>OffScreenCanvas</code>.';
-
-  // Append the paragraph element to the body container
-  bodyContainer.appendChild(paragraphElement);
-
-  // Append the header div and body container to the main container div
-  calloutContainer.appendChild(headerDiv);
-  calloutContainer.appendChild(bodyContainer);
-
-  // Append the main container div to the document depending on format
-  qwebrPlaceMessageContents(calloutContainer, "title-block-header"); 
-
-}
-
-
-// Function that attaches the document status message and diagnostics
-function displayStartupMessage(showStartupMessage, showHeaderMessage) {
-  if (!showStartupMessage) {
-    return;
-  }
-
-  // Create the outermost div element for metadata
-  const quartoTitleMeta = document.createElement("div");
-  quartoTitleMeta.classList.add("quarto-title-meta");
-
-  // Create the first inner div element
-  const firstInnerDiv = document.createElement("div");
-  firstInnerDiv.setAttribute("id", "qwebr-status-message-area");
-
-  // Create the second inner div element for "WebR Status" heading and contents
-  const secondInnerDiv = document.createElement("div");
-  secondInnerDiv.setAttribute("id", "qwebr-status-message-title");
-  secondInnerDiv.classList.add("quarto-title-meta-heading");
-  secondInnerDiv.innerText = "WebR Status";
-
-  // Create another inner div for contents
-  const secondInnerDivContents = document.createElement("div");
-  secondInnerDivContents.setAttribute("id", "qwebr-status-message-body");
-  secondInnerDivContents.classList.add("quarto-title-meta-contents");
-
-  // Describe the WebR state
-  qwebrStartupMessage.innerText = "🟡 Loading...";
-  qwebrStartupMessage.setAttribute("id", "qwebr-status-message-text");
-  // Add `aria-live` to auto-announce the startup status to screen readers
-  qwebrStartupMessage.setAttribute("aria-live", "assertive");
-
-  // Append the startup message to the contents
-  secondInnerDivContents.appendChild(qwebrStartupMessage);
-
-  // Add a status indicator for COOP and COEP Headers if needed
-  if (showHeaderMessage) {
-    const crossOriginMessage = document.createElement("p");
-    crossOriginMessage.innerText = `${crossOriginIsolated ? '🟢' : '🟡'} COOP & COEP Headers`;
-    crossOriginMessage.setAttribute("id", "qwebr-coop-coep-header");
-    secondInnerDivContents.appendChild(crossOriginMessage);
-  }
-
-  // Combine the inner divs and contents
-  firstInnerDiv.appendChild(secondInnerDiv);
-  firstInnerDiv.appendChild(secondInnerDivContents);
-  quartoTitleMeta.appendChild(firstInnerDiv);
-
-  // Place message on webpage
-  qwebrPlaceMessageContents(quartoTitleMeta); 
-}
-
-function qwebrAddCommandHistoryModal() {
-  // Create the modal div
-  var modalDiv = document.createElement('div');
-  modalDiv.id = 'qwebr-history-modal';
-  modalDiv.className = 'qwebr-modal';
-
-  // Create the modal content div
-  var modalContentDiv = document.createElement('div');
-  modalContentDiv.className = 'qwebr-modal-content';
-
-  // Create the span for closing the modal
-  var closeSpan = document.createElement('span');
-  closeSpan.id = 'qwebr-command-history-close-btn';
-  closeSpan.className = 'qwebr-modal-close';
-  closeSpan.innerHTML = '&times;';
-
-  // Create the h1 element for the modal
-  var modalH1 = document.createElement('h1');
-  modalH1.textContent = 'R History Command Contents';
-
-  // Create an anchor element for downloading the Rhistory file 
-  var downloadLink = document.createElement('a');
-  downloadLink.href = '#';
-  downloadLink.id = 'qwebr-download-history-btn';
-  downloadLink.className = 'qwebr-download-btn';
-
-  // Create an 'i' element for the icon
-  var icon = document.createElement('i');
-  icon.className = 'bi bi-file-code';
-
-  // Append the icon to the anchor element
-  downloadLink.appendChild(icon);
-
-  // Add the text 'Download R History' to the anchor element
-  downloadLink.appendChild(document.createTextNode(' Download R History File'));
-
-  // Create the pre for command history contents
-  var commandContentsPre = document.createElement('pre');
-  commandContentsPre.id = 'qwebr-command-history-contents';
-  commandContentsPre.className = 'qwebr-modal-content-code';
-
-  // Append the close span, h1, and history contents pre to the modal content div
-  modalContentDiv.appendChild(closeSpan);
-  modalContentDiv.appendChild(modalH1);
-  modalContentDiv.appendChild(downloadLink);
-  modalContentDiv.appendChild(commandContentsPre);
-
-  // Append the modal content div to the modal div
-  modalDiv.appendChild(modalContentDiv);
-
-  // Append the modal div to the body
-  document.body.appendChild(modalDiv);
-}
-
-function qwebrRegisterRevealJSCommandHistoryModal() {
-  // Select the <ul> element inside the <div> with data-panel="Custom0"
-  let ulElement = document.querySelector('div[data-panel="Custom0"] > ul.slide-menu-items');
-
-  // Find the last <li> element with class slide-tool-item
-  let lastItem = ulElement.querySelector('li.slide-tool-item:last-child');
-
-  // Calculate the next data-item value
-  let nextItemValue = 0;
-  if (lastItem) {
-      nextItemValue = parseInt(lastItem.dataset.item) + 1;
-  }
-
-  // Create a new <li> element
-  let newListItem = document.createElement('li');
-  newListItem.className = 'slide-tool-item';
-  newListItem.dataset.item = nextItemValue.toString(); // Set the next available data-item value
-
-  // Create the <a> element inside the <li>
-  let newLink = document.createElement('a');
-  newLink.href = '#';
-  newLink.id = 'qwebrRHistoryButton'; // Set the ID for the new link
-  
-  // Create the <kbd> element inside the <a>
-  let newKbd = document.createElement('kbd');
-  newKbd.textContent = ' '; // Set to empty as we are not registering a keyboard shortcut
-
-  // Create text node for the link text
-  let newText = document.createTextNode(' View R History');
-
-  // Append <kbd> and text node to <a>
-  newLink.appendChild(newKbd);
-  newLink.appendChild(newText);
-
-  // Append <a> to <li>
-  newListItem.appendChild(newLink);
-
-  // Append <li> to <ul>
-  ulElement.appendChild(newListItem);
-}
-
-// Handle setting up the R history modal
-function qwebrCodeLinks() {
-
-  if (qwebrIsRevealJS()) {
-    qwebrRegisterRevealJSCommandHistoryModal();
-    return;
-  }
-
-  // Create the container div
-  var containerDiv = document.createElement('div');
-  containerDiv.className = 'quarto-code-links';
-
-  // Create the h2 element
-  var h2 = document.createElement('h2');
-  h2.textContent = 'webR Code Links';
-
-  // Create the ul element
-  var ul = document.createElement('ul');
-
-  // Create the li element
-  var li = document.createElement('li');
-
-  // Create the a_history_btn element
-  var a_history_btn = document.createElement('a');
-  a_history_btn.href = 'javascript:void(0)';
-  a_history_btn.setAttribute('id', 'qwebrRHistoryButton');
-
-  // Create the i_history_btn element
-  var i_history_btn = document.createElement('i');
-  i_history_btn.className = 'bi bi-file-code';
-
-  // Create the text node for the link text
-  var text_history_btn = document.createTextNode('View R History');
-
-  // Append the icon element and link text to the a element
-  a_history_btn.appendChild(i_history_btn);
-  a_history_btn.appendChild(text_history_btn);
-
-  // Append the a element to the li element
-  li.appendChild(a_history_btn);
-
-  // Append the li element to the ul element
-  ul.appendChild(li);
-
-  // Append the h2 and ul elements to the container div
-  containerDiv.appendChild(h2);
-  containerDiv.appendChild(ul);
-
-  // Append the container div to the element with the ID 'quarto-margin-sidebar'
-  var sidebar = document.getElementById('quarto-margin-sidebar');
-    
-  // If the sidebar element is not found, create it
-  if(!sidebar) {
-    qwebrPlaceQuartoSidebar();
-  }
-  
-  // Re-select the sidebar element (if it was just created)
-  sidebar = document.getElementById('quarto-margin-sidebar');   
-
-
-  // If the sidebar element exists, append the container div to it
-  if(sidebar) {
-    // Append the container div to the sidebar
-    sidebar.appendChild(containerDiv);
-    // Force the sidebar to be clickable by removing the 'zindex-bottom' class
-    // added in pre-release: https://github.com/quarto-dev/quarto-cli/commit/f0c53a1ffcaa1de4eccbf07803b096898248adcc
-    sidebar.className = 'sidebar margin-sidebar';
-  } else {
-    // Get a debugger ...
-    console.warn('Element with ID "quarto-margin-sidebar" not found.');
-  }
-}
-
-// Call the function to append the code links for qwebR into the right sidebar
-qwebrCodeLinks();
-
-// Add the command history modal
-qwebrAddCommandHistoryModal();
-
-displayStartupMessage(qwebrShowStartupMessage, qwebrShowHeaderMessage);
-qwebrOffScreenCanvasSupportWarningMessage();
-</script>
-<script type="module">
-// Define a global storage and retrieval solution ----
-
-// Store commands executed in R
-globalThis.qwebrRCommandHistory = [];
-
-// Function to retrieve the command history
-globalThis.qwebrFormatRHistory = function() {
-   return qwebrRCommandHistory.join("\n\n");
-}
-
-// Retrieve HTML Elements ----
-
-// Get the command modal
-const command_history_modal = document.getElementById("qwebr-history-modal");
-
-// Get the button that opens the command modal
-const command_history_btn = document.getElementById("qwebrRHistoryButton");
-
-// Get the <span> element that closes the command modal
-const command_history_close_span = document.getElementById("qwebr-command-history-close-btn");
-
-// Get the download button for r history information
-const command_history_download_btn = document.getElementById("qwebr-download-history-btn");
-
-// Plug in command history into modal/download button ----
-
-// Function to populate the modal with command history
-function populateCommandHistoryModal() {
-    document.getElementById("qwebr-command-history-contents").innerHTML = qwebrFormatRHistory() || "No commands have been executed yet.";
-}
-
-// Function to format the current date and time to
-// a string with the format YYYY-MM-DD-HH-MM-SS
-function formatDateTime() {
-    const now = new Date();
-
-    const year = now.getFullYear();
-    const day = String(now.getDate()).padStart(2, '0');
-    const month = String(now.getMonth() + 1).padStart(2, '0'); // Months are zero-based
-    const hours = String(now.getHours()).padStart(2, '0');
-    const minutes = String(now.getMinutes()).padStart(2, '0');
-    const seconds = String(now.getSeconds()).padStart(2, '0');
-
-    return `${year}-${month}-${day}-${hours}-${minutes}-${seconds}`;
-}
-
-
-// Function to convert document title with datetime to a safe filename
-function safeFileName() {
-    // Get the current page title
-    let pageTitle = document.title;
-
-    // Combine the current page title with the current date and time
-    let pageNameWithDateTime = `Rhistory-${pageTitle}-${formatDateTime()}`;
-
-    // Replace unsafe characters with safe alternatives
-    let safeFilename = pageNameWithDateTime.replace(/[\\/:\*\?! "<>\|]/g, '-');
-
-    return safeFilename;
-}
-
-
-// Function to download list contents as text file
-function downloadRHistory() {
-    // Get the current page title + datetime and use it as the filename
-    const filename = `${safeFileName()}.R`;
-
-    // Get the text contents of the R History list
-    const text = qwebrFormatRHistory();
-
-    // Create a new Blob object with the text contents
-    const blob = new Blob([text], { type: 'text/plain' });
-  
-    // Create a new anchor element for the download
-    const a = document.createElement('a');
-    a.style.display = 'none';
-    a.href = URL.createObjectURL(blob);
-    a.download = filename;
-
-    // Append the anchor to the body, click it, and remove it
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
-}
-
-// Register event handlers ----
-
-// When the user clicks the View R History button, open the command modal
-command_history_btn.onclick = function() {
-    populateCommandHistoryModal();
-    command_history_modal.style.display = "block";
-}
-
-// When the user clicks on <span> (x), close the command modal
-command_history_close_span.onclick = function() {
-    command_history_modal.style.display = "none";
-}
-
-// When the user clicks anywhere outside of the command modal, close it
-window.onclick = function(event) {
-    if (event.target == command_history_modal) {
-        command_history_modal.style.display = "none";
-    }
-}
-
-// Add an onclick event listener to the download button so that
-// the user can download the R history as a text file
-command_history_download_btn.onclick = function() {
-    downloadRHistory();
-};
-</script>
-<script type="module">
-// Supported Evaluation Types for Context
-globalThis.EvalTypes = Object.freeze({
-  Interactive: 'interactive',
-  Setup: 'setup',
-  Output: 'output',
-});
-
-// Function that obtains the font size for a given element 
-globalThis.qwebrCurrentFontSizeOnElement = function(element, cssProperty = 'font-size') {
-
-  const currentFontSize = parseFloat(
-    window
-    .getComputedStyle(element)
-    .getPropertyValue(cssProperty)
-  );
-  
-  return currentFontSize;
-}
-
-// Function to determine font scaling
-globalThis.qwebrScaledFontSize = function(div, qwebrOptions) {
-  // Determine if we should compute font-size using RevealJS's `--r-main-font-size` 
-  // or if we can directly use the document's `font-size`.
-  const cssProperty = document.body.classList.contains('reveal') ? 
-    "--r-main-font-size" : "font-size";
-  
-  // Get the current font size on the div element
-  const elementFontSize = qwebrCurrentFontSizeOnElement(div, cssProperty);
-
-  // Determine the scaled font size value
-  const scaledFontSize = ((qwebrOptions['editor-font-scale'] ?? 1) * elementFontSize) ?? 17.5;
-
-  return scaledFontSize;
-}
-
-
-// Function that dispatches the creation request
-globalThis.qwebrCreateHTMLElement = function (
-  cellData
-) {
-
-  // Extract key components
-  const evalType = cellData.options.context;
-  const qwebrCounter = cellData.id;
-
-  // We make an assumption that insertion points are defined by the Lua filter as:
-  // qwebr-insertion-location-{qwebrCounter} 
-  const elementLocator = document.getElementById(`qwebr-insertion-location-${qwebrCounter}`);
-
-  // Figure out the routine to use to insert the element.
-  let qwebrElement;
-  switch ( evalType ) {
-    case EvalTypes.Interactive:
-      qwebrElement = qwebrCreateInteractiveElement(qwebrCounter, cellData.options);
-      break;
-    case EvalTypes.Output: 
-      qwebrElement = qwebrCreateNonInteractiveOutputElement(qwebrCounter, cellData.options);
-      break;
-    case EvalTypes.Setup: 
-      qwebrElement = qwebrCreateNonInteractiveSetupElement(qwebrCounter, cellData.options);
-      break;
-    default: 
-      qwebrElement = document.createElement('div');
-      qwebrElement.textContent = 'Error creating `quarto-webr` element';
-  }
-
-  // Insert the dynamically generated object at the document location.
-  elementLocator.appendChild(qwebrElement);
-};
-
-// Function that setups the interactive element creation
-globalThis.qwebrCreateInteractiveElement = function (qwebrCounter, qwebrOptions) {
-
-  // Create main div element
-  var mainDiv = document.createElement('div');
-  mainDiv.id = 'qwebr-interactive-area-' + qwebrCounter;
-  mainDiv.className = `qwebr-interactive-area`;
-  if (qwebrOptions.classes) {
-    mainDiv.className += " " + qwebrOptions.classes
-  }
-
-  // Add a unique cell identifier that users can customize
-  if (qwebrOptions.label) {
-    mainDiv.setAttribute('data-id', qwebrOptions.label);
-  }
-
-  // Create toolbar div
-  var toolbarDiv = document.createElement('div');
-  toolbarDiv.className = 'qwebr-editor-toolbar';
-  toolbarDiv.id = 'qwebr-editor-toolbar-' + qwebrCounter;
-
-  // Create a div to hold the left buttons
-  var leftButtonsDiv = document.createElement('div');
-  leftButtonsDiv.className = 'qwebr-editor-toolbar-left-buttons';
-
-  // Create a div to hold the right buttons
-  var rightButtonsDiv = document.createElement('div');
-  rightButtonsDiv.className = 'qwebr-editor-toolbar-right-buttons';
-
-  // Create Run Code button
-  var runCodeButton = document.createElement('button');
-  runCodeButton.className = 'btn btn-default qwebr-button qwebr-button-run';
-  runCodeButton.disabled = true;
-  runCodeButton.type = 'button';
-  runCodeButton.id = 'qwebr-button-run-' + qwebrCounter;
-  runCodeButton.textContent = '🟡 Loading webR...';
-  runCodeButton.title = `Run code (Shift + Enter)`;
-
-  // Append buttons to the leftButtonsDiv
-  leftButtonsDiv.appendChild(runCodeButton);
-
-  // Create Reset button
-  var resetButton = document.createElement('button');
-  resetButton.className = 'btn btn-light btn-xs qwebr-button qwebr-button-reset';
-  resetButton.type = 'button';
-  resetButton.id = 'qwebr-button-reset-' + qwebrCounter;
-  resetButton.title = 'Start over';
-  resetButton.innerHTML = '<i class="fa-solid fa-arrows-rotate"></i>';
-
-  // Create Copy button
-  var copyButton = document.createElement('button');
-  copyButton.className = 'btn btn-light btn-xs qwebr-button qwebr-button-copy';
-  copyButton.type = 'button';
-  copyButton.id = 'qwebr-button-copy-' + qwebrCounter;
-  copyButton.title = 'Copy code';
-  copyButton.innerHTML = '<i class="fa-regular fa-copy"></i>';
-
-  // Append buttons to the rightButtonsDiv
-  rightButtonsDiv.appendChild(resetButton);
-  rightButtonsDiv.appendChild(copyButton);
-
-  // Create console area div
-  var consoleAreaDiv = document.createElement('div');
-  consoleAreaDiv.id = 'qwebr-console-area-' + qwebrCounter;
-  consoleAreaDiv.className = 'qwebr-console-area';
-
-  // Create editor div
-  var editorDiv = document.createElement('div');
-  editorDiv.id = 'qwebr-editor-' + qwebrCounter;
-  editorDiv.className = 'qwebr-editor';
-
-  // Create output code area div
-  var outputCodeAreaDiv = document.createElement('div');
-  outputCodeAreaDiv.id = 'qwebr-output-code-area-' + qwebrCounter;
-  outputCodeAreaDiv.className = 'qwebr-output-code-area';
-  outputCodeAreaDiv.setAttribute('aria-live', 'assertive');
-
-  // Create pre element inside output code area
-  var preElement = document.createElement('pre');
-  preElement.style.visibility = 'hidden';
-  outputCodeAreaDiv.appendChild(preElement);
-
-  // Create output graph area div
-  var outputGraphAreaDiv = document.createElement('div');
-  outputGraphAreaDiv.id = 'qwebr-output-graph-area-' + qwebrCounter;
-  outputGraphAreaDiv.className = 'qwebr-output-graph-area';
-
-  // Append buttons to the toolbar
-  toolbarDiv.appendChild(leftButtonsDiv);
-  toolbarDiv.appendChild(rightButtonsDiv);
-
-  // Append all elements to the main div
-  mainDiv.appendChild(toolbarDiv);
-  consoleAreaDiv.appendChild(editorDiv);
-  consoleAreaDiv.appendChild(outputCodeAreaDiv);
-  mainDiv.appendChild(consoleAreaDiv);
-  mainDiv.appendChild(outputGraphAreaDiv);
-
-  return mainDiv;
-}
-
-// Function that adds output structure for non-interactive output
-globalThis.qwebrCreateNonInteractiveOutputElement = function(qwebrCounter, qwebrOptions) {
-  // Create main div element
-  var mainDiv = document.createElement('div');
-  mainDiv.id = 'qwebr-noninteractive-area-' + qwebrCounter;
-  mainDiv.className = `qwebr-noninteractive-area`;
-  if (qwebrOptions.classes) {
-    mainDiv.className += " " + qwebrOptions.classes
-  }
-  
-  // Add a unique cell identifier that users can customize
-  if (qwebrOptions.label) {
-    mainDiv.setAttribute('data-id', qwebrOptions.label);
-  }
-  
-  // Create a status container div
-  var statusContainer = createLoadingContainer(qwebrCounter);
-
-  // Create output code area div
-  var outputCodeAreaDiv = document.createElement('div');
-  outputCodeAreaDiv.id = 'qwebr-output-code-area-' + qwebrCounter;
-  outputCodeAreaDiv.className = 'qwebr-output-code-area';
-  outputCodeAreaDiv.setAttribute('aria-live', 'assertive');
-
-  // Create pre element inside output code area
-  var preElement = document.createElement('pre');
-  preElement.style.visibility = 'hidden';
-  outputCodeAreaDiv.appendChild(preElement);
-
-  // Create output graph area div
-  var outputGraphAreaDiv = document.createElement('div');
-  outputGraphAreaDiv.id = 'qwebr-output-graph-area-' + qwebrCounter;
-  outputGraphAreaDiv.className = 'qwebr-output-graph-area';
-
-  // Append all elements to the main div
-  mainDiv.appendChild(statusContainer);
-  mainDiv.appendChild(outputCodeAreaDiv);
-  mainDiv.appendChild(outputGraphAreaDiv);
-
-  return mainDiv;
-};
-
-// Function that adds a stub in the page to indicate a setup cell was used.
-globalThis.qwebrCreateNonInteractiveSetupElement = function(qwebrCounter, qwebrOptions) {
-  // Create main div element
-  var mainDiv = document.createElement('div');
-  mainDiv.id = `qwebr-noninteractive-setup-area-${qwebrCounter}`;
-  mainDiv.className = `qwebr-noninteractive-setup-area`;
-  if (qwebrOptions.classes) {
-    mainDiv.className += " " + qwebrOptions.classes
-  }
-
-
-  // Add a unique cell identifier that users can customize
-  if (qwebrOptions.label) {
-    mainDiv.setAttribute('data-id', qwebrOptions.label);
-  }
-
-  // Create a status container div
-  var statusContainer = createLoadingContainer(qwebrCounter);
-
-  // Append status onto the main div
-  mainDiv.appendChild(statusContainer);
-
-  return mainDiv;
-}
-
-
-// Function to create loading container with specified ID
-globalThis.createLoadingContainer = function(qwebrCounter) {
-
-  // Create a status container
-  const container = document.createElement('div');
-  container.id = `qwebr-non-interactive-loading-container-${qwebrCounter}`;
-  container.className = 'qwebr-non-interactive-loading-container qwebr-cell-needs-evaluation';
-
-  // Create an R project logo to indicate its a code space
-  const rProjectIcon = document.createElement('i');
-  rProjectIcon.className = 'fa-brands fa-r-project fa-3x qwebr-r-project-logo';
-
-  // Setup a loading icon from font awesome
-  const spinnerIcon = document.createElement('i');
-  spinnerIcon.className = 'fa-solid fa-spinner fa-spin fa-1x qwebr-icon-status-spinner';
-
-  // Add a section for status text
-  const statusText = document.createElement('p');
-  statusText.id = `qwebr-status-text-${qwebrCounter}`;
-  statusText.className = `qwebr-status-text qwebr-cell-needs-evaluation`;
-  statusText.innerText = 'Loading webR...';
-
-  // Incorporate an inner container
-  const innerContainer = document.createElement('div');
-
-  // Append elements to the inner container
-  innerContainer.appendChild(spinnerIcon);
-  innerContainer.appendChild(statusText);
-
-  // Append elements to the main container
-  container.appendChild(rProjectIcon);
-  container.appendChild(innerContainer);
-
-  return container;
-}
-</script>
-<script type="module">
-// Function to install a single package
-async function qwebrInstallRPackage(packageName) {
-  await mainWebR.evalRVoid(`webr::install('${packageName}');`);
-}
-
-// Function to load a single package
-async function qwebrLoadRPackage(packageName) {
-  await mainWebR.evalRVoid(`require('${packageName}', quietly = TRUE)`);
-}
-
-// Generic function to process R packages
-async function qwebrProcessRPackagesWithStatus(packages, processType, displayStatusMessageUpdate = true) {
-  // Switch between contexts
-  const messagePrefix = processType === 'install' ? 'Installing' : 'Loading';
-
-  // Modify button state
-  qwebrSetInteractiveButtonState(`🟡 ${messagePrefix} package ...`, false);
-
-  // Iterate over packages
-  for (let i = 0; i < packages.length; i++) {
-    const activePackage = packages[i];
-    const formattedMessage = `${messagePrefix} package ${i + 1} out of ${packages.length}: ${activePackage}`;
-
-    // Display the update in header
-    if (displayStatusMessageUpdate) {
-      qwebrUpdateStatusHeader(formattedMessage);
-    }
-
-    // Display the update in non-active areas
-    qwebrUpdateStatusMessage(formattedMessage);
-
-    // Run package installation
-    if (processType === 'install') {
-      await qwebrInstallRPackage(activePackage);
-    } else {
-      await qwebrLoadRPackage(activePackage);
-    }
-  }
-
-  // Clean slate
-  if (processType === 'load') {
-    await mainWebR.flush();
-  }
-}
-
-// Start a timer
-const initializeWebRTimerStart = performance.now();
-
-// Encase with a dynamic import statement
-globalThis.qwebrInstance = import(qwebrCustomizedWebROptions.baseURL + "webr.mjs").then(
-  async ({ WebR, ChannelType }) => {
-    // Populate WebR options with defaults or new values based on `webr` meta
-    globalThis.mainWebR = new WebR(qwebrCustomizedWebROptions);
-
-    // Initialization WebR
-    await mainWebR.init();
-
-    // Setup a shelter
-    globalThis.mainWebRCodeShelter = await new mainWebR.Shelter();
-
-    // Setup a pager to allow processing help documentation
-    await mainWebR.evalRVoid('webr::pager_install()');
-
-    // Setup a viewer to allow processing htmlwidgets.
-    // This might not be available in old webr version
-    await mainWebR.evalRVoid('try({ webr::viewer_install() })');
-
-    // Override the existing install.packages() to use webr::install()
-    await mainWebR.evalRVoid('webr::shim_install()');
-
-    // Specify the repositories to pull from
-    // Note: webR does not use the `repos` option, but instead uses `webr_pkg_repos`
-    // inside of `install()`. However, other R functions still pull from `repos`.
-    await mainWebR.evalRVoid(`
-      options(
-        webr_pkg_repos = c(${qwebrPackageRepoURLS.map(repoURL => `'${repoURL}'`).join(',')}),
-        repos = c(${qwebrPackageRepoURLS.map(repoURL => `'${repoURL}'`).join(',')})
-      )
-    `);
-
-    // Check to see if any packages need to be installed
-    if (qwebrSetupRPackages) {
-      // Obtain only a unique list of packages
-      const uniqueRPackageList = Array.from(new Set(qwebrInstallRPackagesList));
-
-      // Install R packages one at a time (either silently or with a status update)
-      await qwebrProcessRPackagesWithStatus(uniqueRPackageList, 'install', qwebrShowStartupMessage);
-
-      if (qwebrAutoloadRPackages) {
-        // Load R packages one at a time (either silently or with a status update)
-        await qwebrProcessRPackagesWithStatus(uniqueRPackageList, 'load', qwebrShowStartupMessage);
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
       }
     }
   }
-);
-
-// Stop timer
-const initializeWebRTimerEnd = performance.now();
-
-</script>
-<script type="module">
-// Function to verify a given JavaScript Object is empty
-globalThis.qwebrIsObjectEmpty = function (arr) {
-    return Object.keys(arr).length === 0;
 }
-
-// Global version of the Escape HTML function that converts HTML
-// characters to their HTML entities.
-globalThis.qwebrEscapeHTMLCharacters = function(unsafe) {
-    return unsafe
-      .replace(/&/g, "&amp;")
-      .replace(/</g, "&lt;")
-      .replace(/>/g, "&gt;")
-      .replace(/"/g, "&quot;")
-      .replace(/'/g, "&#039;");
+window.Quarto = {
+  typesetMath
 };
-
-// Passthrough results
-globalThis.qwebrIdentity = function(x) {
-    return x;
-};
-
-// Append a comment
-globalThis.qwebrPrefixComment = function(x, comment) {
-    return `${comment}${x}`;
-};
-
-// Function to store the code in the history
-globalThis.qwebrLogCodeToHistory = function(codeToRun, options) {
-    qwebrRCommandHistory.push(
-        `# Ran code in ${options.label} at ${new Date().toLocaleString()} ----\n${codeToRun}`
-    );
-};
-
-// Function to attach a download button onto the canvas
-// allowing the user to download the image.
-function qwebrImageCanvasDownloadButton(canvas, canvasContainer) {
-
-    // Create the download button
-    const downloadButton = document.createElement('button');
-    downloadButton.className = 'qwebr-canvas-image-download-btn';
-    downloadButton.textContent = 'Download Image';
-    canvasContainer.appendChild(downloadButton);
-
-    // Trigger a download of the image when the button is clicked
-    downloadButton.addEventListener('click', function() {
-        const image = canvas.toDataURL('image/png');
-        const link = document.createElement('a');
-        link.href = image;
-        link.download = 'qwebr-canvas-image.png';
-        link.click();
-    });
-}
-
-
-// Function to parse the pager results
-globalThis.qwebrParseTypePager = async function (msg) {
-
-    // Split out the event data
-    const { path, title, deleteFile } = msg.data;
-
-    // Process the pager data by reading the information from disk
-    const paged_data = await mainWebR.FS.readFile(path).then((data) => {
-        // Obtain the file content
-        let content = new TextDecoder().decode(data);
-
-        // Remove excessive backspace characters until none remain
-        while(content.match(/.[\b]/)){
-            content = content.replace(/.[\b]/g, '');
-        }
-
-        // Returned cleaned data
-        return content;
-    });
-
-    // Unlink file if needed
-    if (deleteFile) {
-        await mainWebR.FS.unlink(path);
-    }
-
-    // Return extracted data with spaces
-    return paged_data;
-};
-
-
-// Function to parse the browse results
-globalThis.qwebrParseTypeBrowse = async function (msg) {
-
-    // msg.type === "browse"
-    const path = msg.data.url;
-
-    // Process the browse data by reading the information from disk
-    const browse_data = await mainWebR.FS.readFile(path).then((data) => {
-        // Obtain the file content
-        let content = new TextDecoder().decode(data);
-
-        return content;
-    });
-
-    // Return extracted data as-is
-    return browse_data;
-};
-
-// Function to run the code using webR and parse the output
-globalThis.qwebrComputeEngine = async function(
-    codeToRun,
-    elements,
-    options) {
-
-    // Call into the R compute engine that persists within the document scope.
-    // To be prepared for all scenarios, the following happens:
-    // 1. We setup a canvas device to write to by making a namespace call into the {webr} package
-    // 2. We use values inside of the options array to set the figure size.
-    // 3. We capture the output stream information (STDOUT and STERR)
-    // 4. We disable the current device's image creation.
-    // 5. Piece-wise parse the results into the different output areas
-
-    // Create a pager variable for help/file contents
-    let pager = [];
-
-    // Handle how output is processed
-    let showMarkup = options.results === "markup" && options.output !== "asis";
-    let processOutput;
-
-    if (showMarkup) {
-        processOutput = qwebrEscapeHTMLCharacters;
-    } else {
-        processOutput = qwebrIdentity;
-    }
-
-    // ----
-    // Convert from Inches to Pixels by using DPI (dots per inch)
-    // for bitmap devices (dpi * inches = pixels)
-    let fig_width = options["fig-width"] * options["dpi"];
-    let fig_height = options["fig-height"] * options["dpi"];
-
-    // Initialize webR
-    await mainWebR.init();
-
-    // Configure capture output
-    let captureOutputOptions = {
-        withAutoprint: true,
-        captureStreams: true,
-        captureConditions: false,
-        // env: webR.objs.emptyEnv, // maintain a global environment for webR v0.2.0
-    };
-
-    // Determine if the browser supports OffScreen
-    if (qwebrOffScreenCanvasSupport()) {
-        // Mirror default options of webr::canvas()
-        // with changes to figure height and width.
-        captureOutputOptions.captureGraphics = {
-            width: fig_width,
-            height: fig_height,
-            bg: "white", // default: transparent
-            pointsize: 12,
-            capture: true
-        };
-    }  else {
-        // Disable generating graphics
-        captureOutputOptions.captureGraphics = false;
-    }
-
-    // Store the code to run in history
-    qwebrLogCodeToHistory(codeToRun, options);
-
-    // Setup a webR canvas by making a namespace call into the {webr} package
-    // Evaluate the R code
-    // Remove the active canvas silently
-    const result = await mainWebRCodeShelter.captureR(
-        `${codeToRun}`,
-        captureOutputOptions
-    );
-
-    // -----
-
-    // Start attempting to parse the result data
-    processResultOutput:try {
-
-        // Avoid running through output processing
-        if (options.results === "hide" || options.output === "false") {
-            break processResultOutput;
-        }
-
-        // Merge output streams of STDOUT and STDErr (messages and errors are combined.)
-        // Require both `warning` and `message` to be true to display `STDErr`.
-        const out = result.output
-        .filter(
-            evt => evt.type === "stdout" ||
-            ( evt.type === "stderr" && (options.warning === "true" && options.message === "true"))
-        )
-        .map((evt, index) => {
-            const className = `qwebr-output-code-${evt.type}`;
-            const outputResult = qwebrPrefixComment(processOutput(evt.data), options.comment);
-            return `<code id="${className}-editor-${elements.id}-result-${index + 1}" class="${className}">${outputResult}</code>`;
-        })
-        .join("\n");
-
-
-        // Clean the state
-        // We're now able to process pager events.
-        // As a result, we cannot maintain a true 1-to-1 output order
-        // without individually feeding each line
-        const msgs = await mainWebR.flush();
-
-        // Use `map` to process the filtered "pager" events asynchronously
-        const pager = [];
-        const browse = [];
-
-        await Promise.all(
-            msgs.map(
-                async (msg) => {
-
-                    const msgType = msg.type || "unknown";
-
-                    switch(msgType) {
-                        case 'pager':
-                            const pager_data = await qwebrParseTypePager(msg);
-                            pager.push(pager_data);
-                            break;
-                        case 'browse':
-                            const browse_data = await qwebrParseTypeBrowse(msg);
-                            browse.push(browse_data);
-                            break;
-                    }
-                    return;
-                }
-            )
-        );
-
-        // Nullify the output area of content
-        elements.outputCodeDiv.innerHTML = "";
-        elements.outputGraphDiv.innerHTML = "";
-
-        // Design an output object for messages
-        const pre = document.createElement("pre");
-        if (/\S/.test(out)) {
-            // Display results as HTML elements to retain output styling
-            const div = document.createElement("div");
-            div.innerHTML = out;
-
-            // Calculate a scaled font-size value
-            const scaledFontSize = qwebrScaledFontSize(
-                elements.outputCodeDiv, options);
-
-            // Override output code cell size
-            pre.style.fontSize = `${scaledFontSize}px`;
-            pre.appendChild(div);
-        } else {
-            // If nothing is present, hide the element.
-            pre.style.visibility = "hidden";
-        }
-
-        elements.outputCodeDiv.appendChild(pre);
-
-        // Determine if we have graphs to display
-        if (result.images.length > 0) {
-
-            // Create figure element
-            const figureElement = document.createElement("figure");
-            figureElement.className = "qwebr-canvas-image";
-
-            // Place each rendered graphic onto a canvas element
-            result.images.forEach((img) => {
-
-                // Construct canvas for object
-                const canvas = document.createElement("canvas");
-
-                // Add an image download button
-                qwebrImageCanvasDownloadButton(canvas, figureElement);
-
-                // Set canvas size to image
-                canvas.width = img.width;
-                canvas.height = img.height;
-
-                // Apply output truncations
-                canvas.style.width = options["out-width"] ? options["out-width"] : `${fig_width}px`;
-                if (options["out-height"]) {
-                    canvas.style.height = options["out-height"];
-                }
-
-                // Apply styling
-                canvas.style.display = "block";
-                canvas.style.margin = "auto";
-
-                // Draw image onto Canvas
-                const ctx = canvas.getContext("2d");
-                ctx.drawImage(img, 0, 0, img.width, img.height);
-
-                // Append canvas to figure output area
-                figureElement.appendChild(canvas);
-
-            });
-
-            if (options['fig-cap']) {
-                // Create figcaption element
-                const figcaptionElement = document.createElement('figcaption');
-                figcaptionElement.innerText = options['fig-cap'];
-                // Append figcaption to figure
-                figureElement.appendChild(figcaptionElement);
-            }
-
-            elements.outputGraphDiv.appendChild(figureElement);
-
-        }
-
-        // Display the pager data
-        if (pager.length > 0) {
-            // Use the `pre` element to preserve whitespace.
-            pager.forEach((paged_data, index) => {
-                const pre_pager = document.createElement("pre");
-                pre_pager.innerText = paged_data;
-                pre_pager.classList.add("qwebr-output-code-pager");
-                pre_pager.setAttribute("id", `qwebr-output-code-pager-editor-${elements.id}-result-${index + 1}`);
-                elements.outputCodeDiv.appendChild(pre_pager);
-            });
-        }
-
-        // Display the browse data
-        if (browse.length > 0) {
-            // Use the `pre` element to preserve whitespace.
-            browse.forEach((browse_data, index) => {
-                const iframe_browse = document.createElement('iframe');
-                iframe_browse.classList.add("qwebr-output-code-browse");
-                iframe_browse.setAttribute("id", `qwebr-output-code-browse-editor-${elements.id}-result-${index + 1}`);
-                iframe_browse.style.width = "100%";
-                iframe_browse.style.minHeight = "500px";
-                elements.outputCodeDiv.appendChild(iframe_browse);
-
-                iframe_browse.contentWindow.document.open();
-                iframe_browse.contentWindow.document.write(browse_data);
-                iframe_browse.contentWindow.document.close();
-            });
-        }
-    } finally {
-        // Clean up the remaining code
-        mainWebRCodeShelter.purge();
-    }
-};
-
-// Function to execute the code (accepts code as an argument)
-globalThis.qwebrExecuteCode = async function (
-    codeToRun,
-    id,
-    options = {}) {
-
-    // If options are not passed, we fall back on the bare minimum to handle the computation
-    if (qwebrIsObjectEmpty(options)) {
-        options = {
-            "context": "interactive",
-            "fig-width": 7, "fig-height": 5,
-            "out-width": "700px", "out-height": "",
-            "dpi": 72,
-            "results": "markup",
-            "warning": "true", "message": "true",
-        };
-    }
-
-    // Next, we access the compute areas values
-    const elements = {
-        runButton: document.getElementById(`qwebr-button-run-${id}`),
-        outputCodeDiv: document.getElementById(`qwebr-output-code-area-${id}`),
-        outputGraphDiv: document.getElementById(`qwebr-output-graph-area-${id}`),
-        id: id,
-    }
-
-    // Disallowing execution of other code cells
-    document.querySelectorAll(".qwebr-button-run").forEach((btn) => {
-        btn.disabled = true;
-    });
-
-    if (options.context == EvalTypes.Interactive) {
-        // Emphasize the active code cell
-        elements.runButton.innerHTML = '<i class="fa-solid fa-spinner fa-spin qwebr-icon-status-spinner"></i> <span>Run Code</span>';
-    }
-
-    // Evaluate the code and parse the output into the document
-    await qwebrComputeEngine(codeToRun, elements, options);
-
-    // Switch to allowing execution of code
-    document.querySelectorAll(".qwebr-button-run").forEach((btn) => {
-        btn.disabled = false;
-    });
-
-    if (options.context == EvalTypes.Interactive) {
-        // Revert to the initial code cell state
-        elements.runButton.innerHTML = '<i class="fa-solid fa-play qwebr-icon-run-code"></i> <span>Run Code</span>';
-    }
-}
-
 </script>
 
-
+<link rel="stylesheet" href="text.css">
 </head>
 
-<body class="nav-sidebar docked fullcontent quarto-light">
+<body class="nav-sidebar docked quarto-light">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -1635,7 +149,7 @@ globalThis.qwebrExecuteCode = async function (
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
         <a class="flex-grow-1 no-decor" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
-          <h1 class="quarto-secondary-nav-title">Neotoma2 WebR Example</h1>
+          <h1 class="quarto-secondary-nav-title">Flujo de Trabajo Simple</h1>
         </a>     
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
         <i class="bi bi-search"></i>
@@ -1725,304 +239,55 @@ globalThis.qwebrExecuteCode = async function (
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#introducción" id="toc-introducción" class="nav-link active" data-scroll-target="#introducción">Introducción</a></li>
+  <li><a href="#instalación" id="toc-instalación" class="nav-link" data-scroll-target="#instalación">Instalación</a></li>
+  <li><a href="#qué-aprenderás" id="toc-qué-aprenderás" class="nav-link" data-scroll-target="#qué-aprenderás">¿Qué aprenderás?</a></li>
+  <li><a href="#antecedentes" id="toc-antecedentes" class="nav-link" data-scroll-target="#antecedentes">Antecedentes</a>
+  <ul class="collapse">
+  <li><a href="#obtener-ayuda-con-neotoma" id="toc-obtener-ayuda-con-neotoma" class="nav-link" data-scroll-target="#obtener-ayuda-con-neotoma">Obtener ayuda con Neotoma</a></li>
+  <li><a href="#entendiendo-la-estrucura-de-neotoma" id="toc-entendiendo-la-estrucura-de-neotoma" class="nav-link" data-scroll-target="#entendiendo-la-estrucura-de-neotoma">Entendiendo la estrucura de Neotoma</a></li>
+  </ul></li>
+  <li><a href="#búsqueda-de-sitios" id="toc-búsqueda-de-sitios" class="nav-link" data-scroll-target="#búsqueda-de-sitios">Búsqueda de sitios</a>
+  <ul class="collapse">
+  <li><a href="#get_sites" id="toc-get_sites" class="nav-link" data-scroll-target="#get_sites"><code>get_sites()</code></a></li>
+  <li><a href="#búsqueda-de-conjuntos-de-datos-get_datasets" id="toc-búsqueda-de-conjuntos-de-datos-get_datasets" class="nav-link" data-scroll-target="#búsqueda-de-conjuntos-de-datos-get_datasets">Búsqueda de conjuntos de datos (<code>get_datasets()</code>):</a></li>
+  <li><a href="#filtrar-registros-con-filter" id="toc-filtrar-registros-con-filter" class="nav-link" data-scroll-target="#filtrar-registros-con-filter">Filtrar Registros con <code>filter()</code></a></li>
+  <li><a href="#obteniendo-las-muestras-con-sample." id="toc-obteniendo-las-muestras-con-sample." class="nav-link" data-scroll-target="#obteniendo-las-muestras-con-sample.">Obteniendo las muestras con <code>sample()</code>.</a></li>
+  <li><a href="#pipas-en-r" id="toc-pipas-en-r" class="nav-link" data-scroll-target="#pipas-en-r">Pipas en <code>R</code></a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
-<script src="https://cdn.jsdelivr.net/npm/monaco-editor@0.47.0/min/vs/loader.js"></script>
-<script type="module" id="qwebr-monaco-editor-init">
-
-  // Configure the Monaco Editor's loader
-  require.config({
-    paths: {
-      'vs': 'https://cdn.jsdelivr.net/npm/monaco-editor@0.47.0/min/vs'
-    }
-  });
-</script>
-<script type="module">
-// Function to update Monaco Editors when body class changes
-function updateMonacoEditorsOnBodyClassChange() {
-    // Select the body element
-    const body = document.querySelector('body');
-
-    // Options for the observer (which mutations to observe)
-    const observerOptions = {
-        attributes: true,  // Observe changes to attributes
-        attributeFilter: ['class'] // Only observe changes to the 'class' attribute
-    };
-
-    // Callback function to execute when mutations are observed
-    const bodyClassChangeCallback = function(mutationsList, observer) {
-        for(let mutation of mutationsList) {
-            if (mutation.type === 'attributes' && mutation.attributeName === 'class') {
-                // Class attribute has changed
-                // Update all Monaco Editors on the page
-                updateMonacoEditorTheme();
-            }
-        }
-    };
-
-    // Create an observer instance linked to the callback function
-    const observer = new MutationObserver(bodyClassChangeCallback);
-
-    // Start observing the target node for configured mutations
-    observer.observe(body, observerOptions);
-}
-
-// Function to update all instances of Monaco Editors on the page
-function updateMonacoEditorTheme() {
-    // Determine what VS Theme to use
-    const vsThemeToUse = document.body.classList.contains("quarto-dark") ? 'vs-dark' : 'vs' ;
-
-    // Iterate through all initialized Monaco Editors
-    qwebrEditorInstances.forEach( function(editorInstance) { 
-        editorInstance.updateOptions({ theme: vsThemeToUse }); 
-    });
-}
-
-// Call the function to start observing changes to body class
-updateMonacoEditorsOnBodyClassChange();
-</script>
-<script type="module">
-// Global array to store Monaco Editor instances
-globalThis.qwebrEditorInstances = [];
-
-function isValidCodeLineNumbers(stringCodeLineNumbers) {
-  // Regular expression to match valid input strings
-  const regex = /^(\d+(-\d+)?)(,\d+(-\d+)?)*$/;
-  return regex.test(stringCodeLineNumbers);
-}
-
-// Function that builds and registers a Monaco Editor instance    
-globalThis.qwebrCreateMonacoEditorInstance = function (cellData) {
-
-  const initialCode = cellData.code;
-  const qwebrCounter = cellData.id;
-  const qwebrOptions = cellData.options;
-
-  // Retrieve the previously created document elements
-  let runButton = document.getElementById(`qwebr-button-run-${qwebrCounter}`);
-  let resetButton = document.getElementById(`qwebr-button-reset-${qwebrCounter}`);
-  let copyButton = document.getElementById(`qwebr-button-copy-${qwebrCounter}`);
-  let editorDiv = document.getElementById(`qwebr-editor-${qwebrCounter}`);
-
-  // Load the Monaco Editor and create an instance
-  let editor;
-  require(['vs/editor/editor.main'], function () {
-    editor = monaco.editor.create(editorDiv, {
-      value: initialCode,
-      language: 'r',
-      theme: 'vs-light',
-      automaticLayout: true,           // Works wonderfully with RevealJS
-      scrollBeyondLastLine: false,
-      minimap: {
-        enabled: false
-      },
-      fontSize: qwebrScaledFontSize(editorDiv, qwebrOptions),         
-      renderLineHighlight: "none",      // Disable current line highlighting
-      hideCursorInOverviewRuler: true,  // Remove cursor indictor in right hand side scroll bar
-      readOnly: qwebrOptions['read-only'] ?? false,
-      quickSuggestions: qwebrOptions['editor-quick-suggestions'] ?? false,
-      wordWrap: (qwebrOptions['editor-word-wrap'] == 'true' ? "on" : "off")
-    });
-
-    // Store the official counter ID to be used in keyboard shortcuts
-    editor.__qwebrCounter = qwebrCounter;
-
-    // Store the official div container ID
-    editor.__qwebrEditorId = `qwebr-editor-${qwebrCounter}`;
-
-    // Store the initial code value and options
-    editor.__qwebrinitialCode = initialCode;
-    editor.__qwebrOptions = qwebrOptions;
-
-    // Set at the model level the preferred end of line (EOL) character to LF.
-    // This prevent `\r\n` from being given to the webR engine if the user is on Windows.
-    // See details in: https://github.com/coatless/quarto-webr/issues/94
-    // Associated error text: 
-    // Error: <text>:1:7 unexpected input
-
-    // Retrieve the underlying model
-    const model = editor.getModel();
-    // Set EOL for the model
-    model.setEOL(monaco.editor.EndOfLineSequence.LF);
-    
-    // Dynamically modify the height of the editor window if new lines are added.
-    let ignoreEvent = false;
-    const updateHeight = () => {
-      // Increment editor height by 2 to prevent vertical scroll bar from appearing
-      const contentHeight = editor.getContentHeight() + 2;
-
-      // Retrieve editor-max-height option
-      const maxEditorHeight = qwebrOptions['editor-max-height'];
-
-      // If editor-max-height is missing, allow infinite growth. Otherwise, threshold.
-      const editorHeight = !maxEditorHeight ?  contentHeight : Math.min(contentHeight, maxEditorHeight);
-
-      // We're avoiding a width change
-      //editorDiv.style.width = `${width}px`;
-      editorDiv.style.height = `${editorHeight}px`;
-      try {
-        ignoreEvent = true;
-
-        // The key to resizing is this call
-        editor.layout();
-      } finally {
-        ignoreEvent = false;
-      }
-    };
-
-    // Function to generate decorations to highlight lines
-    // in the editor based on input string.
-    function decoratorHighlightLines(codeLineNumbers) {
-      // Store the lines to be lighlight
-      let linesToHighlight = [];
-      
-      // Parse the codeLineNumbers string to get the line numbers to highlight
-      // First, split the string by commas
-      codeLineNumbers.split(',').forEach(part => {
-        // Check if we have a range of lines
-        if (part.includes('-')) {
-            // Handle range of lines (e.g., "6-8")
-            const [start, end] = part.split('-').map(Number);
-            for (let i = start; i <= end; i++) {
-                linesToHighlight.push(i);
-            }
-        } else {
-            // Handle single line (e.g., "7")
-            linesToHighlight.push(Number(part));
-        }
-      });
-  
-      // Create monaco decorations for the lines to highlight
-      const decorations = linesToHighlight.map(lineNumber => ({
-          range: new monaco.Range(lineNumber, 1, lineNumber, 1),
-          options: {
-              isWholeLine: true,
-              className: 'qwebr-editor-highlight-line'
-          }
-      }));
-  
-      // Return decorations to be applied to the editor
-      return decorations;
-    }
-
-    // Ensure that the editor-code-line-numbers option is set and valid
-    // then apply styling
-    if (qwebrOptions['editor-code-line-numbers']) {
-      // Remove all whitespace from the string
-      const codeLineNumbers = qwebrOptions['editor-code-line-numbers'].replace(/\s/g,'');
-      // Check if the string is valid for line numbers, e.g., "1,3-5,7"
-      if (isValidCodeLineNumbers(codeLineNumbers)) {
-        // Apply the decorations to the editor
-        editor.createDecorationsCollection(decoratorHighlightLines(codeLineNumbers));
-      } else {
-        // Warn the user that the input is invalid
-        console.warn(`Invalid "editor-code-line-numbers" value in code cell ${qwebrOptions['label']}: ${codeLineNumbers}`);
-      }
-    }
-
-    // Helper function to check if selected text is empty
-    function isEmptyCodeText(selectedCodeText) {
-      return (selectedCodeText === null || selectedCodeText === undefined || selectedCodeText === "");
-    }
-
-    // Registry of keyboard shortcuts that should be re-added to each editor window
-    // when focus changes.
-    const addWebRKeyboardShortCutCommands = () => {
-      // Add a keydown event listener for Shift+Enter to run all code in cell
-      editor.addCommand(monaco.KeyMod.Shift | monaco.KeyCode.Enter, () => {
-
-        // Retrieve all text inside the editor
-        qwebrExecuteCode(editor.getValue(), editor.__qwebrCounter, editor.__qwebrOptions);
-      });
-
-      // Add a keydown event listener for CMD/Ctrl+Enter to run selected code
-      editor.addCommand(monaco.KeyMod.CtrlCmd | monaco.KeyCode.Enter, () => {
-
-        // Get the selected text from the editor
-        const selectedText = editor.getModel().getValueInRange(editor.getSelection());
-        // Check if no code is selected
-        if (isEmptyCodeText(selectedText)) {
-          // Obtain the current cursor position
-          let currentPosition = editor.getPosition();
-          // Retrieve the current line content
-          let currentLine = editor.getModel().getLineContent(currentPosition.lineNumber);
-
-          // Propose a new position to move the cursor to
-          let newPosition = new monaco.Position(currentPosition.lineNumber + 1, 1);
-
-          // Check if the new position is beyond the last line of the editor
-          if (newPosition.lineNumber > editor.getModel().getLineCount()) {
-            // Add a new line at the end of the editor
-            editor.executeEdits("addNewLine", [{
-            range: new monaco.Range(newPosition.lineNumber, 1, newPosition.lineNumber, 1),
-            text: "\n", 
-            forceMoveMarkers: true,
-            }]);
-          }
-          
-          // Run the entire line of code.
-          qwebrExecuteCode(currentLine, editor.__qwebrCounter, editor.__qwebrOptions);
-
-          // Move cursor to new position
-          editor.setPosition(newPosition);
-        } else {
-          // Code to run when Ctrl+Enter is pressed with selected code
-          qwebrExecuteCode(selectedText, editor.__qwebrCounter, editor.__qwebrOptions);
-        }
-      });
-    }
-
-    // Register an on focus event handler for when a code cell is selected to update
-    // what keyboard shortcut commands should work.
-    // This is a workaround to fix a regression that happened with multiple
-    // editor windows since Monaco 0.32.0 
-    // https://github.com/microsoft/monaco-editor/issues/2947
-    editor.onDidFocusEditorText(addWebRKeyboardShortCutCommands);
-
-    // Register an on change event for when new code is added to the editor window
-    editor.onDidContentSizeChange(updateHeight);
-
-    // Manually re-update height to account for the content we inserted into the call
-    updateHeight();
-
-    // Store the editor instance in the global dictionary
-    qwebrEditorInstances[editor.__qwebrCounter] = editor;
-
-  });
-
-  // Add a click event listener to the run button
-  runButton.onclick = function () {
-    qwebrExecuteCode(editor.getValue(), editor.__qwebrCounter, editor.__qwebrOptions);
-  };
-
-  // Add a click event listener to the reset button
-  copyButton.onclick = function () {
-    // Retrieve current code data
-    const data = editor.getValue();
-    
-    // Write code data onto the clipboard.
-    navigator.clipboard.writeText(data || "");
-  };
-  
-  // Add a click event listener to the copy button
-  resetButton.onclick = function () {
-    editor.setValue(editor.__qwebrinitialCode);
-  };
-  
-}
-</script>
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title d-none d-lg-block">Neotoma2 WebR Example</h1>
+<h1 class="title d-none d-lg-block">Flujo de Trabajo Simple</h1>
 </div>
 
 
 
 <div class="quarto-title-meta">
 
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Simon Goring, Socorro Dominguez Vidaña </p>
+          </div>
+  </div>
     
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">May 6, 2025</p>
+    </div>
+  </div>
   
     
   </div>
@@ -2032,149 +297,433 @@ globalThis.qwebrCreateMonacoEditorInstance = function (cellData) {
 </header>
 
 
-<script src="../../src/quiz.js"></script>
-<p><!-- Only needed once per page --></p>
-<section id="exercises" class="level1">
-<h1>2.1. Exercises</h1>
-<section id="test-your-knowledge-visualization-libraries" class="level2">
-<h2 class="anchored" data-anchor-id="test-your-knowledge-visualization-libraries">Test Your Knowledge: Visualization Libraries</h2>
-<div id="mcq1">
-
-</div>
-<!-- The quiz will be inserted here -->
-<script>
-    generateQuiz(
-        'mcq1', // Must be unique and match the ID above
-        'Question 1',  // Question title
-        'What is another way of describing high-level visualization libraries?',  // Question/statement text
-        { // Option: Explanation
-        'Imperative': 'This is low-level plotting',
-        'Declarative': '',
-        'Immediate': 'This isn’t quite right. We made this part up!',
-        'Definitive': 'This isn’t quite right. We made this part up!'
-        },
-        'Declarative',  // Correction answer
-    );
-</script>
-<div id="mcq2">
-
-</div>
-<!-- The quiz will be inserted here -->
-<script>
-    generateQuiz(
-        'mcq2', // Must be unique and match the ID above
-        'Question 2',  // Question title
-        'What kind of components are combined in declarative plotting to create visualizations?',  // Question/statement text
-        { // Option: Explanation
-        'Dictionary Keys': 'This refers to a data structure, not a plotting structure.<br>',
-        'Block Components': 'Consider a more language-oriented approach.',
-        'Grammatical Components': '',
-        'Grouping Components': 'This term does not have a clear definition—we made it up!'
-        },
-        'Grammatical Components',  // Correct answer
-    );
-</script>
+<!-- <script src='../../src/quiz.js'></script>  Only needed once per page -->
+<section id="introducción" class="level2">
+<h2 class="anchored" data-anchor-id="introducción">Introducción</h2>
+<p>El objetivo de este documento es mostrar como usar el paquete de R para la base de datos Neotoma, <code>neotoma2</code>.</p>
+<p>La <a href="https://github.com/NeotomaDB/neotoma2">librería neotoma2</a> está disponible en GitHub y actualmente la documentación sólo está en inglés - trabajamos para tenerla en español próximamente.</p>
 </section>
-<section id="true-or-false-visualization-libraries" class="level2">
-<h2 class="anchored" data-anchor-id="true-or-false-visualization-libraries">True or False: Visualization Libraries</h2>
-<div id="mcq3">
-
-</div>
-<!-- The quiz will be inserted here -->
-<script>
-    generateQuiz(
-        'mcq3', // Must be unique and match the ID above
-        'True or False',  // Question title
-        'A low-level visualization library focuses on plot construction details.',  // Question/statement text
-        { // Option: Explanation
-        'True': '',
-        'False': 'Hmmm. It’s possible you got mixed up with high-level visualization',
-        },
-        'True',  // Correct answer
-    );
-</script>
-<div id="mcq4">
-
-</div>
-<!-- The quiz will be inserted here -->
-<script>
-    generateQuiz(
-        'mcq4', // Must be unique and match the ID above
-        'True of False',  // Question title
-        'A high-level visualization library focuses on data and relationships.',  // Question/statement text
-        { // Option: Explanation
-        'True': '',
-        'False': 'High-level visualization libraries concentrate on the data and the relationships between them. ',
-        },
-        'True',  // Correct answer
-    );
-</script>
+<section id="instalación" class="level2">
+<h2 class="anchored" data-anchor-id="instalación">Instalación</h2>
+<p>Actualmente, existe una versión en CRAN que se puede instalar simplemente haciendo:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">'neotoma2'</span>)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(neotoma2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Sin embargo, para instalar la versión más actualizada, es recomendable hacer (versión 1.0.6):</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">'devtools'</span>)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>devtools<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">"NeotomaDB/neotoma2@dev"</span>)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(neotoma2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Aunque se puede trabajar de forma local, este tutorial se puede hacer utilizando la instancia de Binder. Binder ejecutará una sesión de RStudio en tu navegador, con todas las liberías necesarias.</p>
+<p>O bien, para una versión más amena, se puede utilizar la instancia de Github-pages.</p>
 </section>
-<section id="your-first-plot" class="level2">
-<h2 class="anchored" data-anchor-id="your-first-plot">Your First Plot</h2>
-<p><strong>Instructions:</strong> Be patient when running a coding exercise for the first time, it can take a few minutes.</p>
-<p><strong>When you see <code>____</code> in a coding exercise, replace it with what you assume to be the correct code. Run the code to see if you obtain the desired output and submit it to validate if you were correct.</strong></p>
-<p>Let’s use the same vehicle dataset we saw in the lecture, but visualize the relationship between two different columns.</p>
-<p>The data has already been imported for you in this exercise.</p>
-<p>Here is what it looks like:</p>
-<hr>
+<section id="qué-aprenderás" class="level2">
+<h2 class="anchored" data-anchor-id="qué-aprenderás">¿Qué aprenderás?</h2>
+<p>Los objetivos de aprendizaje de este taller son: - Aprender cómo se organiza la información dentro de Neotoma (Sitios, Unidades de colección y Conjuntos de datos) - Cómo se traduce esta estructura en el paquete neotoma2 para R: * Busqueda de sitios: Buscar sitios a partir de nombres o parámetros geográficos * Filtrar resultados: Filtración de resultados utilizando parametros temporales o espaciales * Exploración de datos: Obtener información de muestras para los grupos de datos seleccionados. * Visualizar datos: Realizar gráficos estratigráficos básicos.</p>
 </section>
-<section id="webr-setup" class="level2">
-<h2 class="anchored" data-anchor-id="webr-setup">WebR Setup</h2>
-<div id="qwebr-insertion-location-1"></div>
-<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
-<p>Let’s find our first sites!</p>
-<div id="qwebr-insertion-location-2"></div>
-<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
-<div id="qwebr-insertion-location-3"></div>
-<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
-<div id="qwebr-insertion-location-4"></div>
-<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
-<p><strong>Tasks:</strong><br></p>
+<section id="antecedentes" class="level2">
+<h2 class="anchored" data-anchor-id="antecedentes">Antecedentes</h2>
+<section id="obtener-ayuda-con-neotoma" class="level3">
+<h3 class="anchored" data-anchor-id="obtener-ayuda-con-neotoma">Obtener ayuda con Neotoma</h3>
+<p>Si estás planeando trabajar con Neotoma, te invitamos a unirte a nuestro canal de <a href="https://join.slack.com/t/neotomadb/shared_invite/zt-cvsv53ep-wjGeCTkq7IhP6eUNA9NxYQ">Slack</a>, donde tenemos un espacio específico para preguntas sobre el paquete en R: el canal #it_r (también hay #it_r_es si prefieres ayuda en español). También puedes unirte a la comunidad de Neotoma a través de nuestras listas de correo en Google Groups. Para hacerlo, revisa la información en nuestro sitio web o <a href="mailto:neotoma-contact@googlegroups.com">contáctanos</a> para ser agregado.</p>
+</section>
+<section id="entendiendo-la-estrucura-de-neotoma" class="level3">
+<h3 class="anchored" data-anchor-id="entendiendo-la-estrucura-de-neotoma">Entendiendo la estrucura de Neotoma</h3>
+<p>Los datos en la base de datos de Neotoma están organizados como un conjunto de relaciones conectadas que permiten representar los distintos elementos de un análisis paleoecológico:</p>
 <ul>
-<li>Fill out the missing fields in the Altair plot in order to create a scatter plot.<br></li>
-<li>The cars’ <code>Horsepower</code> should be on the y-axis and their <code>Weight_in_lbs</code> on the x-axis.<br></li>
-<li>Color the points by the <code>Origin</code> of the cars.</li>
+<li>Espacio y tiempo:
+<ul>
+<li>¿Dónde está ubicada una muestra (latitud y longitud)?</li>
+<li>¿A qué profundidad fue tomada dentro de un perfil estratigráfico?</li>
+<li>¿Qué edad estimada tiene esa muestra?</li>
+<li>¿Qué edad tienen los elementos encontrados dentro o cerca de esa muestra?</li>
+</ul></li>
+<li>Observaciones:
+<ul>
+<li>¿Qué se está contando o midiendo?</li>
+<li>¿Qué unidades se están usando?</li>
+<li>¿Quién lo observó?</li>
+</ul></li>
+<li>Métodos científicos
+<ul>
+<li>¿Qué modelo estadístico se usó para calcular la edad?</li>
+<li>¿Qué tipo de incertidumbre se consideró para describir esa observación?</li>
+</ul></li>
+<li>Modelos conceptuales de datos
+<ul>
+<li>¿Cómo se relacionan las observaciones dentro de una muestra con otras muestras de la misma colección?</li>
+<li>¿Cómo se vincula una observación fósil con especies actuales o extintas relacionadas?</li>
+</ul></li>
 </ul>
-<div class="hint" data-exercise="your_first_plot">
-<div class="callout callout-style-default callout-note no-icon callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="true" aria-label="Toggle callout">
-<div class="callout-icon-container">
-<i class="callout-icon no-icon"></i>
+<p>La paleoecología es un campo amplio y en constante evolución por lo que estas relaciones pueden ser bastante complejas. Por eso, la base de datos está altamente estructurada y normalizada, lo que permite agregar nuevos conocimientos sin afectar el modelo de datos central.</p>
+<p>Si quieres profundizar en cómo está organizada la base de datos, puedes leer el Manual de la base de datos de Neotoma o revisar directamente el esquema del modelo relacional.</p>
+<section id="estructura-de-datos-en-neotoma" class="level4">
+<h4 class="anchored" data-anchor-id="estructura-de-datos-en-neotoma">Estructura de Datos en Neotoma</h4>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/site_collunit_dataset_rev.png" class="img-fluid figure-img" style="width:50.0%"></p>
+<figcaption><strong>Figura</strong>. <em>La estructura de sitios, colecciones o unidades de colecta, muestras y conjuntos de datos en Neotoma. Un sitio contiene una o mas colecciones. Las cronologías están asociadas a las colecciones y las muestras con datos de un mismo tipo (polen, diatomeas, vertebrados) se asignan a un conjunto de datos.</em></figcaption>
+</figure>
 </div>
-<div class="callout-title-container flex-fill">
-Hint 1
+<p>En Neotoma, los datos se asocian a <strong>sitios</strong> – ubicaciones específicas con coordenadas de latitud y longitud.</p>
+<p>Dentro de un <strong>sitio</strong>, puede haber una o más <a href="https://open.neotomadb.org/manual/dataset-collection-related-tables-1.html#CollectionUnits"><strong>unidades de colecta</strong></a> – que son los puntos específicos donde se recolectan físicamente las uestras dentro del sitio. Por ejemplo:</p>
+<ul>
+<li>Una <strong>cueva</strong> es un sitio que puede tener más de una <strong>colección</strong>, con entidades específicas (espeleotemas)</li>
+<li>Un <strong>sitio arqueológico</strong> puede tener una o más <strong>colecciones</strong>, como pozos dentro de una excavación.</li>
+<li>Un <strong>sitio</strong> de muestreo de polen puede tener varias <strong>colecciones</strong> – es decir, diferentes núcleos dentro de la cuenca del lago.</li>
+<li>Una ciénaga es un <strong>sitio</strong> que puede tener diversas <strong>colecciones</strong> – una transecta con varias muestras de superficie.</li>
+</ul>
+<p>Las unidades de colección pueden tener coordenadas GPS de mayor resolución que el sitio general, pero siguen considerándose parte del mismo sitio.</p>
+<p>Los datos dentro de una <strong>colección</strong> son recopilados a partir de diferentes <a href="https://open.neotomadb.org/manual/sample-related-tables-1.html#AnalysisUnits"><strong>unidades de análisis</strong></a>, por ejemplo:</p>
+<ul>
+<li>Todo el sedimento a 10cm de profundidad en un perfil de corte (la colección) a lo largo de un lago meándrico (el sitio) es una unidad de análisis;</li>
+<li>Todo el material en una muestra de superficie (colección) tomada de una ciénaga (el sitio) es una unidad de análisis;</li>
+<li>Todos los restos fósiles en una capa enterrada de huesos (colección) en una cueva (el sitio) también forman una unidad de análisis.</li>
+</ul>
+<p>Los datos recolectados en una unidad de análisis se agrupan según su tipo de conjunto de datos (carbón, diatomeas, dinoflagelados, etc.) y se organizan como una <a href="https://open.neotomadb.org/manual/sample-related-tables-1.html#Samples"><strong>muestra</strong></a>. El conjunto de muestras de una colección para un tipo de datos determinado se asigna a un <a href="https://open.neotomadb.org/manual/dataset-collection-related-tables-1.html#Datasets"><strong>conjunto de datos</strong></a>.</p>
+<ul>
+<li>Una muestra puede ser todas las diatomeas (conjunto de datos) extraídas del sedimento a 12 cm de profundidad (unidad de análisis) en un núcleo (colección) de un lago (el sitio).</li>
+<li>Otra muestra puede ser el registro de un solo hueso de mamut (muestra y unidad de análisis, tipo de datos: vertebrados) encontrado en la ribera de un río (sitio y unidad de colección).</li>
+</ul>
+</section>
+<section id="222-data-structures-in-neotoma2" class="level4">
+<h4 class="anchored" data-anchor-id="222-data-structures-in-neotoma2">Estructura de Datos en <code>neotoma2</code></h4>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/neotomaUML_as.svg" class="img-fluid figure-img"></p>
+<figcaption><strong>Figura</strong>. <em>Diagrama UML del paquete neotoma2 para R. Cada recuadro representa una clase de datos dentro del paquete. Cada clase muestra su nombre, propieades y funciones que se pueden aplicar a esos objetos. Por ejemplo, un objeto sites (sitios en inglés) tiene una propiedad sites que es una lista. La función <code>plotLeaflet()</code> puede ser utilizada en un objeto de la clase <code>sites</code>.</em></figcaption>
+</figure>
 </div>
-<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
-</div>
-<div id="callout-1" class="callout-1-contents callout-collapse collapse show">
-<div class="callout-body-container callout-body">
-<p>Are the column names expressed in quotes, e.g.&nbsp;<code>y='Horsepower'</code>?</p>
-</div>
-</div>
-</div>
-</div>
-<div class="proof solution" data-exercise="your_first_plot">
-<p><span class="proof-title"><em>Solution</em>. </span></p>
-<div class="callout callout-style-default callout-tip no-icon callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="true" aria-label="Toggle callout">
-<div class="callout-icon-container">
-<i class="callout-icon no-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Fully worked solution:
-</div>
-<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
-</div>
-<div id="callout-2" class="callout-2-contents callout-collapse collapse show">
-<div class="callout-body-container callout-body">
+<p>Si observamos el <a href="https://es.wikipedia.org/wiki/Lenguaje_unificado_de_modelado">diagrama UML</a> podemos observar que la estructura de datos en el paquete <code>neotoma2</code> refleja la estructura original de la base de datos.</p>
+<p>Como veremos en la sección <a href="#3-site-searches">Búsqueda de Sitios</a>, podemos buscar estos objetos y empezar a trabajar con ellos (en la sección <a href="#4-simple-analytics">Análisis Simple</a>).</p>
+<p>Un punto que debemos tener en cuenta, <em>en el paquete <code>neotoma2</code>, la mayoría de los objetos son de la clase <code>sites</code> , que contienen mayor o menor información</em>. Hay diferentes funciones que operan sobre <code>sites</code>. Cuando queremos obtener mayor información sobre los sitios <code>sites</code>, utilizamos las funciones <code>get_datasets()</code> o <code>get_downloads()</code> que pueblan con mayor información los sitios.</p>
+</section>
+</section>
+</section>
+<section id="búsqueda-de-sitios" class="level2">
+<h2 class="anchored" data-anchor-id="búsqueda-de-sitios">Búsqueda de sitios</h2>
+<section id="get_sites" class="level3">
+<h3 class="anchored" data-anchor-id="get_sites"><code>get_sites()</code></h3>
+<p>Hay diferentes maneras de encontrar sitios en <code>neotoma2</code>. Debémos pensar en los <code>sitios</code> como objetos espaciales. Tienen nombre, ubicación y pueden ser encontrados bajo en contexto de unidades geopolíticas. Sin embargo, bajo el contexto de la API y del paquete de R, los sitios en sí mismos no contienen datos sobre la taxonomía, el grupo de datos o las edades. Simplemente es un contenedor al que le podemos agregar más información. Es así que cuando buscamos por sitio, lo hacemos usando los siguientes atributos (en inglés):</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 14%">
+<col style="width: 85%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Parámetro</th>
+<th>Descripción</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>sitename</td>
+<td>Un nombre válido, usando <code>%</code> como comodín.</td>
+</tr>
+<tr class="even">
+<td>siteid</td>
+<td>Un identificador numérico único del sitio en la base de datos de Neotoma.</td>
+</tr>
+<tr class="odd">
+<td>loc</td>
+<td>Un vector de caja delimitadora, GeoJSON o cadena WKT.</td>
+</tr>
+<tr class="even">
+<td>altmin</td>
+<td>Límite inferior de altitud para los sitios.</td>
+</tr>
+<tr class="odd">
+<td>altmax</td>
+<td>Límite superior de altitud para los sitios.</td>
+</tr>
+<tr class="even">
+<td>database</td>
+<td>La base de datos específica de donde se extraen los registros.</td>
+</tr>
+<tr class="odd">
+<td>datasettype</td>
+<td>El tipo de conjunto de datos (ver <code>get_tables(datasettypes)</code>).</td>
+</tr>
+<tr class="even">
+<td>datasetid</td>
+<td>Identificador numérico único del conjunto de datos en Neotoma.</td>
+</tr>
+<tr class="odd">
+<td>doi</td>
+<td>Un DOI válido para un conjunto de datos en Neotoma.</td>
+</tr>
+<tr class="even">
+<td>gpid</td>
+<td>Un ID numérico único o cadena de texto que identifica una unidad geopolítica.</td>
+</tr>
+<tr class="odd">
+<td>keywords</td>
+<td>Palabras clave únicas para muestras registradas en Neotoma.</td>
+</tr>
+<tr class="even">
+<td>contacts</td>
+<td>Un nombre o ID numérico de personas asociadas con los sitios.</td>
+</tr>
+<tr class="odd">
+<td>taxa</td>
+<td>IDs numéricos únicos o nombres de taxones asociados con los sitios.</td>
+</tr>
+</tbody>
+</table>
+<section id="nombre-del-sitio-sitenamelago" class="level4 tabset">
+<h4 class="tabset anchored" data-anchor-id="nombre-del-sitio-sitenamelago">Nombre del sitio: <code>sitename="%Lago%"</code></h4>
+<p>Hay ocasiones en las que sabremos exactamente el nombre del sitio que estamos buscando (“Lago Titicaca”), y habrà ocasiones en las que tendremos una idea aproximada sobre el nombre (por ejemplo, sabemos que el nombre es parecido a “Lago Titicaca”, o “Lake Titicaca”, pero no estamos seguros de como fue ingresado a la base de datos).</p>
+<p>De forma general, utilizamos el formato: <code>get_sites(sitename="XXXXX")</code> para buscar un sitio por nombre.</p>
+<p>PostgreSQL (y la API) utilizan el signo de porcentaje como comodín. De esta forma, <code>"%Titicaca%"</code> seleccionará <a href="https://data.neotomadb.org/21984">“Lake Titicaca”</a> y en caso de existir, también seleccionaría “Lago Titicaca” y “Pantano <strong>Titicaca</strong>”. La búsqueda tampoco distingue entre mayúsculas y minúsculas, por lo que simplemente podría escribir <code>"%titicaca%"</code>.</p>
+<section id="código" class="level5">
+<h5 class="anchored" data-anchor-id="código">Código</h5>
+<p><code>{web-r sitename, eval=FALSE} library(neotoma2) lago_titicaca &lt;- neotoma2::get_sites(sitename = "%titicaca%") plotLeaflet(lago_titicaca)</code></p>
+</section>
+<section id="resultados" class="level5">
+<h5 class="anchored" data-anchor-id="resultados">Resultados</h5>
+<p><code>{web-r sitenamePlot, echo=FALSE} lago_titicaca &lt;- neotoma2::get_sites(sitename = "%titicaca%") plotLeaflet(lago_titicaca)</code></p>
+</section>
+</section>
+<section id="ubicación-locc" class="level4 tabset">
+<h4 class="tabset anchored" data-anchor-id="ubicación-locc">Ubicación: <code>loc=c()</code></h4>
+<p>El paquete <code>neotoma</code> utilizaba un cuadro delimitador para buscar por ubicación. El cuadro estaba estructurado como un vector con valores de latitud y longitud: <code>c(xmin, ymin, xmax, ymax)</code>. En <code>neotoma2</code> se puede utilizar esta misma caja delimitadora o podemos definir objetos espaciales más complejos con el <a href="https://r-spatial.github.io/sf/">paquete <code>sf</code></a>. El paquete <code>sf</code> nos permite trabajar con datos ráster y polígonos en R, para seleccionar sitios existentes en objetos espaciales más complejos. El parametro <code>loc</code> trabaja con vectores simples, objetos <a href="https://arthur-e.github.io/Wicket/sandbox-gmaps3.html">WKT</a>, objetos <a href="http://geojson.io/#map=2/20.0/0.0">geoJSON</a> y objectos <code>sf</code> en R. <strong>Notar que</strong> el paquete <code>neotoma2</code> es un función contenedora API que utiliza un URL (<a href="https://api.neotomadb.org">api.neotomadb.org</a>).</p>
+<p>Buscar sitios utilizando una ubicación. En el siguiente código hay tres representaciones de Sudamérica: geoJSON, WKT y con un cuadro delimitador. También hemos transformado el elemento <code>sa$geoJSON</code> a un objeto del paquete <code>sf</code>. Podemos utilizar cualquiera de estas cuatro representaciones para trabajar con el paquete <code>neotoma2</code>.</p>
+<pre class="{web-r boundingBox}"><code>sa &lt;- list(geoJSON = '{"type": "Polygon",
+        "coordinates": [[
+            [-79.66, -5.97],
+            [-70.06, -19.07],
+            [-74.38, -55.59],
+            [-34.67, -6.52],
+            [-76.41, 8.37],
+            [-79.66, -5.97]
+            ]]}',
+        WKT = 'POLYGON ((-79.66, -5.97,
+                         -70.06, -19.07,
+                         -74.38, -55.59,
+                         -34.67, -6.52,
+                         -76.41, 8.37,
+                         -79.66, -5.97))',
+        bbox = c(-79.66, -55.59, -34.67, 8.37))
 
+sa$sf &lt;- geojsonsf::geojson_sf(sa$geoJSON)
+
+sa_sites &lt;- neotoma2::get_sites(loc = sa$sf, all_data = TRUE)</code></pre>
+<p>Puedes siempre hacer un gráfico de los <code>sites</code> obtenidos con <code>plot()</code>, pero los datos perderan el contexto geográfico. La función <code>plotLeaflet()</code> regresa un mapa de la librería <code>leaflet()</code> y permite mayor personalización o agregar datos espaciales adicionales (como nuestro cuadro delimitador, <code>sa$sf</code>, que funciona directamente con el paquete <code>leaflet</code>):</p>
+<section id="código-1" class="level5">
+<h5 class="anchored" data-anchor-id="código-1">Código</h5>
+<p><code>{web-r plotL, eval=FALSE} neotoma2::plotLeaflet(sa_sites) %&gt;%    leaflet::addPolygons(map = .,                         data = sa$sf,                         color = "green")</code></p>
+</section>
+<section id="resultados-1" class="level5">
+<h5 class="anchored" data-anchor-id="resultados-1">Resultados</h5>
+<p><code>{web-r plotLeaf, echo=FALSE} neotoma2::plotLeaflet(sa_sites) %&gt;%    leaflet::addPolygons(map = .,                         data = sa$sf,                         color = "green")</code></p>
+</section>
+</section>
+<section id="auxiliares-para-objetos-de-tipo-sitios" class="level4 tabset">
+<h4 class="tabset anchored" data-anchor-id="auxiliares-para-objetos-de-tipo-sitios">Auxiliares para objetos de tipo Sitios</h4>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/neotomaUML_as.svg" class="img-fluid figure-img"></p>
+<figcaption>Neotoma R diagrama UML.</figcaption>
+</figure>
 </div>
-</div>
-</div>
-</div>
+<p>Si observamos al <a href="https://es.wikipedia.org/wiki/Lenguaje_unificado_de_modelado">diagrama UML</a> para los objetos de <code>neotoma2</code> podemos ver que hay un conjunto de funciones qeu operan a nivel de <code>sites</code> (sitios). Conforme vamos agregando información a los objetos <code>sites</code> mediante las funciones <code>get_datasets()</code> o <code>get_downloads()</code>, podemos utilizar un mayor número de funciones auxiliares. Podemos así, tomar ventaja de funciones como <code>summary()</code> para tener un mejor entendimiento de los diferentes tipos de datos que tenemos en este conjunto de sitios. El código a continuación regresa la tabla de resumen. Hacemos después un poco de magia con R para cambiar el formato en que los datos están siendo representados (convirtiéndolo a un objeto <code>datatable()</code>), pero la pieza principal es la llamada a la función <code>summary()</code>.</p>
+<section id="código-2" class="level5">
+<h5 class="anchored" data-anchor-id="código-2">Código</h5>
+<p><code>{web-r summary_sites, eval=FALSE} neotoma2::summary(sa_sites) %&gt;%   DT::datatable(data = ., rownames = FALSE,                  options = list(scrollX = "100%", dom = 't'))</code></p>
+</section>
+<section id="resultados-2" class="level5">
+<h5 class="anchored" data-anchor-id="resultados-2">Resultados</h5>
+<p><code>{web-r summarySitesTable, eval=TRUE, echo=FALSE} neotoma2::summary(sa_sites) %&gt;%   DT::datatable(data = ., rownames = FALSE,                  options = list(scrollX = "100%", dom = 't'))</code></p>
+<p>Podemos ver que no hay cronologías asociadas con el objeto <code>sites</code>. Esto es porque, por el momento, no hemos extraído la información necesaria de los <code>dataset</code>. Todo lo que sabemos, tras la llamada <code>get_sites()</code> son los tipos de conjuntos de datos con los que contamos.</p>
+</section>
+</section>
+</section>
+<section id="búsqueda-de-conjuntos-de-datos-get_datasets" class="level3 tabset">
+<h3 class="tabset anchored" data-anchor-id="búsqueda-de-conjuntos-de-datos-get_datasets">Búsqueda de conjuntos de datos (<code>get_datasets()</code>):</h3>
+<p>Sabemos que las <code>colecciones</code> y los <code>conjuntos de datos</code> están contenidos en los <code>sitios</code>. Similarmente, un objeto de tipo <code>sites</code> contienen <code>collectionunits</code> que contienen <code>datasets</code>. En la tabla anterior podemos ver que algunos de los sitios contienen registros de diatomeas. Dicho esto, solo tenemos la información de <code>sites</code>, pero por conveniencia, la API devuelve información adicional sobre los conjuntos de datos lo que nos permite navegar de manera más fácil los registros.</p>
+<p>Con un objeto <code>sites</code> podemos llamar directamente a la función <code>get_datasets()</code>, que nos permitirá extraer metadatos sobre los conjuntos de datos. Podemos utilizar la función <code>datasets()</code> en cualqueir momento para obtener más información de los conjuntos de datos que un objeto <code>sites</code> pueda contener. Comparemos la información impresa <code>datasets(sa_sites)</code> contra una llamada similar utilizando el siguiente código.</p>
+<section id="código-3" class="level4">
+<h4 class="anchored" data-anchor-id="código-3">Código</h4>
+<p>```{web-r datasetsFromSites, eval=FALSE} sa_datasets &lt;- neotoma2::get_datasets(sa_sites, all_data = TRUE)</p>
+<p>datasets(sa_datasets)</p>
+<pre><code>
+#### Resultados
+
+```{web-r datasetsFromSitesResult, echo=FALSE, message=FALSE}
+sa_datasets &lt;- neotoma2::get_datasets(sa_sites, all_data = TRUE)
+datasets(sa_datasets) %&gt;% 
+  as.data.frame() %&gt;% 
+  DT::datatable(data = ., 
+                options = list(scrollX = "100%", dom = 't'))</code></pre>
+</section>
+</section>
+<section id="filtrar-registros-con-filter" class="level3 tabset">
+<h3 class="tabset anchored" data-anchor-id="filtrar-registros-con-filter">Filtrar Registros con <code>filter()</code></h3>
+<p>Si decidimos únicamente obtener registros de un sólo tipo de datos, o si requerimos de mayor filtración, debemos considerar filtrar antes de descargar todos los datos y muestras. Para ello, utilizaremos la función <code>filter()</code>. Por ejemplo, si requerimos únicamente los registros de polen con sus cronologías conocidas, podemos filtrar de la siguiente forma:</p>
+<section id="código-4" class="level4">
+<h4 class="anchored" data-anchor-id="código-4">Código</h4>
+<p>```{web-r downloads, eval=FALSE} sa_diatom &lt;- sa_datasets %&gt;% neotoma2::filter(datasettype == “pollen” &amp; !is.na(age_range_young))</p>
+<p>neotoma2::summary(sa_diatom)</p>
+<pre><code>
+#### Resultados
+
+```{web-r downloadsCódigo, echo = FALSE}
+sa_diatom &lt;- sa_datasets %&gt;% 
+  neotoma2::filter(datasettype == "pollen" &amp; !is.na(age_range_young))
+
+neotoma2::summary(sa_diatom) %&gt;% DT::datatable(data = ., 
+                options = list(scrollX = "100%", dom = 't'))</code></pre>
+<p>Podemos ver qeu la tabla de datos se ve diferente y que hay un número menor de sitios.</p>
+</section>
+</section>
+<section id="obteniendo-las-muestras-con-sample." class="level3">
+<h3 class="anchored" data-anchor-id="obteniendo-las-muestras-con-sample.">Obteniendo las muestras con <code>sample()</code>.</h3>
+<p>Debido a que los datos de las muestras agregan mucha sobrecarga (para Sudamérica, los datos de polen sobrecargara nuestro <code>sites</code> object más que 20 veces), por eso llamamos la función <code>get_downloads()</code> después de haber hecho un filtrado preliminar. Después de <code>get_datasets()</code>, tenemos información sufciente para filtar basados en ubicación, límites de tiempo y tipo conjunto de datos. Cuando ejecutamos<code>get_downloads()</code> podemos hacer un filtrado más fino a nivel de unidad de análisis o nivel de taxón.</p>
+<p>El siguiente comando puede tomar algo de tiempo. Por eso, hemos guardado el resultado en un archivo RDS. Puedes intentar correr este comando por tu cuenta o puedes cargar el archivo RDS.</p>
+<pre class="{web-r taxa}"><code>## This line is commented out because we've already run it for you.
+##sa_dl &lt;- sa_diatom %&gt;% get_downloads(all_data = TRUE)
+sa_dl &lt;- readRDS('data/saDownload.RDS')</code></pre>
+<p>Una vez que hemos hecho la descarga, ahora tenemos información de cada sitio asociado a las unidades de colecta, los tipos de conjunto de datos, y a todas las muestras asociadas a estos conjuntos. Para extraer toda las muestras, utilizamos la función <code>samples</code>:</p>
+<pre class="{web-r allSamples}"><code>allSamp &lt;- samples(sa_dl)</code></pre>
+<p>Una vez hecho esto, obtenemos un <code>data.frame</code> esto es una tabla con <strong>nrow(allSamp)</strong> renglones y <strong>ncol(allSamp)</strong> columnas. La razón de que esta tabla sea muy larga es porque estamos obteniendo los datos en un formato <strong>largo</strong>. Cada rengón contiene toda la información que se necesita para interpretarse correctamente:</p>
+<p><code>{web-r colNamesAllSamp, echo = FALSE} colnames(allSamp)</code></p>
+<p>Para algunos tipos de conjunto de datos o análisis específicos, algunas columnas podrán no ser necesarias. Sin embargo, para otros conjuntos de datos pueden ser críticamente importantes. Para permitir que el paquete <code>neotoma2</code> sea lo más útil posible para todos los usuarios, hemos incluido todas las columnas posibles.</p>
+<section id="extracción-de-taxones" class="level4 tabset">
+<h4 class="tabset anchored" data-anchor-id="extracción-de-taxones">Extracción de taxones</h4>
+<p>Si quieres saber que taxones existen en los registros, puedes utilizar la función <code>taxa()</code> en el objeto <code>sites</code>. La función <code>taxa()</code> regresa los taxones únicos junto con dos columnas adicionales <code>sites</code> y <code>samples</code> que indican en cuantos sitios y en cuantas muestras el taxón aparece, esto nos ayuda a comprender mejor que tan común es cada taxón individual.</p>
+<section id="código-5" class="level5">
+<h5 class="anchored" data-anchor-id="código-5">Código</h5>
+<p><code>{web-r taxa2, eval=FALSE} neotomatx &lt;- neotoma2::taxa(sa_dl)</code></p>
+</section>
+<section id="resultados-3" class="level5">
+<h5 class="anchored" data-anchor-id="resultados-3">Resultados</h5>
+<p>```{web-r taxaprint, echo=FALSE, message=FALSE} neotomatx &lt;- neotoma2::taxa(sa_dl)</p>
+<p>neotoma2::taxa(sa_dl) %&gt;% DT::datatable(data = head(neotomatx, n = 20), rownames = FALSE, options = list(scrollX = “100%”, dom = ‘t’))</p>
+<pre><code>
+#### Entendiendo las Taxonomías en Neotoma {-}
+Las taxonomías en Neotoma no siempre son tan directas como podríamos pensar. La identificación taxonómica en paleoecología puede ser compleja y verse influenciada por la morfología del organismo, el estado de conservación del palinomorfo, la experiencia del/la analista, entre otros factores. Puedes leer más sobre este tema en la sección sobre [Conceptos Taxonómicos del Manual de Neotoma](https://open.neotomadb.org/manual/database-design-concepts.html#taxonomy-and-synonymy).
+
+En la base de datos utilizamos identificadores únicos (por ejemplo, `taxonid`, `siteid`, `analysisunitid`) porque nos permiten conectar los distintos registros entre sí. Los valores de `taxonid` que devuelve la función `taxa()` se pueden vincular con la columna `taxonid` en la tabla que devuelve `samples()`. Esto nos permite, por ejemplo, crear tablas de armonización taxonómica si lo necesitamos.
+
+También notarás que el nombre del taxón (`taxonname`) aparece en el campo `variablename`. En Neotoma, los conteos individuales de muestras se reportan como [`variables`](https://open.neotomadb.org/manual/taxonomy-related-tables-1.html#Variables). Una "variable" puede representar una especie, una medición de laboratorio o incluso un proxy no orgánico, como carbón (charcoal) o mediciones de fluorescencia de rayos X (XRF). Estas variables incluyen tanto la unidad de medida como el valor correspondiente.
+
+## Análisis Simples
+
+### Trazado Estratigráfico
+
+Podemos utilizar paquetes como `rioja` para hacer trazados estratigráficos para un único registro. Pero primero tenemos que hacer un manejo de datos diferente. A pesar de que podríamos hacer armonización nuevamente, vamos a tomar los 10 taxones más comúnes en un sitio dado los trazaremos en un diagrama estratigráfico.
+
+Utilizaremos la función `arrange()` para ordenar confrome al número de veces que un taxón aparece en un núcleo. De esta forma, podemos tomar las muestras y seleccionar los taxones que aparecen en las diez primeras filas del marco de datos `plottingTaxa`.
+
+```{web-r stratiplot, message = FALSE}
+plottingSite &lt;- sa_dl[[1]]
+
+plottingTaxa &lt;- taxa(plottingSite) %&gt;%
+  filter(ecologicalgroup %in% c("DIAT")) %&gt;%
+  filter(elementtype == "valve") %&gt;%
+  arrange(desc(samples)) %&gt;% 
+  head(n = 10)
+
+# Limpiar y seleccionar records de polen .
+# Repetir filtros para polen &amp; grupos ecologicos en las muestras
+shortSamples &lt;- samples(plottingSite) %&gt;% 
+  filter(datasettype == "pollen")
+
+# Select only pollen measured using NISP and convert to a "wide"
+# table, using proportions. The first column will be "age".
+# This turns our "long" table into a "wide" table:
+values &lt;- plottingSite[[2]] %&gt;%
+  samples() %&gt;%
+  toWide(ecologicalgroup = c("ITOP"),
+         unit = c("per mille"),
+         groupby = "age",
+         elementtype = NA,
+         operation = "sum") %&gt;%
+  arrange(age) %&gt;% na.omit()</code></pre>
+<p>Aparentemente, esto es una llamada compleja de comandos. Sin embargo, la función <code>toWide()</code> proporciona control sobre los taxones, unidades y otros elementos para que puedan ser ingresados en una matriz (<code>depth</code> x <code>taxon</code>) que muchas herramientas estadísticas como los paquetes <code>vegan</code> o <code>rioja</code> usan.</p>
+<p>Para crear gráficas, podemos usar <code>strat.plot()</code> del paquete <code>rioja</code>, ordenar los taxones usando puntajes promedio ponderados (<code>wa.order</code>). También se ha agregado un gráfico CONISS al borde del gráfico, para mostrar cómo funciona el nuevo marco de datos amplio con funciones métricas de distancia.</p>
+<p>```{web-r plotStrigraph, message=FALSE, warning=FALSE} clust &lt;- rioja::chclust(dist(sqrt(counts)), method = “coniss”)</p>
+<p>plot &lt;- rioja::strat.plot(counts[,-1] * 100, yvar = counts<span class="math inline">\(age,
+                  title = sa_dl[[1]]\)</span>sitename, ylabel = “Calibrated Years BP”, xlabel = “Diatom (%)”, y.rev = TRUE, clust = clust, wa.order = “topleft”, scale.percent = TRUE)</p>
+<p>rioja::addClustZone(plot, clust, 4, col = “red”)</p>
+<pre><code>
+### Análisis Multi-proxy {.tabset}
+
+#### Code
+
+```{web-r sillyplot, eval = FALSE}
+
+spSamp &lt;- allSamp %&gt;%
+  filter(ecologicalgroup %in% c('TRSH', 'ITOP')) %&gt;%
+  filter(units %in% c('per mille', 'NISP'))
+  
+spPct &lt;- spSamp %&gt;%
+  group_by(sitename, depth) %&gt;%
+  mutate(val = ifelse(units == 'NISP', value / sum(value), value)) %&gt;%
+  ungroup() %&gt;%
+  filter(variablename %in% c('δ13C', 'δ18O', 'Pinus')) %&gt;%
+  filter(!agetype == 'Calendar years AD/BC')
+
+ggplot(spPct, aes(x = val, y = age, color = sitename)) +
+  theme(legend.position="none") +
+  geom_path() +
+  facet_wrap(~variablename, scale = 'free_x') +
+  coord_cartesian(ylim = c(0, 10000))
+</code></pre>
+</section>
+</section>
+<section id="results" class="level4">
+<h4 class="anchored" data-anchor-id="results">Results</h4>
+<p>```{web-r sillyploteval, warning = FALSE}</p>
+<p>spSamp &lt;- allSamp %&gt;% filter(ecologicalgroup %in% c(‘TRSH’, ‘ITOP’)) %&gt;% filter(units %in% c(‘per mille’, ‘NISP’))</p>
+<p>spPct &lt;- spSamp %&gt;% group_by(sitename, depth) %&gt;% mutate(val = ifelse(units == ‘NISP’, value / sum(value), value)) %&gt;% ungroup() %&gt;% filter(variablename %in% c(‘δ13C’, ‘δ18O’, ‘Pinus’))</p>
+<p>ggplot(spPct, aes(x = val, y = age)) + theme(legend.position=“none”) + geom_path() + facet_wrap(~variablename, scale = ‘free_x’) + ylim(c(0, 10000))</p>
+<pre><code>
+## Conclusion
+
+Hemos hecho muchas cosas en este ejemplo. 
+- Buscamos sitios utilizando nombres y parámetros geográficos. 
+- Filtramos resultados utilizando parámetros espaciales y temporales. 
+- Obtuvimos información de las muestras de los conjuntos de datos seleccionados.
+- Hicimos un análisis estratográfico básico.  
+
+¡Esperamos que utilizen estos ejemplos como un bloque para usar en el futuro en su trabajo o para algo nuevo y divertido!
+
+## Apéndice
+
+### Instar librerías en computadora local {#localinstall}
+
+Utilizamos varios paquetes en este documento, particularmente `leaflet`, `sf`, `rioja` entre otros. Podemos utilizar `pacman` para cargar las librerías e instalar aquellas que aún no se encuentren en su sistema.
+
+```{web-r setupFake, eval=FALSE}
+options(warn = -1)
+pacman::p_load(neotoma2, dplyr, ggplot2, sf, geojsonsf, leaflet, terra, DT, readr, stringr, rioja)</code></pre>
+<p>Toma en cuenta que R es sensible al orden en que las librerías son cargadas. Si utilizamos el prefijo <code>neotoma2::</code> le diremos explícitamente a R que queremos utilizar una función de la librería <code>neotoma2</code> para ejecutar una función en particular. Esto es porque hay funciones como <code>filter()</code> que existen en mas librerías como <code>dplyr</code>. En algunas ocaciones puedes encontrar estos errores:</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="ex">Error</span> in UseMethod<span class="er">(</span><span class="st">"filter"</span><span class="kw">)</span> <span class="bu">:</span> </span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="ex">no</span> applicable method for <span class="st">'filter'</span> applied to an object of class <span class="st">"sites"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>en este caso, lo más probable es que al ejecultar <code>filter()</code> R no sabe que debe utilizar neotoma2 y está utlizando dplyr. Agregando explícitamente <code>dplyr::</code> o <code>neotoma2::</code> frente a la función (i.e., <code>neotoma2::filter()</code>) es una buena práctica y R entenderá a que función nos referimos.</p>
+</section>
+</section>
+<section id="pipas-en-r" class="level3 tabset">
+<h3 class="tabset anchored" data-anchor-id="pipas-en-r">Pipas en <code>R</code></h3>
+<p>Las pipas o pipes en R son una forma de encadenar funciones. Generalmente, se puede utilizar los operadores: <code>|&gt;</code> or <code>%&gt;%</code>. <code>|&gt;</code> es nativo en R y <code>%&gt;%</code> viene del ecosistema <code>tidyverse</code> en R. En <code>neotoma2</code> usamos <code>%&gt;%</code>.</p>
+<p>Este operador es muy útil pues funciona como una tubería que lleva agua de un lugar a otro. En programación, es como una línea de montaje donde los datos entran por una función, se modifican y el resultado es ingresado a la siguiente función. Esto hace que el código sea legible y más facil de escribir. También reduce el número de variables que se necesitan, ahorrando espacio en memoria.</p>
+<p>Por ejemplo, sin los pipes en <code>neotoma2</code> para extraer un sitio y luego crear la gráfica haríamos:</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Retrieve the site</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>plot_site <span class="ot">&lt;-</span> neotoma2<span class="sc">::</span><span class="fu">get_sites</span>(<span class="at">sitename =</span> <span class="st">"%ø%"</span>)</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot the site</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>neotoma2<span class="sc">::</span><span class="fu">plotLeaflet</span>(<span class="at">object =</span> plot_site)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Es decir, primero creamos la variable <code>plot_site</code> que sólo utilizaríamos una vez pero que fue necesaria para poder ejecutar la función <code>plotLeaflet</code>.</p>
+<p>Con la pipa (<code>%&gt;%</code>) no necesitamos crear la variable, simplemente escribimos nuestro código. Así <code>plotLeaflet()</code> no requiere un argumento <code>object</code> porque utiliza la respuesta generada por <code>get_sites(sitename = "%ø%")</code>.</p>
+<section id="code" class="level4">
+<h4 class="anchored" data-anchor-id="code">2.2.3.1. Code</h4>
+<p><code>{web-r piping code, eval=FALSE} # get_sites and pipe. The `object` parameter for plotLeaflet will be the # result of the `get_sites()` function. get_sites(sitename = "%ø%") %&gt;%   plotLeaflet()&gt;</code></p>
+</section>
+<section id="result" class="level4">
+<h4 class="anchored" data-anchor-id="result">2.2.3.2. Result</h4>
+<p><code>{web-r piping result, echo=FALSE} # get_sites and pipe get_sites(sitename = "%ø%") %&gt;%   plotLeaflet()</code></p>
 
 
+</section>
 </section>
 </section>
 
@@ -2588,122 +1137,6 @@ Fully worked solution:
   </div>
 </nav>
 </div> <!-- /content -->
-<script type="module">
-// Handle cell initialization initialization
-qwebrCellDetails.map(
-  (entry) => {
-    // Handle the creation of the element
-    qwebrCreateHTMLElement(entry);
-    // In the event of interactive, initialize the monaco editor
-    if (entry.options.context == EvalTypes.Interactive) {
-      qwebrCreateMonacoEditorInstance(entry);
-    }
-  }
-);
-
-// Identify non-interactive cells (in order)
-const filteredEntries = qwebrCellDetails.filter(entry => {
-  const contextOption = entry.options && entry.options.context;
-  return ['output', 'setup'].includes(contextOption) || (contextOption == "interactive" && entry.options && entry.options.autorun === 'true');
-});
-
-// Condition non-interactive cells to only be run after webR finishes its initialization.
-qwebrInstance.then(
-  async () => {
-    const nHiddenCells = filteredEntries.length;
-    var currentHiddenCell = 0;
-
-
-    // Modify button state
-    qwebrSetInteractiveButtonState(`🟡 Running hidden code cells ...`, false);
-
-    // Begin processing non-interactive sections
-    // Due to the iteration policy, we must use a for() loop.
-    // Otherwise, we would need to switch to using reduce with an empty
-    // starting promise
-    for (const entry of filteredEntries) {
-
-      // Determine cell being examined
-      currentHiddenCell = currentHiddenCell + 1;
-      const formattedMessage = `Evaluating hidden cell ${currentHiddenCell} out of ${nHiddenCells}`;
-
-      // Update the document status header
-      if (qwebrShowStartupMessage) {
-        qwebrUpdateStatusHeader(formattedMessage);
-      }
-
-      // Display the update in non-active areas
-      qwebrUpdateStatusMessage(formattedMessage);
-
-      // Extract details on the active cell
-      const evalType = entry.options.context;
-      const cellCode = entry.code;
-      const qwebrCounter = entry.id;
-
-      if (['output', 'setup'].includes(evalType)) {
-        // Disable further global status updates
-        const activeContainer = document.getElementById(`qwebr-non-interactive-loading-container-${qwebrCounter}`);
-        activeContainer.classList.remove('qwebr-cell-needs-evaluation');
-        activeContainer.classList.add('qwebr-cell-evaluated');
-
-        // Update status on the code cell
-        const activeStatus = document.getElementById(`qwebr-status-text-${qwebrCounter}`);
-        activeStatus.innerText = " Evaluating hidden code cell...";
-        activeStatus.classList.remove('qwebr-cell-needs-evaluation');
-        activeStatus.classList.add('qwebr-cell-evaluated');
-      }
-
-      switch (evalType) {
-        case 'interactive':
-          // TODO: Make this more standardized.
-          // At the moment, we're overriding the interactive status update by pretending its
-          // output-like. 
-          const tempOptions = entry.options;
-          tempOptions["context"] = "output"
-          // Run the code in a non-interactive state that is geared to displaying output
-          await qwebrExecuteCode(`${cellCode}`, qwebrCounter, tempOptions);
-          break;
-        case 'output':
-          // Run the code in a non-interactive state that is geared to displaying output
-          await qwebrExecuteCode(`${cellCode}`, qwebrCounter, entry.options);
-          break;
-        case 'setup':
-          const activeDiv = document.getElementById(`qwebr-noninteractive-setup-area-${qwebrCounter}`);
-
-          // Store code in history
-          qwebrLogCodeToHistory(cellCode, entry.options);
-
-          // Run the code in a non-interactive state with all output thrown away
-          await mainWebR.evalRVoid(`${cellCode}`);
-          break;
-        default: 
-          break; 
-      }
-
-      if (['output', 'setup'].includes(evalType)) {
-        // Disable further global status updates
-        const activeContainer = document.getElementById(`qwebr-non-interactive-loading-container-${qwebrCounter}`);
-        // Disable visibility
-        activeContainer.style.visibility = 'hidden';
-        activeContainer.style.display = 'none';
-      }
-    }
-  }
-).then(
-  () => {
-    // Release document status as ready
-
-    if (qwebrShowStartupMessage) {
-      qwebrStartupMessage.innerText = "🟢 Ready!"
-    }
-  
-    qwebrSetInteractiveButtonState(
-      `<i class="fa-solid fa-play qwebr-icon-run-code"></i> <span>Run Code</span>`, 
-      true
-    );  
-  }
-);
-</script>
 
 
 
