@@ -1,0 +1,1128 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.6.43">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Simon Goring, Socorro Dominguez Vidaña">
+<meta name="dcterms.date" content="2025-05-06">
+
+<title>Flujo de Trabajo Simple – Neotoma</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<link href="../../modules/module0/module0-02-instalacion.html" rel="prev">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-99fa6729ad23987aafeada22b1565191.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-520cacc6d2469c0494f55e3e072b5c28.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="text.css">
+</head>
+
+<body class="nav-sidebar docked">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <a class="flex-grow-1 no-decor" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+          <h1 class="quarto-secondary-nav-title">Flujo de Trabajo Simple</h1>
+        </a>     
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+      <a href="../../index.html" class="sidebar-logo-link">
+      <img src="../../static/logo.svg" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
+      </a>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false">
+ <span class="menu-text"><strong>M0.</strong></span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../modules/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">0. Welcome!</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../modules/module0/module0-00-module-learning-outcomes.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">0. Objetivos del módulo</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../modules/module0/module0-01-ayuda-en-neotoma.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">1. Cómo pedir ayuda en Neotoma</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../modules/module0/module0-02-instalacion.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">1. Instalación</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text"><strong>M1.</strong></span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../modules/module1/module1-04-analisis-simple.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Flujo de Trabajo Simple</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#introducción" id="toc-introducción" class="nav-link active" data-scroll-target="#introducción">Introducción</a></li>
+  <li><a href="#antecedentes" id="toc-antecedentes" class="nav-link" data-scroll-target="#antecedentes">Antecedentes</a>
+  <ul class="collapse">
+  <li><a href="#entendiendo-la-estrucura-de-neotoma" id="toc-entendiendo-la-estrucura-de-neotoma" class="nav-link" data-scroll-target="#entendiendo-la-estrucura-de-neotoma">Entendiendo la estrucura de Neotoma</a></li>
+  </ul></li>
+  <li><a href="#búsqueda-de-sitios" id="toc-búsqueda-de-sitios" class="nav-link" data-scroll-target="#búsqueda-de-sitios">Búsqueda de sitios</a>
+  <ul class="collapse">
+  <li><a href="#get_sites" id="toc-get_sites" class="nav-link" data-scroll-target="#get_sites"><code>get_sites()</code></a></li>
+  <li><a href="#búsqueda-de-conjuntos-de-datos-get_datasets" id="toc-búsqueda-de-conjuntos-de-datos-get_datasets" class="nav-link" data-scroll-target="#búsqueda-de-conjuntos-de-datos-get_datasets">Búsqueda de conjuntos de datos (<code>get_datasets()</code>):</a></li>
+  <li><a href="#filtrar-registros-con-filter" id="toc-filtrar-registros-con-filter" class="nav-link" data-scroll-target="#filtrar-registros-con-filter">Filtrar Registros con <code>filter()</code></a></li>
+  <li><a href="#obteniendo-las-muestras-con-sample." id="toc-obteniendo-las-muestras-con-sample." class="nav-link" data-scroll-target="#obteniendo-las-muestras-con-sample.">Obteniendo las muestras con <code>sample()</code>.</a></li>
+  <li><a href="#pipas-en-r" id="toc-pipas-en-r" class="nav-link" data-scroll-target="#pipas-en-r">Pipas en <code>R</code></a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title d-none d-lg-block">Flujo de Trabajo Simple</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Simon Goring, Socorro Dominguez Vidaña </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">May 6, 2025</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<!-- <script src='../../src/quiz.js'></script>  Only needed once per page -->
+<section id="introducción" class="level2">
+<h2 class="anchored" data-anchor-id="introducción">Introducción</h2>
+<p>El objetivo de este documento es mostrar como usar el paquete de R para la base de datos Neotoma, <code>neotoma2</code>.</p>
+<p>La <a href="https://github.com/NeotomaDB/neotoma2">librería neotoma2</a> está disponible en GitHub y actualmente la documentación sólo está en inglés - trabajamos para tenerla en español próximamente.</p>
+</section>
+<section id="antecedentes" class="level2">
+<h2 class="anchored" data-anchor-id="antecedentes">Antecedentes</h2>
+<section id="entendiendo-la-estrucura-de-neotoma" class="level3">
+<h3 class="anchored" data-anchor-id="entendiendo-la-estrucura-de-neotoma">Entendiendo la estrucura de Neotoma</h3>
+<p>Los datos en la base de datos de Neotoma están organizados como un conjunto de relaciones conectadas que permiten representar los distintos elementos de un análisis paleoecológico:</p>
+<ul>
+<li>Espacio y tiempo:
+<ul>
+<li>¿Dónde está ubicada una muestra (latitud y longitud)?</li>
+<li>¿A qué profundidad fue tomada dentro de un perfil estratigráfico?</li>
+<li>¿Qué edad estimada tiene esa muestra?</li>
+<li>¿Qué edad tienen los elementos encontrados dentro o cerca de esa muestra?</li>
+</ul></li>
+<li>Observaciones:
+<ul>
+<li>¿Qué se está contando o midiendo?</li>
+<li>¿Qué unidades se están usando?</li>
+<li>¿Quién lo observó?</li>
+</ul></li>
+<li>Métodos científicos
+<ul>
+<li>¿Qué modelo estadístico se usó para calcular la edad?</li>
+<li>¿Qué tipo de incertidumbre se consideró para describir esa observación?</li>
+</ul></li>
+<li>Modelos conceptuales de datos
+<ul>
+<li>¿Cómo se relacionan las observaciones dentro de una muestra con otras muestras de la misma colección?</li>
+<li>¿Cómo se vincula una observación fósil con especies actuales o extintas relacionadas?</li>
+</ul></li>
+</ul>
+<p>La paleoecología es un campo amplio y en constante evolución por lo que estas relaciones pueden ser bastante complejas. Por eso, la base de datos está altamente estructurada y normalizada, lo que permite agregar nuevos conocimientos sin afectar el modelo de datos central.</p>
+<p>Si quieres profundizar en cómo está organizada la base de datos, puedes leer el Manual de la base de datos de Neotoma o revisar directamente el esquema del modelo relacional.</p>
+<section id="estructura-de-datos-en-neotoma" class="level4">
+<h4 class="anchored" data-anchor-id="estructura-de-datos-en-neotoma">Estructura de Datos en Neotoma</h4>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/site_collunit_dataset_rev.png" class="img-fluid figure-img" style="width:50.0%"></p>
+<figcaption><strong>Figura</strong>. <em>La estructura de sitios, colecciones o unidades de colecta, muestras y conjuntos de datos en Neotoma. Un sitio contiene una o mas colecciones. Las cronologías están asociadas a las colecciones y las muestras con datos de un mismo tipo (polen, diatomeas, vertebrados) se asignan a un conjunto de datos.</em></figcaption>
+</figure>
+</div>
+<p>En Neotoma, los datos se asocian a <strong>sitios</strong> – ubicaciones específicas con coordenadas de latitud y longitud.</p>
+<p>Dentro de un <strong>sitio</strong>, puede haber una o más <a href="https://open.neotomadb.org/manual/dataset-collection-related-tables-1.html#CollectionUnits"><strong>unidades de colecta</strong></a> – que son los puntos específicos donde se recolectan físicamente las uestras dentro del sitio. Por ejemplo:</p>
+<ul>
+<li>Una <strong>cueva</strong> es un sitio que puede tener más de una <strong>colección</strong>, con entidades específicas (espeleotemas)</li>
+<li>Un <strong>sitio arqueológico</strong> puede tener una o más <strong>colecciones</strong>, como pozos dentro de una excavación.</li>
+<li>Un <strong>sitio</strong> de muestreo de polen puede tener varias <strong>colecciones</strong> – es decir, diferentes núcleos dentro de la cuenca del lago.</li>
+<li>Una ciénaga es un <strong>sitio</strong> que puede tener diversas <strong>colecciones</strong> – una transecta con varias muestras de superficie.</li>
+</ul>
+<p>Las unidades de colección pueden tener coordenadas GPS de mayor resolución que el sitio general, pero siguen considerándose parte del mismo sitio.</p>
+<p>Los datos dentro de una <strong>colección</strong> son recopilados a partir de diferentes <a href="https://open.neotomadb.org/manual/sample-related-tables-1.html#AnalysisUnits"><strong>unidades de análisis</strong></a>, por ejemplo:</p>
+<ul>
+<li>Todo el sedimento a 10cm de profundidad en un perfil de corte (la colección) a lo largo de un lago meándrico (el sitio) es una unidad de análisis;</li>
+<li>Todo el material en una muestra de superficie (colección) tomada de una ciénaga (el sitio) es una unidad de análisis;</li>
+<li>Todos los restos fósiles en una capa enterrada de huesos (colección) en una cueva (el sitio) también forman una unidad de análisis.</li>
+</ul>
+<p>Los datos recolectados en una unidad de análisis se agrupan según su tipo de conjunto de datos (carbón, diatomeas, dinoflagelados, etc.) y se organizan como una <a href="https://open.neotomadb.org/manual/sample-related-tables-1.html#Samples"><strong>muestra</strong></a>. El conjunto de muestras de una colección para un tipo de datos determinado se asigna a un <a href="https://open.neotomadb.org/manual/dataset-collection-related-tables-1.html#Datasets"><strong>conjunto de datos</strong></a>.</p>
+<ul>
+<li>Una muestra puede ser todas las diatomeas (conjunto de datos) extraídas del sedimento a 12 cm de profundidad (unidad de análisis) en un núcleo (colección) de un lago (el sitio).</li>
+<li>Otra muestra puede ser el registro de un solo hueso de mamut (muestra y unidad de análisis, tipo de datos: vertebrados) encontrado en la ribera de un río (sitio y unidad de colección).</li>
+</ul>
+</section>
+<section id="222-data-structures-in-neotoma2" class="level4">
+<h4 class="anchored" data-anchor-id="222-data-structures-in-neotoma2">Estructura de Datos en <code>neotoma2</code></h4>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/neotomaUML_as.svg" class="img-fluid figure-img"></p>
+<figcaption><strong>Figura</strong>. <em>Diagrama UML del paquete neotoma2 para R. Cada recuadro representa una clase de datos dentro del paquete. Cada clase muestra su nombre, propieades y funciones que se pueden aplicar a esos objetos. Por ejemplo, un objeto sites (sitios en inglés) tiene una propiedad sites que es una lista. La función <code>plotLeaflet()</code> puede ser utilizada en un objeto de la clase <code>sites</code>.</em></figcaption>
+</figure>
+</div>
+<p>Si observamos el <a href="https://es.wikipedia.org/wiki/Lenguaje_unificado_de_modelado">diagrama UML</a> podemos observar que la estructura de datos en el paquete <code>neotoma2</code> refleja la estructura original de la base de datos.</p>
+<p>Como veremos en la sección <a href="#3-site-searches">Búsqueda de Sitios</a>, podemos buscar estos objetos y empezar a trabajar con ellos (en la sección <a href="#4-simple-analytics">Análisis Simple</a>).</p>
+<p>Un punto que debemos tener en cuenta, <em>en el paquete <code>neotoma2</code>, la mayoría de los objetos son de la clase <code>sites</code> , que contienen mayor o menor información</em>. Hay diferentes funciones que operan sobre <code>sites</code>. Cuando queremos obtener mayor información sobre los sitios <code>sites</code>, utilizamos las funciones <code>get_datasets()</code> o <code>get_downloads()</code> que pueblan con mayor información los sitios.</p>
+</section>
+</section>
+</section>
+<section id="búsqueda-de-sitios" class="level2">
+<h2 class="anchored" data-anchor-id="búsqueda-de-sitios">Búsqueda de sitios</h2>
+<section id="get_sites" class="level3">
+<h3 class="anchored" data-anchor-id="get_sites"><code>get_sites()</code></h3>
+<p>Hay diferentes maneras de encontrar sitios en <code>neotoma2</code>. Debémos pensar en los <code>sitios</code> como objetos espaciales. Tienen nombre, ubicación y pueden ser encontrados bajo en contexto de unidades geopolíticas. Sin embargo, bajo el contexto de la API y del paquete de R, los sitios en sí mismos no contienen datos sobre la taxonomía, el grupo de datos o las edades. Simplemente es un contenedor al que le podemos agregar más información. Es así que cuando buscamos por sitio, lo hacemos usando los siguientes atributos (en inglés):</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 14%">
+<col style="width: 85%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Parámetro</th>
+<th>Descripción</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>sitename</td>
+<td>Un nombre válido, usando <code>%</code> como comodín.</td>
+</tr>
+<tr class="even">
+<td>siteid</td>
+<td>Un identificador numérico único del sitio en la base de datos de Neotoma.</td>
+</tr>
+<tr class="odd">
+<td>loc</td>
+<td>Un vector de caja delimitadora, GeoJSON o cadena WKT.</td>
+</tr>
+<tr class="even">
+<td>altmin</td>
+<td>Límite inferior de altitud para los sitios.</td>
+</tr>
+<tr class="odd">
+<td>altmax</td>
+<td>Límite superior de altitud para los sitios.</td>
+</tr>
+<tr class="even">
+<td>database</td>
+<td>La base de datos específica de donde se extraen los registros.</td>
+</tr>
+<tr class="odd">
+<td>datasettype</td>
+<td>El tipo de conjunto de datos (ver <code>get_tables(datasettypes)</code>).</td>
+</tr>
+<tr class="even">
+<td>datasetid</td>
+<td>Identificador numérico único del conjunto de datos en Neotoma.</td>
+</tr>
+<tr class="odd">
+<td>doi</td>
+<td>Un DOI válido para un conjunto de datos en Neotoma.</td>
+</tr>
+<tr class="even">
+<td>gpid</td>
+<td>Un ID numérico único o cadena de texto que identifica una unidad geopolítica.</td>
+</tr>
+<tr class="odd">
+<td>keywords</td>
+<td>Palabras clave únicas para muestras registradas en Neotoma.</td>
+</tr>
+<tr class="even">
+<td>contacts</td>
+<td>Un nombre o ID numérico de personas asociadas con los sitios.</td>
+</tr>
+<tr class="odd">
+<td>taxa</td>
+<td>IDs numéricos únicos o nombres de taxones asociados con los sitios.</td>
+</tr>
+</tbody>
+</table>
+<section id="nombre-del-sitio-sitenamelago" class="level4 tabset">
+<h4 class="tabset anchored" data-anchor-id="nombre-del-sitio-sitenamelago">Nombre del sitio: <code>sitename="%Lago%"</code></h4>
+<p>Hay ocasiones en las que sabremos exactamente el nombre del sitio que estamos buscando (“Lago Titicaca”), y habrà ocasiones en las que tendremos una idea aproximada sobre el nombre (por ejemplo, sabemos que el nombre es parecido a “Lago Titicaca”, o “Lake Titicaca”, pero no estamos seguros de como fue ingresado a la base de datos).</p>
+<p>De forma general, utilizamos el formato: <code>get_sites(sitename="XXXXX")</code> para buscar un sitio por nombre.</p>
+<p>PostgreSQL (y la API) utilizan el signo de porcentaje como comodín. De esta forma, <code>"%Titicaca%"</code> seleccionará <a href="https://data.neotomadb.org/21984">“Lake Titicaca”</a> y en caso de existir, también seleccionaría “Lago Titicaca” y “Pantano <strong>Titicaca</strong>”. La búsqueda tampoco distingue entre mayúsculas y minúsculas, por lo que simplemente podría escribir <code>"%titicaca%"</code>.</p>
+<section id="código" class="level5">
+<h5 class="anchored" data-anchor-id="código">Código</h5>
+<p><code>{web-r sitename, eval=FALSE} library(neotoma2) lago_titicaca &lt;- neotoma2::get_sites(sitename = "%titicaca%") plotLeaflet(lago_titicaca)</code></p>
+</section>
+<section id="resultados" class="level5">
+<h5 class="anchored" data-anchor-id="resultados">Resultados</h5>
+<p><code>{web-r sitenamePlot, echo=FALSE} lago_titicaca &lt;- neotoma2::get_sites(sitename = "%titicaca%") plotLeaflet(lago_titicaca)</code></p>
+</section>
+</section>
+<section id="ubicación-locc" class="level4 tabset">
+<h4 class="tabset anchored" data-anchor-id="ubicación-locc">Ubicación: <code>loc=c()</code></h4>
+<p>El paquete <code>neotoma</code> utilizaba un cuadro delimitador para buscar por ubicación. El cuadro estaba estructurado como un vector con valores de latitud y longitud: <code>c(xmin, ymin, xmax, ymax)</code>. En <code>neotoma2</code> se puede utilizar esta misma caja delimitadora o podemos definir objetos espaciales más complejos con el <a href="https://r-spatial.github.io/sf/">paquete <code>sf</code></a>. El paquete <code>sf</code> nos permite trabajar con datos ráster y polígonos en R, para seleccionar sitios existentes en objetos espaciales más complejos. El parametro <code>loc</code> trabaja con vectores simples, objetos <a href="https://arthur-e.github.io/Wicket/sandbox-gmaps3.html">WKT</a>, objetos <a href="http://geojson.io/#map=2/20.0/0.0">geoJSON</a> y objectos <code>sf</code> en R. <strong>Notar que</strong> el paquete <code>neotoma2</code> es un función contenedora API que utiliza un URL (<a href="https://api.neotomadb.org">api.neotomadb.org</a>).</p>
+<p>Buscar sitios utilizando una ubicación. En el siguiente código hay tres representaciones de Sudamérica: geoJSON, WKT y con un cuadro delimitador. También hemos transformado el elemento <code>sa$geoJSON</code> a un objeto del paquete <code>sf</code>. Podemos utilizar cualquiera de estas cuatro representaciones para trabajar con el paquete <code>neotoma2</code>.</p>
+<pre class="{web-r boundingBox}"><code>sa &lt;- list(geoJSON = '{"type": "Polygon",
+        "coordinates": [[
+            [-79.66, -5.97],
+            [-70.06, -19.07],
+            [-74.38, -55.59],
+            [-34.67, -6.52],
+            [-76.41, 8.37],
+            [-79.66, -5.97]
+            ]]}',
+        WKT = 'POLYGON ((-79.66, -5.97,
+                         -70.06, -19.07,
+                         -74.38, -55.59,
+                         -34.67, -6.52,
+                         -76.41, 8.37,
+                         -79.66, -5.97))',
+        bbox = c(-79.66, -55.59, -34.67, 8.37))
+
+sa$sf &lt;- geojsonsf::geojson_sf(sa$geoJSON)
+
+sa_sites &lt;- neotoma2::get_sites(loc = sa$sf, all_data = TRUE)</code></pre>
+<p>Puedes siempre hacer un gráfico de los <code>sites</code> obtenidos con <code>plot()</code>, pero los datos perderan el contexto geográfico. La función <code>plotLeaflet()</code> regresa un mapa de la librería <code>leaflet()</code> y permite mayor personalización o agregar datos espaciales adicionales (como nuestro cuadro delimitador, <code>sa$sf</code>, que funciona directamente con el paquete <code>leaflet</code>):</p>
+<section id="código-1" class="level5">
+<h5 class="anchored" data-anchor-id="código-1">Código</h5>
+<p><code>{web-r plotL, eval=FALSE} neotoma2::plotLeaflet(sa_sites) %&gt;%    leaflet::addPolygons(map = .,                         data = sa$sf,                         color = "green")</code></p>
+</section>
+<section id="resultados-1" class="level5">
+<h5 class="anchored" data-anchor-id="resultados-1">Resultados</h5>
+<p><code>{web-r plotLeaf, echo=FALSE} neotoma2::plotLeaflet(sa_sites) %&gt;%    leaflet::addPolygons(map = .,                         data = sa$sf,                         color = "green")</code></p>
+</section>
+</section>
+<section id="auxiliares-para-objetos-de-tipo-sitios" class="level4 tabset">
+<h4 class="tabset anchored" data-anchor-id="auxiliares-para-objetos-de-tipo-sitios">Auxiliares para objetos de tipo Sitios</h4>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/neotomaUML_as.svg" class="img-fluid figure-img"></p>
+<figcaption>Neotoma R diagrama UML.</figcaption>
+</figure>
+</div>
+<p>Si observamos al <a href="https://es.wikipedia.org/wiki/Lenguaje_unificado_de_modelado">diagrama UML</a> para los objetos de <code>neotoma2</code> podemos ver que hay un conjunto de funciones qeu operan a nivel de <code>sites</code> (sitios). Conforme vamos agregando información a los objetos <code>sites</code> mediante las funciones <code>get_datasets()</code> o <code>get_downloads()</code>, podemos utilizar un mayor número de funciones auxiliares. Podemos así, tomar ventaja de funciones como <code>summary()</code> para tener un mejor entendimiento de los diferentes tipos de datos que tenemos en este conjunto de sitios. El código a continuación regresa la tabla de resumen. Hacemos después un poco de magia con R para cambiar el formato en que los datos están siendo representados (convirtiéndolo a un objeto <code>datatable()</code>), pero la pieza principal es la llamada a la función <code>summary()</code>.</p>
+<section id="código-2" class="level5">
+<h5 class="anchored" data-anchor-id="código-2">Código</h5>
+<p><code>{web-r summary_sites, eval=FALSE} neotoma2::summary(sa_sites) %&gt;%   DT::datatable(data = ., rownames = FALSE,                  options = list(scrollX = "100%", dom = 't'))</code></p>
+</section>
+<section id="resultados-2" class="level5">
+<h5 class="anchored" data-anchor-id="resultados-2">Resultados</h5>
+<p><code>{web-r summarySitesTable, eval=TRUE, echo=FALSE} neotoma2::summary(sa_sites) %&gt;%   DT::datatable(data = ., rownames = FALSE,                  options = list(scrollX = "100%", dom = 't'))</code></p>
+<p>Podemos ver que no hay cronologías asociadas con el objeto <code>sites</code>. Esto es porque, por el momento, no hemos extraído la información necesaria de los <code>dataset</code>. Todo lo que sabemos, tras la llamada <code>get_sites()</code> son los tipos de conjuntos de datos con los que contamos.</p>
+</section>
+</section>
+</section>
+<section id="búsqueda-de-conjuntos-de-datos-get_datasets" class="level3 tabset">
+<h3 class="tabset anchored" data-anchor-id="búsqueda-de-conjuntos-de-datos-get_datasets">Búsqueda de conjuntos de datos (<code>get_datasets()</code>):</h3>
+<p>Sabemos que las <code>colecciones</code> y los <code>conjuntos de datos</code> están contenidos en los <code>sitios</code>. Similarmente, un objeto de tipo <code>sites</code> contienen <code>collectionunits</code> que contienen <code>datasets</code>. En la tabla anterior podemos ver que algunos de los sitios contienen registros de diatomeas. Dicho esto, solo tenemos la información de <code>sites</code>, pero por conveniencia, la API devuelve información adicional sobre los conjuntos de datos lo que nos permite navegar de manera más fácil los registros.</p>
+<p>Con un objeto <code>sites</code> podemos llamar directamente a la función <code>get_datasets()</code>, que nos permitirá extraer metadatos sobre los conjuntos de datos. Podemos utilizar la función <code>datasets()</code> en cualqueir momento para obtener más información de los conjuntos de datos que un objeto <code>sites</code> pueda contener. Comparemos la información impresa <code>datasets(sa_sites)</code> contra una llamada similar utilizando el siguiente código.</p>
+<section id="código-3" class="level4">
+<h4 class="anchored" data-anchor-id="código-3">Código</h4>
+<p>```{web-r datasetsFromSites, eval=FALSE} sa_datasets &lt;- neotoma2::get_datasets(sa_sites, all_data = TRUE)</p>
+<p>datasets(sa_datasets)</p>
+<pre><code>
+#### Resultados
+
+```{web-r datasetsFromSitesResult, echo=FALSE, message=FALSE}
+sa_datasets &lt;- neotoma2::get_datasets(sa_sites, all_data = TRUE)
+datasets(sa_datasets) %&gt;% 
+  as.data.frame() %&gt;% 
+  DT::datatable(data = ., 
+                options = list(scrollX = "100%", dom = 't'))</code></pre>
+</section>
+</section>
+<section id="filtrar-registros-con-filter" class="level3 tabset">
+<h3 class="tabset anchored" data-anchor-id="filtrar-registros-con-filter">Filtrar Registros con <code>filter()</code></h3>
+<p>Si decidimos únicamente obtener registros de un sólo tipo de datos, o si requerimos de mayor filtración, debemos considerar filtrar antes de descargar todos los datos y muestras. Para ello, utilizaremos la función <code>filter()</code>. Por ejemplo, si requerimos únicamente los registros de polen con sus cronologías conocidas, podemos filtrar de la siguiente forma:</p>
+<section id="código-4" class="level4">
+<h4 class="anchored" data-anchor-id="código-4">Código</h4>
+<p>```{web-r downloads, eval=FALSE} sa_diatom &lt;- sa_datasets %&gt;% neotoma2::filter(datasettype == “pollen” &amp; !is.na(age_range_young))</p>
+<p>neotoma2::summary(sa_diatom)</p>
+<pre><code>
+#### Resultados
+
+```{web-r downloadsCódigo, echo = FALSE}
+sa_diatom &lt;- sa_datasets %&gt;% 
+  neotoma2::filter(datasettype == "pollen" &amp; !is.na(age_range_young))
+
+neotoma2::summary(sa_diatom) %&gt;% DT::datatable(data = ., 
+                options = list(scrollX = "100%", dom = 't'))</code></pre>
+<p>Podemos ver qeu la tabla de datos se ve diferente y que hay un número menor de sitios.</p>
+</section>
+</section>
+<section id="obteniendo-las-muestras-con-sample." class="level3">
+<h3 class="anchored" data-anchor-id="obteniendo-las-muestras-con-sample.">Obteniendo las muestras con <code>sample()</code>.</h3>
+<p>Debido a que los datos de las muestras agregan mucha sobrecarga (para Sudamérica, los datos de polen sobrecargara nuestro <code>sites</code> object más que 20 veces), por eso llamamos la función <code>get_downloads()</code> después de haber hecho un filtrado preliminar. Después de <code>get_datasets()</code>, tenemos información sufciente para filtar basados en ubicación, límites de tiempo y tipo conjunto de datos. Cuando ejecutamos<code>get_downloads()</code> podemos hacer un filtrado más fino a nivel de unidad de análisis o nivel de taxón.</p>
+<p>El siguiente comando puede tomar algo de tiempo. Por eso, hemos guardado el resultado en un archivo RDS. Puedes intentar correr este comando por tu cuenta o puedes cargar el archivo RDS.</p>
+<pre class="{web-r taxa}"><code>## This line is commented out because we've already run it for you.
+##sa_dl &lt;- sa_diatom %&gt;% get_downloads(all_data = TRUE)
+sa_dl &lt;- readRDS('data/saDownload.RDS')</code></pre>
+<p>Una vez que hemos hecho la descarga, ahora tenemos información de cada sitio asociado a las unidades de colecta, los tipos de conjunto de datos, y a todas las muestras asociadas a estos conjuntos. Para extraer toda las muestras, utilizamos la función <code>samples</code>:</p>
+<pre class="{web-r allSamples}"><code>allSamp &lt;- samples(sa_dl)</code></pre>
+<p>Una vez hecho esto, obtenemos un <code>data.frame</code> esto es una tabla con <strong>nrow(allSamp)</strong> renglones y <strong>ncol(allSamp)</strong> columnas. La razón de que esta tabla sea muy larga es porque estamos obteniendo los datos en un formato <strong>largo</strong>. Cada rengón contiene toda la información que se necesita para interpretarse correctamente:</p>
+<p><code>{web-r colNamesAllSamp, echo = FALSE} colnames(allSamp)</code></p>
+<p>Para algunos tipos de conjunto de datos o análisis específicos, algunas columnas podrán no ser necesarias. Sin embargo, para otros conjuntos de datos pueden ser críticamente importantes. Para permitir que el paquete <code>neotoma2</code> sea lo más útil posible para todos los usuarios, hemos incluido todas las columnas posibles.</p>
+<section id="extracción-de-taxones" class="level4 tabset">
+<h4 class="tabset anchored" data-anchor-id="extracción-de-taxones">Extracción de taxones</h4>
+<p>Si quieres saber que taxones existen en los registros, puedes utilizar la función <code>taxa()</code> en el objeto <code>sites</code>. La función <code>taxa()</code> regresa los taxones únicos junto con dos columnas adicionales <code>sites</code> y <code>samples</code> que indican en cuantos sitios y en cuantas muestras el taxón aparece, esto nos ayuda a comprender mejor que tan común es cada taxón individual.</p>
+<section id="código-5" class="level5">
+<h5 class="anchored" data-anchor-id="código-5">Código</h5>
+<p><code>{web-r taxa2, eval=FALSE} neotomatx &lt;- neotoma2::taxa(sa_dl)</code></p>
+</section>
+<section id="resultados-3" class="level5">
+<h5 class="anchored" data-anchor-id="resultados-3">Resultados</h5>
+<p>```{web-r taxaprint, echo=FALSE, message=FALSE} neotomatx &lt;- neotoma2::taxa(sa_dl)</p>
+<p>neotoma2::taxa(sa_dl) %&gt;% DT::datatable(data = head(neotomatx, n = 20), rownames = FALSE, options = list(scrollX = “100%”, dom = ‘t’))</p>
+<pre><code>
+#### Entendiendo las Taxonomías en Neotoma {-}
+Las taxonomías en Neotoma no siempre son tan directas como podríamos pensar. La identificación taxonómica en paleoecología puede ser compleja y verse influenciada por la morfología del organismo, el estado de conservación del palinomorfo, la experiencia del/la analista, entre otros factores. Puedes leer más sobre este tema en la sección sobre [Conceptos Taxonómicos del Manual de Neotoma](https://open.neotomadb.org/manual/database-design-concepts.html#taxonomy-and-synonymy).
+
+En la base de datos utilizamos identificadores únicos (por ejemplo, `taxonid`, `siteid`, `analysisunitid`) porque nos permiten conectar los distintos registros entre sí. Los valores de `taxonid` que devuelve la función `taxa()` se pueden vincular con la columna `taxonid` en la tabla que devuelve `samples()`. Esto nos permite, por ejemplo, crear tablas de armonización taxonómica si lo necesitamos.
+
+También notarás que el nombre del taxón (`taxonname`) aparece en el campo `variablename`. En Neotoma, los conteos individuales de muestras se reportan como [`variables`](https://open.neotomadb.org/manual/taxonomy-related-tables-1.html#Variables). Una "variable" puede representar una especie, una medición de laboratorio o incluso un proxy no orgánico, como carbón (charcoal) o mediciones de fluorescencia de rayos X (XRF). Estas variables incluyen tanto la unidad de medida como el valor correspondiente.
+
+## Análisis Simples
+
+### Trazado Estratigráfico
+
+Podemos utilizar paquetes como `rioja` para hacer trazados estratigráficos para un único registro. Pero primero tenemos que hacer un manejo de datos diferente. A pesar de que podríamos hacer armonización nuevamente, vamos a tomar los 10 taxones más comúnes en un sitio dado los trazaremos en un diagrama estratigráfico.
+
+Utilizaremos la función `arrange()` para ordenar confrome al número de veces que un taxón aparece en un núcleo. De esta forma, podemos tomar las muestras y seleccionar los taxones que aparecen en las diez primeras filas del marco de datos `plottingTaxa`.
+
+```{web-r stratiplot, message = FALSE}
+plottingSite &lt;- sa_dl[[1]]
+
+plottingTaxa &lt;- taxa(plottingSite) %&gt;%
+  filter(ecologicalgroup %in% c("DIAT")) %&gt;%
+  filter(elementtype == "valve") %&gt;%
+  arrange(desc(samples)) %&gt;% 
+  head(n = 10)
+
+# Limpiar y seleccionar records de polen .
+# Repetir filtros para polen &amp; grupos ecologicos en las muestras
+shortSamples &lt;- samples(plottingSite) %&gt;% 
+  filter(datasettype == "pollen")
+
+# Select only pollen measured using NISP and convert to a "wide"
+# table, using proportions. The first column will be "age".
+# This turns our "long" table into a "wide" table:
+values &lt;- plottingSite[[2]] %&gt;%
+  samples() %&gt;%
+  toWide(ecologicalgroup = c("ITOP"),
+         unit = c("per mille"),
+         groupby = "age",
+         elementtype = NA,
+         operation = "sum") %&gt;%
+  arrange(age) %&gt;% na.omit()</code></pre>
+<p>Aparentemente, esto es una llamada compleja de comandos. Sin embargo, la función <code>toWide()</code> proporciona control sobre los taxones, unidades y otros elementos para que puedan ser ingresados en una matriz (<code>depth</code> x <code>taxon</code>) que muchas herramientas estadísticas como los paquetes <code>vegan</code> o <code>rioja</code> usan.</p>
+<p>Para crear gráficas, podemos usar <code>strat.plot()</code> del paquete <code>rioja</code>, ordenar los taxones usando puntajes promedio ponderados (<code>wa.order</code>). También se ha agregado un gráfico CONISS al borde del gráfico, para mostrar cómo funciona el nuevo marco de datos amplio con funciones métricas de distancia.</p>
+<p>```{web-r plotStrigraph, message=FALSE, warning=FALSE} clust &lt;- rioja::chclust(dist(sqrt(counts)), method = “coniss”)</p>
+<p>plot &lt;- rioja::strat.plot(counts[,-1] * 100, yvar = counts<span class="math inline">\(age,
+                  title = sa_dl[[1]]\)</span>sitename, ylabel = “Calibrated Years BP”, xlabel = “Diatom (%)”, y.rev = TRUE, clust = clust, wa.order = “topleft”, scale.percent = TRUE)</p>
+<p>rioja::addClustZone(plot, clust, 4, col = “red”)</p>
+<pre><code>
+### Análisis Multi-proxy {.tabset}
+
+#### Code
+
+```{web-r sillyplot, eval = FALSE}
+
+spSamp &lt;- allSamp %&gt;%
+  filter(ecologicalgroup %in% c('TRSH', 'ITOP')) %&gt;%
+  filter(units %in% c('per mille', 'NISP'))
+  
+spPct &lt;- spSamp %&gt;%
+  group_by(sitename, depth) %&gt;%
+  mutate(val = ifelse(units == 'NISP', value / sum(value), value)) %&gt;%
+  ungroup() %&gt;%
+  filter(variablename %in% c('δ13C', 'δ18O', 'Pinus')) %&gt;%
+  filter(!agetype == 'Calendar years AD/BC')
+
+ggplot(spPct, aes(x = val, y = age, color = sitename)) +
+  theme(legend.position="none") +
+  geom_path() +
+  facet_wrap(~variablename, scale = 'free_x') +
+  coord_cartesian(ylim = c(0, 10000))
+</code></pre>
+</section>
+</section>
+<section id="results" class="level4">
+<h4 class="anchored" data-anchor-id="results">Results</h4>
+<p>```{web-r sillyploteval, warning = FALSE}</p>
+<p>spSamp &lt;- allSamp %&gt;% filter(ecologicalgroup %in% c(‘TRSH’, ‘ITOP’)) %&gt;% filter(units %in% c(‘per mille’, ‘NISP’))</p>
+<p>spPct &lt;- spSamp %&gt;% group_by(sitename, depth) %&gt;% mutate(val = ifelse(units == ‘NISP’, value / sum(value), value)) %&gt;% ungroup() %&gt;% filter(variablename %in% c(‘δ13C’, ‘δ18O’, ‘Pinus’))</p>
+<p>ggplot(spPct, aes(x = val, y = age)) + theme(legend.position=“none”) + geom_path() + facet_wrap(~variablename, scale = ‘free_x’) + ylim(c(0, 10000))</p>
+<pre><code>
+## Conclusion
+
+Hemos hecho muchas cosas en este ejemplo. 
+- Buscamos sitios utilizando nombres y parámetros geográficos. 
+- Filtramos resultados utilizando parámetros espaciales y temporales. 
+- Obtuvimos información de las muestras de los conjuntos de datos seleccionados.
+- Hicimos un análisis estratográfico básico.  
+
+¡Esperamos que utilizen estos ejemplos como un bloque para usar en el futuro en su trabajo o para algo nuevo y divertido!
+
+## Apéndice
+
+### Instar librerías en computadora local {#localinstall}
+
+Utilizamos varios paquetes en este documento, particularmente `leaflet`, `sf`, `rioja` entre otros. Podemos utilizar `pacman` para cargar las librerías e instalar aquellas que aún no se encuentren en su sistema.
+
+```{web-r setupFake, eval=FALSE}
+options(warn = -1)
+pacman::p_load(neotoma2, dplyr, ggplot2, sf, geojsonsf, leaflet, terra, DT, readr, stringr, rioja)</code></pre>
+<p>Toma en cuenta que R es sensible al orden en que las librerías son cargadas. Si utilizamos el prefijo <code>neotoma2::</code> le diremos explícitamente a R que queremos utilizar una función de la librería <code>neotoma2</code> para ejecutar una función en particular. Esto es porque hay funciones como <code>filter()</code> que existen en mas librerías como <code>dplyr</code>. En algunas ocaciones puedes encontrar estos errores:</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="ex">Error</span> in UseMethod<span class="er">(</span><span class="st">"filter"</span><span class="kw">)</span> <span class="bu">:</span> </span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="ex">no</span> applicable method for <span class="st">'filter'</span> applied to an object of class <span class="st">"sites"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>en este caso, lo más probable es que al ejecultar <code>filter()</code> R no sabe que debe utilizar neotoma2 y está utlizando dplyr. Agregando explícitamente <code>dplyr::</code> o <code>neotoma2::</code> frente a la función (i.e., <code>neotoma2::filter()</code>) es una buena práctica y R entenderá a que función nos referimos.</p>
+</section>
+</section>
+<section id="pipas-en-r" class="level3 tabset">
+<h3 class="tabset anchored" data-anchor-id="pipas-en-r">Pipas en <code>R</code></h3>
+<p>Las pipas o pipes en R son una forma de encadenar funciones. Generalmente, se puede utilizar los operadores: <code>|&gt;</code> or <code>%&gt;%</code>. <code>|&gt;</code> es nativo en R y <code>%&gt;%</code> viene del ecosistema <code>tidyverse</code> en R. En <code>neotoma2</code> usamos <code>%&gt;%</code>.</p>
+<p>Este operador es muy útil pues funciona como una tubería que lleva agua de un lugar a otro. En programación, es como una línea de montaje donde los datos entran por una función, se modifican y el resultado es ingresado a la siguiente función. Esto hace que el código sea legible y más facil de escribir. También reduce el número de variables que se necesitan, ahorrando espacio en memoria.</p>
+<p>Por ejemplo, sin los pipes en <code>neotoma2</code> para extraer un sitio y luego crear la gráfica haríamos:</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Retrieve the site</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>plot_site <span class="ot">&lt;-</span> neotoma2<span class="sc">::</span><span class="fu">get_sites</span>(<span class="at">sitename =</span> <span class="st">"%ø%"</span>)</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot the site</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>neotoma2<span class="sc">::</span><span class="fu">plotLeaflet</span>(<span class="at">object =</span> plot_site)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Es decir, primero creamos la variable <code>plot_site</code> que sólo utilizaríamos una vez pero que fue necesaria para poder ejecutar la función <code>plotLeaflet</code>.</p>
+<p>Con la pipa (<code>%&gt;%</code>) no necesitamos crear la variable, simplemente escribimos nuestro código. Así <code>plotLeaflet()</code> no requiere un argumento <code>object</code> porque utiliza la respuesta generada por <code>get_sites(sitename = "%ø%")</code>.</p>
+<section id="code" class="level4">
+<h4 class="anchored" data-anchor-id="code">2.2.3.1. Code</h4>
+<p><code>{web-r piping code, eval=FALSE} # get_sites and pipe. The `object` parameter for plotLeaflet will be the # result of the `get_sites()` function. get_sites(sitename = "%ø%") %&gt;%   plotLeaflet()&gt;</code></p>
+</section>
+<section id="result" class="level4">
+<h4 class="anchored" data-anchor-id="result">2.2.3.2. Result</h4>
+<p><code>{web-r piping result, echo=FALSE} # get_sites and pipe get_sites(sitename = "%ø%") %&gt;%   plotLeaflet()</code></p>
+
+
+</section>
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../../modules/module0/module0-02-instalacion.html" class="pagination-link" aria-label="1. Instalación">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">1. Instalación</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
