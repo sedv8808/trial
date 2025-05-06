@@ -3,6 +3,6 @@ format: html
 pagetitle: Home
 ---
 
-# Welcome!
+# Bienvenidos!
 
-This course is
+Este pequeño tutorial pretende orientar al participante a utilizar el paquete de datos de neotoma2 y la base de datos de Neotoma

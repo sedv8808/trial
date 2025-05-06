@@ -1,0 +1,13 @@
+---
+format:
+  html:
+    page-layout: full
+---
+
+# 0. Objetivos del módulo
+
+<iframe
+    class="slide-deck"
+    src="slides/module0_00.html"
+></iframe>
+

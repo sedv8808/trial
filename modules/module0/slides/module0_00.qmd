@@ -1,24 +1,19 @@
 ---
 format: revealjs
-title: Welcome!
+title: ¿Qué aprenderemos?
 title-slide-attributes:
   data-notes: |
-    Welcome to Neotoma2 Workshop
-    Bienvenidos al Taller de Neotoma2
+    ...
 ---
 
 ## ¿Qué aprenderemos?
 
-Al final del taller, los participantes podrán:
-
-- Usar el paquete de Neotoma2 para encontrar sitios en la Base de Datos
-
-::: {.notes}
-En estos módulos aprenderemos a usar Neotoma2
-:::
-
----
-
-## Prerequisitos
-
-Si deseas instalar Neotoma2 en tu setup de R, sigue los siguientes pasos:
+Los objetivos de aprendizaje de este taller son:
+- Aprender cómo se organiza la información dentro de Neotoma (Sitios, Unidades de colección y Conjuntos de datos)
+- Cómo se traduce esta estructura en el paquete neotoma2 para R:
+    * Busqueda de sitios: Buscar sitios a partir de nombres o parámetros geográficos
+    * Filtrar resultados: Filtración de resultados utilizando parametros temporales o espaciales
+    * Exploración de datos: Obtener información de muestras para los grupos de datos seleccionados.
+    * Visualizar datos:  Realizar gráficos estratigráficos básicos.
+    
+# Iniciemos!

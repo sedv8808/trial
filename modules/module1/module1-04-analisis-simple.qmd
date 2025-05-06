@@ -28,39 +28,7 @@ El objetivo de este documento es mostrar como usar el paquete de R para la base 
 La [librería neotoma2](https://github.com/NeotomaDB/neotoma2) está disponible en GitHub y actualmente la documentación sólo está en inglés - trabajamos para tenerla en español próximamente. 
 
 
-## Instalación 
-Actualmente, existe una versión en CRAN que se puede instalar simplemente haciendo:
-
-```r
-install.packages('neotoma2')
-library(neotoma2)
-```
-
-Sin embargo, para instalar la versión más actualizada, es recomendable hacer (versión 1.0.6): 
-```r
-install.packages('devtools')
-devtools::install_github("NeotomaDB/neotoma2@dev")
-library(neotoma2)
-```
-Aunque se puede trabajar de forma local, este tutorial se puede hacer utilizando la instancia de Binder. Binder ejecutará una sesión de RStudio en tu navegador, con todas las liberías necesarias.
-
-O bien, para una versión más amena, se puede utilizar la instancia de Github-pages.
-
-## ¿Qué aprenderás?
-
-Los objetivos de aprendizaje de este taller son:
-- Aprender cómo se organiza la información dentro de Neotoma (Sitios, Unidades de colección y Conjuntos de datos)
-- Cómo se traduce esta estructura en el paquete neotoma2 para R:
-    * Busqueda de sitios: Buscar sitios a partir de nombres o parámetros geográficos
-    * Filtrar resultados: Filtración de resultados utilizando parametros temporales o espaciales
-    * Exploración de datos: Obtener información de muestras para los grupos de datos seleccionados.
-    * Visualizar datos:  Realizar gráficos estratigráficos básicos.
-
 ## Antecedentes
-
-### Obtener ayuda con Neotoma
-Si estás planeando trabajar con Neotoma, te invitamos a unirte a nuestro canal de [Slack](https://join.slack.com/t/neotomadb/shared_invite/zt-cvsv53ep-wjGeCTkq7IhP6eUNA9NxYQ), donde tenemos un espacio específico para preguntas sobre el paquete en R: el canal #it_r (también hay #it_r_es si prefieres ayuda en español).
-También puedes unirte a la comunidad de Neotoma a través de nuestras listas de correo en Google Groups. Para hacerlo, revisa la información en nuestro sitio web o [contáctanos](mailto:neotoma-contact@googlegroups.com) para ser agregado.
 
 ### Entendiendo la estrucura de Neotoma
 Los datos en la base de datos de Neotoma están organizados como un conjunto de relaciones conectadas que permiten representar los distintos elementos de un análisis paleoecológico:

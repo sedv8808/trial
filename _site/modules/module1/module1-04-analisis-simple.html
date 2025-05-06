@@ -67,7 +67,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../">
-<link href="../../modules/module1/module1-03-how_can_we_visualize_data.html" rel="prev">
+<link href="../../modules/module0/module0-02-instalacion.html" rel="prev">
 <script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="../../site_libs/quarto-html/popper.min.js"></script>
@@ -190,8 +190,20 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../modules/module0/module0-01-data_visualization.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">1. Introducción a Neotoma</span></a>
+  <a href="../../modules/module0/module0-00-module-learning-outcomes.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">0. Objetivos del módulo</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../modules/module0/module0-01-ayuda-en-neotoma.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">1. Cómo pedir ayuda en Neotoma</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../modules/module0/module0-02-instalacion.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">1. Instalación</span></a>
   </div>
 </li>
       </ul>
@@ -207,29 +219,8 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../modules/module1/module1-00-module-learning-outcomes.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">0. Module Learning Outcomes</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../modules/module1/module1-01-what_is_data_visualization.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">1. What is Data Visualization?</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
- <span class="menu-text">&nbsp;&nbsp; 1.1. Exercises</span>
-  </li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../modules/module1/module1-03-how_can_we_visualize_data.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">2. Como?</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../modules/module1/module1-04-test_your_knowledge_visualization_libraries.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">&nbsp;&nbsp; 2.1. Exercises</span></a>
+  <a href="../../modules/module1/module1-04-analisis-simple.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Flujo de Trabajo Simple</span></a>
   </div>
 </li>
       </ul>
@@ -245,11 +236,8 @@ window.Quarto = {
    
   <ul>
   <li><a href="#introducción" id="toc-introducción" class="nav-link active" data-scroll-target="#introducción">Introducción</a></li>
-  <li><a href="#instalación" id="toc-instalación" class="nav-link" data-scroll-target="#instalación">Instalación</a></li>
-  <li><a href="#qué-aprenderás" id="toc-qué-aprenderás" class="nav-link" data-scroll-target="#qué-aprenderás">¿Qué aprenderás?</a></li>
   <li><a href="#antecedentes" id="toc-antecedentes" class="nav-link" data-scroll-target="#antecedentes">Antecedentes</a>
   <ul class="collapse">
-  <li><a href="#obtener-ayuda-con-neotoma" id="toc-obtener-ayuda-con-neotoma" class="nav-link" data-scroll-target="#obtener-ayuda-con-neotoma">Obtener ayuda con Neotoma</a></li>
   <li><a href="#entendiendo-la-estrucura-de-neotoma" id="toc-entendiendo-la-estrucura-de-neotoma" class="nav-link" data-scroll-target="#entendiendo-la-estrucura-de-neotoma">Entendiendo la estrucura de Neotoma</a></li>
   </ul></li>
   <li><a href="#búsqueda-de-sitios" id="toc-búsqueda-de-sitios" class="nav-link" data-scroll-target="#búsqueda-de-sitios">Búsqueda de sitios</a>
@@ -303,28 +291,8 @@ window.Quarto = {
 <p>El objetivo de este documento es mostrar como usar el paquete de R para la base de datos Neotoma, <code>neotoma2</code>.</p>
 <p>La <a href="https://github.com/NeotomaDB/neotoma2">librería neotoma2</a> está disponible en GitHub y actualmente la documentación sólo está en inglés - trabajamos para tenerla en español próximamente.</p>
 </section>
-<section id="instalación" class="level2">
-<h2 class="anchored" data-anchor-id="instalación">Instalación</h2>
-<p>Actualmente, existe una versión en CRAN que se puede instalar simplemente haciendo:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">'neotoma2'</span>)</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(neotoma2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Sin embargo, para instalar la versión más actualizada, es recomendable hacer (versión 1.0.6):</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">'devtools'</span>)</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>devtools<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">"NeotomaDB/neotoma2@dev"</span>)</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(neotoma2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Aunque se puede trabajar de forma local, este tutorial se puede hacer utilizando la instancia de Binder. Binder ejecutará una sesión de RStudio en tu navegador, con todas las liberías necesarias.</p>
-<p>O bien, para una versión más amena, se puede utilizar la instancia de Github-pages.</p>
-</section>
-<section id="qué-aprenderás" class="level2">
-<h2 class="anchored" data-anchor-id="qué-aprenderás">¿Qué aprenderás?</h2>
-<p>Los objetivos de aprendizaje de este taller son: - Aprender cómo se organiza la información dentro de Neotoma (Sitios, Unidades de colección y Conjuntos de datos) - Cómo se traduce esta estructura en el paquete neotoma2 para R: * Busqueda de sitios: Buscar sitios a partir de nombres o parámetros geográficos * Filtrar resultados: Filtración de resultados utilizando parametros temporales o espaciales * Exploración de datos: Obtener información de muestras para los grupos de datos seleccionados. * Visualizar datos: Realizar gráficos estratigráficos básicos.</p>
-</section>
 <section id="antecedentes" class="level2">
 <h2 class="anchored" data-anchor-id="antecedentes">Antecedentes</h2>
-<section id="obtener-ayuda-con-neotoma" class="level3">
-<h3 class="anchored" data-anchor-id="obtener-ayuda-con-neotoma">Obtener ayuda con Neotoma</h3>
-<p>Si estás planeando trabajar con Neotoma, te invitamos a unirte a nuestro canal de <a href="https://join.slack.com/t/neotomadb/shared_invite/zt-cvsv53ep-wjGeCTkq7IhP6eUNA9NxYQ">Slack</a>, donde tenemos un espacio específico para preguntas sobre el paquete en R: el canal #it_r (también hay #it_r_es si prefieres ayuda en español). También puedes unirte a la comunidad de Neotoma a través de nuestras listas de correo en Google Groups. Para hacerlo, revisa la información en nuestro sitio web o <a href="mailto:neotoma-contact@googlegroups.com">contáctanos</a> para ser agregado.</p>
-</section>
 <section id="entendiendo-la-estrucura-de-neotoma" class="level3">
 <h3 class="anchored" data-anchor-id="entendiendo-la-estrucura-de-neotoma">Entendiendo la estrucura de Neotoma</h3>
 <p>Los datos en la base de datos de Neotoma están organizados como un conjunto de relaciones conectadas que permiten representar los distintos elementos de un análisis paleoecológico:</p>
@@ -698,8 +666,8 @@ Utilizamos varios paquetes en este documento, particularmente `leaflet`, `sf`, `
 options(warn = -1)
 pacman::p_load(neotoma2, dplyr, ggplot2, sf, geojsonsf, leaflet, terra, DT, readr, stringr, rioja)</code></pre>
 <p>Toma en cuenta que R es sensible al orden en que las librerías son cargadas. Si utilizamos el prefijo <code>neotoma2::</code> le diremos explícitamente a R que queremos utilizar una función de la librería <code>neotoma2</code> para ejecutar una función en particular. Esto es porque hay funciones como <code>filter()</code> que existen en mas librerías como <code>dplyr</code>. En algunas ocaciones puedes encontrar estos errores:</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="ex">Error</span> in UseMethod<span class="er">(</span><span class="st">"filter"</span><span class="kw">)</span> <span class="bu">:</span> </span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="ex">no</span> applicable method for <span class="st">'filter'</span> applied to an object of class <span class="st">"sites"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="ex">Error</span> in UseMethod<span class="er">(</span><span class="st">"filter"</span><span class="kw">)</span> <span class="bu">:</span> </span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="ex">no</span> applicable method for <span class="st">'filter'</span> applied to an object of class <span class="st">"sites"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>en este caso, lo más probable es que al ejecultar <code>filter()</code> R no sabe que debe utilizar neotoma2 y está utlizando dplyr. Agregando explícitamente <code>dplyr::</code> o <code>neotoma2::</code> frente a la función (i.e., <code>neotoma2::filter()</code>) es una buena práctica y R entenderá a que función nos referimos.</p>
 </section>
 </section>
@@ -708,10 +676,10 @@ pacman::p_load(neotoma2, dplyr, ggplot2, sf, geojsonsf, leaflet, terra, DT, read
 <p>Las pipas o pipes en R son una forma de encadenar funciones. Generalmente, se puede utilizar los operadores: <code>|&gt;</code> or <code>%&gt;%</code>. <code>|&gt;</code> es nativo en R y <code>%&gt;%</code> viene del ecosistema <code>tidyverse</code> en R. En <code>neotoma2</code> usamos <code>%&gt;%</code>.</p>
 <p>Este operador es muy útil pues funciona como una tubería que lleva agua de un lugar a otro. En programación, es como una línea de montaje donde los datos entran por una función, se modifican y el resultado es ingresado a la siguiente función. Esto hace que el código sea legible y más facil de escribir. También reduce el número de variables que se necesitan, ahorrando espacio en memoria.</p>
 <p>Por ejemplo, sin los pipes en <code>neotoma2</code> para extraer un sitio y luego crear la gráfica haríamos:</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Retrieve the site</span></span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>plot_site <span class="ot">&lt;-</span> neotoma2<span class="sc">::</span><span class="fu">get_sites</span>(<span class="at">sitename =</span> <span class="st">"%ø%"</span>)</span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot the site</span></span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>neotoma2<span class="sc">::</span><span class="fu">plotLeaflet</span>(<span class="at">object =</span> plot_site)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Retrieve the site</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>plot_site <span class="ot">&lt;-</span> neotoma2<span class="sc">::</span><span class="fu">get_sites</span>(<span class="at">sitename =</span> <span class="st">"%ø%"</span>)</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot the site</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>neotoma2<span class="sc">::</span><span class="fu">plotLeaflet</span>(<span class="at">object =</span> plot_site)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Es decir, primero creamos la variable <code>plot_site</code> que sólo utilizaríamos una vez pero que fue necesaria para poder ejecutar la función <code>plotLeaflet</code>.</p>
 <p>Con la pipa (<code>%&gt;%</code>) no necesitamos crear la variable, simplemente escribimos nuestro código. Así <code>plotLeaflet()</code> no requiere un argumento <code>object</code> porque utiliza la respuesta generada por <code>get_sites(sitename = "%ø%")</code>.</p>
 <section id="code" class="level4">
@@ -1129,8 +1097,8 @@ pacman::p_load(neotoma2, dplyr, ggplot2, sf, geojsonsf, leaflet, terra, DT, read
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../../modules/module1/module1-03-how_can_we_visualize_data.html" class="pagination-link" aria-label="2. Como?">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">2. Como?</span>
+      <a href="../../modules/module0/module0-02-instalacion.html" class="pagination-link" aria-label="1. Instalación">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">1. Instalación</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">

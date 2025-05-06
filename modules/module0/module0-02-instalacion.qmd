@@ -1,0 +1,12 @@
+---
+format:
+  html:
+    page-layout: full
+---
+
+# 1. Instalación
+
+<iframe
+    class="slide-deck"
+    src="slides/module0_01.html"
+></iframe>
