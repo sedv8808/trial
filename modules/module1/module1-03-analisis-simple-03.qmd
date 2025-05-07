@@ -1,0 +1,123 @@
+---
+title: "Análisis Simple"
+author: "Simon Goring, Socorro Dominguez Vidaña"
+date: today
+format:
+  html:
+    code_folding: show
+    fig_caption: true
+    self_contained: true
+    theme: readable
+    toc: true
+    toc_float: true
+    css: "text.css"
+filters:
+  - webr
+webr: 
+  autoload-packages: false
+  preload: ["neotoma2", "dplyr", "rioja"]
+  repos: ["https://ht-data.com/trial/webr_repo"]
+---
+
+```{web-r}
+#| label: taxa
+#| echo: false
+sa_dl <- readRDS('data/saDownload.RDS')
+sa_dl
+allSamp <- samples(sa_dl)
+```
+
+## Análisis Simples
+
+### Trazado Estratigráfico
+
+Podemos utilizar paquetes como `rioja` para hacer trazados estratigráficos para un único registro. Pero primero tenemos que hacer un manejo de datos diferente. A pesar de que podríamos hacer armonización nuevamente, vamos a tomar los 10 taxones más comúnes en un sitio dado los trazaremos en un diagrama estratigráfico.
+
+Utilizaremos la función `arrange()` para ordenar confrome al número de veces que un taxón aparece en un núcleo. De esta forma, podemos tomar las muestras y seleccionar los taxones que aparecen en las diez primeras filas del marco de datos `plottingTaxa`.
+
+```{web-r}
+#| label: stratiplot
+#| message: false
+plottingSite <- sa_dl[[1]]
+
+plottingTaxa <- taxa(plottingSite) %>%
+  filter(ecologicalgroup %in% c("DIAT")) %>%
+  filter(elementtype == "valve") %>%
+  arrange(desc(samples)) %>% 
+  head(n = 10)
+
+# Limpiar y seleccionar records de polen .
+# Repetir filtros para polen & grupos ecologicos en las muestras
+shortSamples <- samples(plottingSite) %>% 
+  filter(datasettype == "pollen")
+
+# Select only pollen measured using NISP and convert to a "wide"
+# table, using proportions. The first column will be "age".
+# This turns our "long" table into a "wide" table:
+values <- plottingSite[[2]] %>%
+  samples() %>%
+  toWide(ecologicalgroup = c("ITOP"),
+         unit = c("per mille"),
+         groupby = "age",
+         elementtype = NA,
+         operation = "sum") %>%
+  arrange(age) %>% na.omit()
+```
+
+Aparentemente, esto es una llamada compleja de comandos. Sin embargo, la función `toWide()` proporciona control sobre los taxones, unidades y otros elementos para que puedan ser ingresados en una matriz (`depth` x `taxon`) que muchas herramientas estadísticas como los paquetes `vegan` o `rioja` usan.
+
+Para crear gráficas, podemos usar `strat.plot()` del paquete `rioja`, ordenar los taxones usando puntajes promedio ponderados (`wa.order`). También se ha agregado un gráfico CONISS al borde del gráfico, para mostrar cómo funciona el nuevo marco de datos amplio con funciones métricas de distancia.
+
+```{web-r}
+#| label: plotStrigraph
+#| message: false
+#| warning: false
+clust <- rioja::chclust(dist(sqrt(counts)),
+                        method = "coniss")
+
+plot <- rioja::strat.plot(counts[,-1] * 100, yvar = counts$age,
+                  title = sa_dl[[1]]$sitename,
+                  ylabel = "Calibrated Years BP",
+                  xlabel = "Diatom (%)",
+                  y.rev = TRUE,
+                  clust = clust,
+                  wa.order = "topleft", scale.percent = TRUE)
+
+rioja::addClustZone(plot, clust, 4, col = "red")
+```
+
+### Análisis Multi-proxy {.tabset}
+
+#### Code
+
+```{web-r}
+#| label: sillyplot
+
+spSamp <- allSamp %>%
+  filter(ecologicalgroup %in% c('TRSH', 'ITOP')) %>%
+  filter(units %in% c('per mille', 'NISP'))
+  
+spPct <- spSamp %>%
+  group_by(sitename, depth) %>%
+  mutate(val = ifelse(units == 'NISP', value / sum(value), value)) %>%
+  ungroup() %>%
+  filter(variablename %in% c('δ13C', 'δ18O', 'Pinus')) %>%
+  filter(!agetype == 'Calendar years AD/BC')
+
+ggplot(spPct, aes(x = val, y = age, color = sitename)) +
+  theme(legend.position="none") +
+  geom_path() +
+  facet_wrap(~variablename, scale = 'free_x') +
+  coord_cartesian(ylim = c(0, 10000))
+
+```
+
+## Conclusion
+
+Hemos hecho muchas cosas en este ejemplo. 
+- Buscamos sitios utilizando nombres y parámetros geográficos. 
+- Filtramos resultados utilizando parámetros espaciales y temporales. 
+- Obtuvimos información de las muestras de los conjuntos de datos seleccionados.
+- Hicimos un análisis estratográfico básico.  
+
+¡Esperamos que utilizen estos ejemplos como un bloque para usar en el futuro en su trabajo o para algo nuevo y divertido!

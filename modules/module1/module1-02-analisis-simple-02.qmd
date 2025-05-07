@@ -1,0 +1,65 @@
+---
+title: "Obteniendo las muestras con `sample()`"
+author: "Simon Goring, Socorro Dominguez Vidaña"
+date: today
+format:
+  html:
+    code_folding: show
+    fig_caption: true
+    self_contained: true
+    theme: readable
+    toc: true
+    toc_float: true
+    css: "text.css"
+filters:
+  - webr
+webr: 
+  autoload-packages: false
+  preload: ["neotoma2", "dplyr", "rioja"]
+  repos: ["https://ht-data.com/trial/webr_repo"]
+---
+
+### Obteniendo las muestras con `sample()`.
+
+Debido a que los datos de las muestras agregan mucha sobrecarga (para Sudamérica, los datos de polen sobrecargara nuestro `sites` object más que 20 veces), por eso llamamos la función `get_downloads()` después de haber hecho un filtrado preliminar. Después de `get_datasets()`, tenemos información sufciente para filtar basados en ubicación, límites de tiempo y tipo conjunto de datos. Cuando ejecutamos`get_downloads()` podemos hacer un filtrado más fino a nivel de unidad de análisis o nivel de taxón.
+
+El siguiente comando puede tomar algo de tiempo. Por eso, hemos guardado el resultado en un archivo RDS. Puedes intentar correr este comando por tu cuenta o puedes cargar el archivo RDS.
+
+```{web-r}
+#| label: taxa
+## This line is commented out because we've already run it for you.
+##sa_dl <- sa_diatom %>% get_downloads(all_data = TRUE)
+sa_dl <- readRDS('data/saDownload.RDS')
+```
+
+Una vez que hemos hecho la descarga, ahora tenemos información de cada sitio asociado a las unidades de colecta, los tipos de conjunto de datos, y a todas las muestras asociadas a estos conjuntos. Para extraer toda las muestras, utilizamos la función `samples`:
+
+```{web-r}
+#| label: allSamples
+allSamp <- samples(sa_dl)
+```
+
+Una vez hecho esto, obtenemos un `data.frame` esto es una tabla con **nrow(allSamp)** renglones y **ncol(allSamp)** columnas. La razón de que esta tabla sea muy larga es porque estamos obteniendo los datos en un formato **largo**. Cada rengón contiene toda la información que se necesita para interpretarse correctamente:
+
+```{web-r}
+#| label: colNamesAllSamp
+colnames(allSamp)
+```
+
+Para algunos tipos de conjunto de datos o análisis específicos, algunas columnas podrán no ser necesarias. Sin embargo, para otros conjuntos de datos pueden ser críticamente importantes. Para permitir que el paquete `neotoma2` sea lo más útil posible para todos los usuarios, hemos incluido todas las columnas posibles.
+
+#### Extracción de taxones {.tabset}
+
+Si quieres saber que taxones existen en los registros, puedes utilizar la función `taxa()` en el objeto `sites`. La función `taxa()` regresa los taxones únicos junto con dos columnas adicionales `sites` y `samples` que indican en cuantos sitios y en cuantas muestras el taxón aparece, esto nos ayuda a comprender mejor que tan común es cada taxón individual.
+
+```{web-r}
+#| label: taxa2
+neotomatx <- neotoma2::taxa(sa_dl)
+```
+
+#### Entendiendo las Taxonomías en Neotoma {-}
+Las taxonomías en Neotoma no siempre son tan directas como podríamos pensar. La identificación taxonómica en paleoecología puede ser compleja y verse influenciada por la morfología del organismo, el estado de conservación del palinomorfo, la experiencia del/la analista, entre otros factores. Puedes leer más sobre este tema en la sección sobre [Conceptos Taxonómicos del Manual de Neotoma](https://open.neotomadb.org/manual/database-design-concepts.html#taxonomy-and-synonymy).
+
+En la base de datos utilizamos identificadores únicos (por ejemplo, `taxonid`, `siteid`, `analysisunitid`) porque nos permiten conectar los distintos registros entre sí. Los valores de `taxonid` que devuelve la función `taxa()` se pueden vincular con la columna `taxonid` en la tabla que devuelve `samples()`. Esto nos permite, por ejemplo, crear tablas de armonización taxonómica si lo necesitamos.
+
+También notarás que el nombre del taxón (`taxonname`) aparece en el campo `variablename`. En Neotoma, los conteos individuales de muestras se reportan como [`variables`](https://open.neotomadb.org/manual/taxonomy-related-tables-1.html#Variables). Una "variable" puede representar una especie, una medición de laboratorio o incluso un proxy no orgánico, como carbón (charcoal) o mediciones de fluorescencia de rayos X (XRF). Estas variables incluyen tanto la unidad de medida como el valor correspondiente.

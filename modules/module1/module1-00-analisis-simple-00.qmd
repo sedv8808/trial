@@ -1,0 +1,82 @@
+---
+title: "La estrucura de Neotoma"
+author: "Simon Goring, Socorro Dominguez Vidaña"
+date: today
+format:
+  html:
+    code_folding: show
+    fig_caption: true
+    self_contained: true
+    theme: readable
+    toc: true
+    toc_float: true
+    css: "text.css"
+filters:
+  - webr
+webr: 
+  autoload-packages: false
+  preload: ["neotoma2", "dplyr", "rioja"]
+  repos: ["https://ht-data.com/trial/webr_repo"]
+---
+
+### La estrucura de Neotoma
+Los datos en la base de datos de Neotoma están organizados como un conjunto de relaciones conectadas que permiten representar los distintos elementos de un análisis paleoecológico:
+
+- Espacio y tiempo:
+    - ¿Dónde está ubicada una muestra (latitud y longitud)?
+    - ¿A qué profundidad fue tomada dentro de un perfil estratigráfico?
+    - ¿Qué edad estimada tiene esa muestra?
+    - ¿Qué edad tienen los elementos encontrados dentro o cerca de esa muestra?
+
+- Observaciones:
+    - ¿Qué se está contando o midiendo?
+    - ¿Qué unidades se están usando?
+    - ¿Quién lo observó?
+
+- Métodos científicos
+    - ¿Qué modelo estadístico se usó para calcular la edad?
+    - ¿Qué tipo de incertidumbre se consideró para describir esa observación?
+
+- Modelos conceptuales de datos
+    - ¿Cómo se relacionan las observaciones dentro de una muestra con otras muestras de la misma colección?
+    - ¿Cómo se vincula una observación fósil con especies actuales o extintas relacionadas?
+
+La paleoecología es un campo amplio y en constante evolución por lo que estas relaciones pueden ser bastante complejas. Por eso, la base de datos está altamente estructurada y normalizada, lo que permite agregar nuevos conocimientos sin afectar el modelo de datos central.
+
+Si quieres profundizar en cómo está organizada la base de datos, puedes leer el Manual de la base de datos de Neotoma o revisar directamente el esquema del modelo relacional.
+
+#### Estructura de Datos en Neotoma
+
+![**Figura**. *La estructura de sitios, colecciones o unidades de colecta, muestras y conjuntos de datos en Neotoma. Un sitio contiene una o mas colecciones. Las cronologías están asociadas a las colecciones y las muestras con datos de un mismo tipo (polen, diatomeas, vertebrados) se asignan a un conjunto de datos.*](images/site_collunit_dataset_rev.png){width=50%}  
+  
+En Neotoma, los datos se asocian a **sitios** -- ubicaciones específicas con coordenadas de latitud y longitud.
+
+Dentro de un **sitio**, puede haber una o más [**unidades de colecta**](https://open.neotomadb.org/manual/dataset-collection-related-tables-1.html#CollectionUnits) -- que son los puntos específicos donde se recolectan físicamente las uestras dentro del sitio. Por ejemplo:
+
+* Una **cueva** es un sitio que puede tener más de una **colección**, con entidades específicas (espeleotemas)
+* Un **sitio arqueológico** puede tener una o más **colecciones**, como pozos dentro de una excavación.
+* Un **sitio** de muestreo de polen puede tener varias **colecciones** -- es decir, diferentes núcleos dentro de la cuenca del lago.
+* Una ciénaga es un **sitio** que puede tener diversas **colecciones** -- una transecta con varias muestras de superficie.
+
+Las unidades de colección pueden tener coordenadas GPS de mayor resolución que el sitio general, pero siguen considerándose parte del mismo sitio.
+
+Los datos dentro de una **colección** son recopilados a partir de diferentes [**unidades de análisis**](https://open.neotomadb.org/manual/sample-related-tables-1.html#AnalysisUnits), por ejemplo:
+
+* Todo el sedimento a 10cm de profundidad en un perfil de corte (la colección) a lo largo de un lago meándrico (el sitio) es una unidad de análisis;
+* Todo el material en una muestra de superficie (colección) tomada de una ciénaga (el sitio) es una unidad de análisis;
+* Todos los restos fósiles en una capa enterrada de huesos (colección) en una cueva (el sitio) también forman una unidad de análisis.
+
+Los datos recolectados en una unidad de análisis se agrupan según su tipo de conjunto de datos (carbón, diatomeas, dinoflagelados, etc.) y se organizan como una [**muestra**](https://open.neotomadb.org/manual/sample-related-tables-1.html#Samples). El conjunto de muestras de una colección  para un tipo de datos determinado se asigna a un [**conjunto de datos**](https://open.neotomadb.org/manual/dataset-collection-related-tables-1.html#Datasets).
+
+* Una muestra puede ser todas las diatomeas (conjunto de datos) extraídas del sedimento a 12 cm de profundidad (unidad de análisis) en un núcleo (colección) de un lago (el sitio).
+* Otra muestra puede ser el registro de un solo hueso de mamut (muestra y unidad de análisis, tipo de datos: vertebrados) encontrado en la ribera de un río (sitio y unidad de colección).
+
+#### Estructura de Datos en `neotoma2` {#222-data-structures-in-neotoma2}
+
+![**Figura**. *Diagrama UML del paquete neotoma2 para R. Cada recuadro representa una clase de datos dentro del paquete. Cada clase muestra su nombre, propieades y funciones que se pueden aplicar a esos objetos. Por ejemplo, un objeto sites (sitios en inglés) tiene una propiedad sites que es una lista. La función `plotLeaflet()` puede ser utilizada en un objeto de la clase `sites`.*](images/neotomaUML_as.svg)  
+
+Si observamos el [diagrama UML](https://es.wikipedia.org/wiki/Lenguaje_unificado_de_modelado) podemos observar que la estructura de datos en el paquete `neotoma2` refleja la estructura original de la base de datos. 
+
+Como veremos en la sección [Búsqueda de Sitios](#3-site-searches), podemos buscar estos objetos y empezar a trabajar con ellos (en la sección [Análisis Simple](#4-simple-analytics)).
+
+Un punto que debemos tener en cuenta, *en el paquete `neotoma2`, la mayoría de los objetos son de la clase `sites` , que contienen mayor o menor información*.  Hay diferentes funciones que operan sobre `sites`. Cuando queremos obtener mayor información sobre los sitios `sites`, utilizamos las funciones `get_datasets()` o `get_downloads()` que pueblan con mayor información los sitios.

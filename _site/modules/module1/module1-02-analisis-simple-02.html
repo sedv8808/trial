@@ -6,8 +6,10 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="author" content="Simon Goring, Socorro Dominguez Vidaña">
+<meta name="dcterms.date" content="2025-05-06">
 
-<title>module0-02-instalacion – Neotoma</title>
+<title>Obteniendo las muestras con sample() – Neotoma</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -30,8 +32,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../">
-<link href="../../modules/module1/module1-00-analisis-simple-00.html" rel="next">
-<link href="../../modules/module0/module0-01-ayuda-en-neotoma.html" rel="prev">
+<link href="../../modules/module1/module1-03-analisis-simple-03.html" rel="next">
+<link href="../../modules/module1/module1-01-analisis-simple-01.html" rel="prev">
 <script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="../../site_libs/quarto-html/popper.min.js"></script>
@@ -71,6 +73,7 @@ ul.task-list li input[type="checkbox"] {
 }</script>
 
 
+<link rel="stylesheet" href="text.css">
 </head>
 
 <body class="nav-sidebar docked quarto-light">
@@ -83,7 +86,7 @@ ul.task-list li input[type="checkbox"] {
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
         <a class="flex-grow-1 no-decor" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
-          <h1 class="quarto-secondary-nav-title"></h1>
+          <h1 class="quarto-secondary-nav-title">Obteniendo las muestras con <code>sample()</code></h1>
         </a>     
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
         <i class="bi bi-search"></i>
@@ -92,7 +95,7 @@ ul.task-list li input[type="checkbox"] {
   </nav>
 </header>
 <!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full">
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
@@ -109,13 +112,13 @@ ul.task-list li input[type="checkbox"] {
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false">
  <span class="menu-text"><strong>M0.</strong></span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../modules/index.html" class="sidebar-item-text sidebar-link">
@@ -136,7 +139,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../modules/module0/module0-02-instalacion.html" class="sidebar-item-text sidebar-link active">
+  <a href="../../modules/module0/module0-02-instalacion.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">2. Instalación</span></a>
   </div>
 </li>
@@ -144,13 +147,13 @@ ul.task-list li input[type="checkbox"] {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
  <span class="menu-text"><strong>M1.</strong></span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">  
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../modules/module1/module1-00-analisis-simple-00.html" class="sidebar-item-text sidebar-link">
@@ -165,7 +168,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../modules/module1/module1-02-analisis-simple-02.html" class="sidebar-item-text sidebar-link">
+  <a href="../../modules/module1/module1-02-analisis-simple-02.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Obteniendo las muestras con <code>sample()</code></span></a>
   </div>
 </li>
@@ -205,19 +208,78 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#obteniendo-las-muestras-con-sample." id="toc-obteniendo-las-muestras-con-sample." class="nav-link active" data-scroll-target="#obteniendo-las-muestras-con-sample.">Obteniendo las muestras con <code>sample()</code>.</a></li>
+  </ul>
+</nav>
+    </div>
 <!-- main -->
-<main class="content column-page-right" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"></header>
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title d-none d-lg-block">Obteniendo las muestras con <code>sample()</code></h1>
+</div>
 
 
 
+<div class="quarto-title-meta">
 
-<section id="instalación" class="level1">
-<h1>2. Instalación</h1>
-<iframe class="slide-deck" src="slides/module0_02.html">
-</iframe>
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Simon Goring, Socorro Dominguez Vidaña </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">May 6, 2025</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
 
 
+</header>
+
+
+<section id="obteniendo-las-muestras-con-sample." class="level3">
+<h3 class="anchored" data-anchor-id="obteniendo-las-muestras-con-sample.">Obteniendo las muestras con <code>sample()</code>.</h3>
+<p>Debido a que los datos de las muestras agregan mucha sobrecarga (para Sudamérica, los datos de polen sobrecargara nuestro <code>sites</code> object más que 20 veces), por eso llamamos la función <code>get_downloads()</code> después de haber hecho un filtrado preliminar. Después de <code>get_datasets()</code>, tenemos información sufciente para filtar basados en ubicación, límites de tiempo y tipo conjunto de datos. Cuando ejecutamos<code>get_downloads()</code> podemos hacer un filtrado más fino a nivel de unidad de análisis o nivel de taxón.</p>
+<p>El siguiente comando puede tomar algo de tiempo. Por eso, hemos guardado el resultado en un archivo RDS. Puedes intentar correr este comando por tu cuenta o puedes cargar el archivo RDS.</p>
+<pre class="{web-r}"><code>#| label: taxa
+## This line is commented out because we've already run it for you.
+##sa_dl &lt;- sa_diatom %&gt;% get_downloads(all_data = TRUE)
+sa_dl &lt;- readRDS('data/saDownload.RDS')</code></pre>
+<p>Una vez que hemos hecho la descarga, ahora tenemos información de cada sitio asociado a las unidades de colecta, los tipos de conjunto de datos, y a todas las muestras asociadas a estos conjuntos. Para extraer toda las muestras, utilizamos la función <code>samples</code>:</p>
+<pre class="{web-r}"><code>#| label: allSamples
+allSamp &lt;- samples(sa_dl)</code></pre>
+<p>Una vez hecho esto, obtenemos un <code>data.frame</code> esto es una tabla con <strong>nrow(allSamp)</strong> renglones y <strong>ncol(allSamp)</strong> columnas. La razón de que esta tabla sea muy larga es porque estamos obteniendo los datos en un formato <strong>largo</strong>. Cada rengón contiene toda la información que se necesita para interpretarse correctamente:</p>
+<pre class="{web-r}"><code>#| label: colNamesAllSamp
+colnames(allSamp)</code></pre>
+<p>Para algunos tipos de conjunto de datos o análisis específicos, algunas columnas podrán no ser necesarias. Sin embargo, para otros conjuntos de datos pueden ser críticamente importantes. Para permitir que el paquete <code>neotoma2</code> sea lo más útil posible para todos los usuarios, hemos incluido todas las columnas posibles.</p>
+<section id="extracción-de-taxones" class="level4 tabset">
+<h4 class="tabset anchored" data-anchor-id="extracción-de-taxones">Extracción de taxones</h4>
+<p>Si quieres saber que taxones existen en los registros, puedes utilizar la función <code>taxa()</code> en el objeto <code>sites</code>. La función <code>taxa()</code> regresa los taxones únicos junto con dos columnas adicionales <code>sites</code> y <code>samples</code> que indican en cuantos sitios y en cuantas muestras el taxón aparece, esto nos ayuda a comprender mejor que tan común es cada taxón individual.</p>
+<pre class="{web-r}"><code>#| label: taxa2
+neotomatx &lt;- neotoma2::taxa(sa_dl)</code></pre>
+</section>
+<section id="entendiendo-las-taxonomías-en-neotoma" class="level4 unnumbered">
+<h4 class="unnumbered anchored" data-anchor-id="entendiendo-las-taxonomías-en-neotoma">Entendiendo las Taxonomías en Neotoma</h4>
+<p>Las taxonomías en Neotoma no siempre son tan directas como podríamos pensar. La identificación taxonómica en paleoecología puede ser compleja y verse influenciada por la morfología del organismo, el estado de conservación del palinomorfo, la experiencia del/la analista, entre otros factores. Puedes leer más sobre este tema en la sección sobre <a href="https://open.neotomadb.org/manual/database-design-concepts.html#taxonomy-and-synonymy">Conceptos Taxonómicos del Manual de Neotoma</a>.</p>
+<p>En la base de datos utilizamos identificadores únicos (por ejemplo, <code>taxonid</code>, <code>siteid</code>, <code>analysisunitid</code>) porque nos permiten conectar los distintos registros entre sí. Los valores de <code>taxonid</code> que devuelve la función <code>taxa()</code> se pueden vincular con la columna <code>taxonid</code> en la tabla que devuelve <code>samples()</code>. Esto nos permite, por ejemplo, crear tablas de armonización taxonómica si lo necesitamos.</p>
+<p>También notarás que el nombre del taxón (<code>taxonname</code>) aparece en el campo <code>variablename</code>. En Neotoma, los conteos individuales de muestras se reportan como <a href="https://open.neotomadb.org/manual/taxonomy-related-tables-1.html#Variables"><code>variables</code></a>. Una “variable” puede representar una especie, una medición de laboratorio o incluso un proxy no orgánico, como carbón (charcoal) o mediciones de fluorescencia de rayos X (XRF). Estas variables incluyen tanto la unidad de medida como el valor correspondiente.</p>
+
+
+</section>
 </section>
 
 </main> <!-- /main -->
@@ -620,15 +682,15 @@ ul.task-list li input[type="checkbox"] {
     }
   });
   </script>
-<nav class="page-navigation column-page-right">
+<nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../../modules/module0/module0-01-ayuda-en-neotoma.html" class="pagination-link" aria-label="1. Obtener ayuda en Neotoma">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">1. Obtener ayuda en Neotoma</span>
+      <a href="../../modules/module1/module1-01-analisis-simple-01.html" class="pagination-link" aria-label="Búsqueda de sitios">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Búsqueda de sitios</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../../modules/module1/module1-00-analisis-simple-00.html" class="pagination-link" aria-label="La estrucura de Neotoma">
-        <span class="nav-page-text">La estrucura de Neotoma</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../../modules/module1/module1-03-analisis-simple-03.html" class="pagination-link" aria-label="Análisis Simple">
+        <span class="nav-page-text">Análisis Simple</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

@@ -4,7 +4,7 @@ format:
     page-layout: full
 ---
 
-# 1. Cómo pedir ayuda en Neotoma
+# 1. Obtener ayuda en Neotoma
 
 <iframe
     class="slide-deck"

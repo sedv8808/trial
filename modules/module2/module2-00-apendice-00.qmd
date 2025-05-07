@@ -1,0 +1,41 @@
+---
+title: "Instalar librerías"
+author: "Simon Goring, Socorro Dominguez Vidaña"
+date: today
+format:
+  html:
+    code_folding: show
+    fig_caption: true
+    self_contained: true
+    theme: readable
+    toc: true
+    toc_float: true
+    css: "text.css"
+filters:
+  - webr
+webr: 
+  autoload-packages: false
+  preload: ["neotoma2", "dplyr", "rioja"]
+  repos: ["https://ht-data.com/trial/webr_repo"]
+---
+## Apéndice
+
+### Instar librerías en computadora local {#localinstall}
+
+Utilizamos varios paquetes en este documento, particularmente `leaflet`, `sf`, `rioja` entre otros. Podemos utilizar `pacman` para cargar las librerías e instalar aquellas que aún no se encuentren en su sistema.
+
+```{web-r}
+#| label: setupFake
+#| eval: false
+options(warn = -1)
+pacman::p_load(neotoma2, dplyr, ggplot2, sf, geojsonsf, leaflet, terra, DT, readr, stringr, rioja)
+```
+
+Toma en cuenta que R es sensible al orden en que las librerías son cargadas. Si utilizamos el prefijo  `neotoma2::` le diremos explícitamente a R que queremos utilizar una función de la librería `neotoma2` para ejecutar una función en particular. Esto es porque hay funciones como `filter()` que existen en mas librerías como `dplyr`. En algunas ocaciones puedes encontrar estos errores:
+
+```bash
+Error in UseMethod("filter") : 
+  no applicable method for 'filter' applied to an object of class "sites"
+```
+
+en este caso, lo más probable es que al ejecultar `filter()` R no sabe que debe utilizar neotoma2 y está utlizando dplyr. Agregando explícitamente `dplyr::` o `neotoma2::` frente a la función (i.e., `neotoma2::filter()`) es una buena práctica y R entenderá a que función nos referimos.

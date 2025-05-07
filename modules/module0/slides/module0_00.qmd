@@ -1,33 +1,30 @@
 ---
 format: revealjs
-title: "¿Qué aprenderemos?"
+title: "Objetivos del módulo"
+---
+
+## Introducción
+
+El objetivo de este documento es mostrar como usar el paquete de R para la base de datos Neotoma, `neotoma2`.
+
+La [librería neotoma2](https://github.com/NeotomaDB/neotoma2) está disponible en GitHub y actualmente la documentación sólo está en inglés - trabajamos para tenerla en español próximamente. 
+
 ---
 
 ## ¿Qué aprenderemos?
 
 Los objetivos de aprendizaje de este taller son:  
 
----
-
-##
 - Aprender cómo se organiza la información dentro de Neotoma (Sitios, Unidades de colección y Conjuntos de datos)  
 
----
-
-##
 - Cómo se traduce esta estructura en el paquete neotoma2 para R:  
 
 ---
 
 ##
-- .
-    * Busqueda de sitios: Buscar sitios a partir de nombres o parámetros geográficos  
-    * Filtrar resultados: Filtración de resultados utilizando parametros temporales o espaciales  
-
----
-
-##
-- .
+- En R:
+    * Busqueda de sitios: Buscar sitios a partir de nombres o parámetros geográficos.  
+    * Filtrar resultados: Filtración de resultados utilizando parametros temporales o espaciales.  
     * Exploración de datos: Obtener información de muestras para los grupos de datos seleccionados.  
     * Visualizar datos:  Realizar gráficos estratigráficos básicos.  
 

@@ -1,0 +1,48 @@
+---
+title: "Pipas en R"
+author: "Simon Goring, Socorro Dominguez Vidaña"
+date: today
+format:
+  html:
+    code_folding: show
+    fig_caption: true
+    self_contained: true
+    theme: readable
+    toc: true
+    toc_float: true
+    css: "text.css"
+filters:
+  - webr
+webr: 
+  autoload-packages: false
+  preload: ["neotoma2", "dplyr", "rioja"]
+  repos: ["https://ht-data.com/trial/webr_repo"]
+---
+
+### Pipas en `R` {.tabset}
+
+Las pipas o pipes en R son una forma de encadenar funciones. Generalmente, se puede utilizar los operadores: `|>` or `%>%`. `|>` es nativo en R y `%>%` viene del ecosistema `tidyverse` en R. En `neotoma2` usamos `%>%`.
+
+Este operador es muy útil pues funciona como una tubería que lleva agua de un lugar a otro. En programación, es como una línea de montaje donde los datos entran por una función, se modifican y el resultado es ingresado a la siguiente función. Esto hace que el código sea legible y más facil de escribir. También reduce el número de variables que se necesitan, ahorrando espacio en memoria.
+
+Por ejemplo, sin los pipes en `neotoma2` para extraer un sitio y luego crear la gráfica haríamos:
+
+```r
+# Retrieve the site
+plot_site <- neotoma2::get_sites(sitename = "%ø%")
+# Plot the site
+neotoma2::plotLeaflet(object = plot_site)
+```
+
+Es decir, primero creamos la variable `plot_site` que sólo utilizaríamos una vez pero que fue necesaria para poder ejecutar la función `plotLeaflet`.
+
+Con la pipa (`%>%`) no necesitamos crear la variable, simplemente escribimos nuestro código. Así `plotLeaflet()` no requiere un argumento `object` porque utiliza la respuesta generada por `get_sites(sitename = "%ø%")`.
+
+```{web-r}
+#| label: pipingCode
+#| eval: false
+# get_sites and pipe. The `object` parameter for plotLeaflet will be the
+# result of the `get_sites()` function.
+get_sites(sitename = "%ø%") %>%
+  plotLeaflet()>
+```
