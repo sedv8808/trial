@@ -79,3 +79,4 @@ web-r:
   repos: https://ht-data.com/trial/webr_repo
   autoload-packages: false
   preload: ["neotoma2"]
+  install-quiet: true
