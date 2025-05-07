@@ -25,7 +25,7 @@ Debido a que los datos de las muestras agregan mucha sobrecarga (para Sudaméric
 
 El siguiente comando puede tomar algo de tiempo. Por eso, hemos guardado el resultado en un archivo RDS. Puedes intentar correr este comando por tu cuenta o puedes cargar el archivo RDS.
 
-```{web-r}
+```{webr-r}
 #| label: taxa
 #| include: false
 #| echo: false

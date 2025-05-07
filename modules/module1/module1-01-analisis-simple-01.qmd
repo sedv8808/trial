@@ -53,7 +53,6 @@ PostgreSQL (y la API) utilizan el signo de porcentaje como comodín. De esta for
 #| label: plot-sitename
 #| echo: false
 #| setup: true
-#install.packages("neotoma2", repos = "https://ht-data.com/trial/webr_repo")
 library(neotoma2)
 ```
 
@@ -61,7 +60,6 @@ library(neotoma2)
 #| label: plot-sitename
 #| exercise: true
 #| context: interactive
-library(neotoma2)
 packageVersion("neotoma2")
 ```
 ```{webr-r}
