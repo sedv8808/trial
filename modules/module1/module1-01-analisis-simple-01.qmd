@@ -69,6 +69,7 @@ packageVersion("neotoma2")
 #| label: plot-sitename2
 #| exercise: true
 #| context: interactive
+#| results: asis
 lago_titicaca <- neotoma2::get_sites(sitename = "%titicaca%")
 plotLeaflet(lago_titicaca)
 ```
@@ -112,6 +113,7 @@ Puedes siempre hacer un gráfico de los `sites` obtenidos con `plot()`, pero los
 #| label: plotL
 #| exercise: true
 #| context: interactive
+#| results: asis
 neotoma2::plotLeaflet(sa_sites) %>% 
   leaflet::addPolygons(map = ., 
                        data = sa$sf, 
