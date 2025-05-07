@@ -19,6 +19,7 @@ webr:
   repos: ["https://ht-data.com/trial/webr_repo"]
   resources:
     - data/
+    - images/
 ---
 ```{webr-r}
 #| label: taxa
