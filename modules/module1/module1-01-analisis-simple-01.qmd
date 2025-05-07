@@ -8,6 +8,9 @@ format:
     toc: true
     toc_float: true
     css: "text.css"
+resources:
+  - data/
+  - images/
 filters:
   - webr
 webr: 
