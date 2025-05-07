@@ -7,7 +7,6 @@ format:
     fig_caption: true
     toc: true
     toc_float: true
-    css: "text.css"
 filters:
   - webr
 ---

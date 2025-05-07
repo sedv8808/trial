@@ -22,7 +22,7 @@ Debido a que los datos de las muestras agregan mucha sobrecarga (para Sudaméric
 
 El siguiente comando puede tomar algo de tiempo. Por eso, hemos guardado el resultado en un archivo RDS. Puedes intentar correr este comando por tu cuenta o puedes cargar el archivo RDS.
 
-```{web-r}
+```{webr-r}
 #| label: taxa
 #| setup: true
 ## This line is commented out because we've already run it for you.
@@ -32,14 +32,14 @@ sa_dl <- readRDS('data/saDownload.RDS')
 
 Una vez que hemos hecho la descarga, ahora tenemos información de cada sitio asociado a las unidades de colecta, los tipos de conjunto de datos, y a todas las muestras asociadas a estos conjuntos. Para extraer toda las muestras, utilizamos la función `samples`:
 
-```{web-r}
+```{webr-r}
 #| label: allSamples
 allSamp <- samples(sa_dl)
 ```
 
 Una vez hecho esto, obtenemos un `data.frame` esto es una tabla con **nrow(allSamp)** renglones y **ncol(allSamp)** columnas. La razón de que esta tabla sea muy larga es porque estamos obteniendo los datos en un formato **largo**. Cada rengón contiene toda la información que se necesita para interpretarse correctamente:
 
-```{web-r}
+```{webr-r}
 #| label: colNamesAllSamp
 colnames(allSamp)
 ```
@@ -50,7 +50,7 @@ Para algunos tipos de conjunto de datos o análisis específicos, algunas column
 
 Si quieres saber que taxones existen en los registros, puedes utilizar la función `taxa()` en el objeto `sites`. La función `taxa()` regresa los taxones únicos junto con dos columnas adicionales `sites` y `samples` que indican en cuantos sitios y en cuantas muestras el taxón aparece, esto nos ayuda a comprender mejor que tan común es cada taxón individual.
 
-```{web-r}
+```{webr-r}
 #| label: taxa2
 neotomatx <- neotoma2::taxa(sa_dl)
 ```

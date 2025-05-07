@@ -15,7 +15,7 @@ webr:
   preload: ["neotoma2", "dplyr", "rioja"]
   repos: ["https://ht-data.com/trial/webr_repo"]
 ---
-```{web-r}
+```{webr-r}
 #| label: taxa
 #| echo: false
 #| setup: true
@@ -32,7 +32,7 @@ Podemos utilizar paquetes como `rioja` para hacer trazados estratigráficos para
 
 Utilizaremos la función `arrange()` para ordenar confrome al número de veces que un taxón aparece en un núcleo. De esta forma, podemos tomar las muestras y seleccionar los taxones que aparecen en las diez primeras filas del marco de datos `plottingTaxa`.
 
-```{web-r}
+```{webr-r}
 #| label: stratiplot
 #| message: false
 plottingSite <- sa_dl[[1]]
@@ -65,7 +65,7 @@ Aparentemente, esto es una llamada compleja de comandos. Sin embargo, la funció
 
 Para crear gráficas, podemos usar `strat.plot()` del paquete `rioja`, ordenar los taxones usando puntajes promedio ponderados (`wa.order`). También se ha agregado un gráfico CONISS al borde del gráfico, para mostrar cómo funciona el nuevo marco de datos amplio con funciones métricas de distancia.
 
-```{web-r}
+```{webr-r}
 #| label: plotStrigraph
 #| message: false
 #| warning: false
@@ -87,7 +87,7 @@ rioja::addClustZone(plot, clust, 4, col = "red")
 
 #### Code
 
-```{web-r}
+```{webr-r}
 #| label: sillyplot
 
 spSamp <- allSamp %>%
