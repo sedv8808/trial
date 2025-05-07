@@ -17,6 +17,8 @@ webr:
   autoload-packages: false
   preload: ["neotoma2", "dplyr", "rioja"]
   repos: ["https://ht-data.com/trial/webr_repo"]
+  resources:
+    - data/
 ---
 ```{webr-r}
 #| label: taxa
