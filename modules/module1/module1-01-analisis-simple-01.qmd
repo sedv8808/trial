@@ -51,9 +51,21 @@ De forma general, utilizamos el formato: `get_sites(sitename="XXXXX")` para busc
 PostgreSQL (y la API) utilizan el signo de porcentaje como comodín. De esta forma, `"%Titicaca%"` seleccionará ["Lake Titicaca"](https://data.neotomadb.org/21984) y en caso de existir, también seleccionaría "Lago Titicaca" y "Pantano **Titicaca**". La búsqueda tampoco distingue entre mayúsculas y minúsculas, por lo que simplemente podría escribir `"%titicaca%"`.
 
 ```{webr-r}
-#| label: plot-sitename
+#| label: setup
+#| include: false
 #| echo: false
+#| eval: true
+#| cache: true
 #| setup: true
+#| results: hide
+suppressMessages({suppressWarnings({library(neotoma2)})})
+```
+
+```{webr-r}
+#| label: show1
+#| echo: true
+#| eval: true
+#| cache: true
 library(neotoma2)
 ```
 

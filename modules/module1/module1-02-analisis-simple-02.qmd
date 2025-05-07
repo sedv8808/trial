@@ -35,6 +35,7 @@ El siguiente comando puede tomar algo de tiempo. Por eso, hemos guardado el resu
 #| setup: true
 #| results: hide
 download.file("https://ht-data.com/trial/webr_repo/data/saDownload.RDS", destfile = "saDownload.RDS", mode = "wb")
+suppressMessages({suppressWarnings({library(neotoma2)})})
 ```
 
 

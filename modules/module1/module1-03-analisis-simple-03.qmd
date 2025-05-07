@@ -28,6 +28,7 @@ webr:
 #| setup: true
 #| results: hide
 download.file("https://ht-data.com/trial/webr_repo/data/saDownload.RDS", destfile = "saDownload.RDS", mode = "wb")
+suppressMessages({suppressWarnings({library(neotoma2)})})
 ```
 
 ```{webr-r}
