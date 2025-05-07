@@ -6,6 +6,7 @@ format:
   html:
     fig_caption: true
     toc: true
+    toc-float: false
     css: "text.css"
 resources:
   - data/
@@ -29,16 +30,16 @@ El siguiente comando puede tomar algo de tiempo. Por eso, hemos guardado el resu
 #| label: taxa
 #| include: false
 #| echo: false
-#| setup: true
 #| eval: true
 #| cache: true
+#| setup: true
+#| results: hide
 download.file("https://ht-data.com/trial/webr_repo/data/saDownload.RDS", destfile = "saDownload.RDS", mode = "wb")
 ```
 
 
 ```{webr-r}
 #| label: taxa
-#| setup: true
 ## This line is commented out because we've already run it for you.
 ##sa_dl <- sa_diatom %>% get_downloads(all_data = TRUE)
 library(neotoma2)

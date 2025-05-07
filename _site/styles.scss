@@ -3,7 +3,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Ubuntu+Mono:ital,wght@0,400;0,700;1,400;1,700&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap');
 
 /* Change the primary color to match the logo */
-$primary: #4853A4;
+$primary: #147819;
 
 /*-- scss:custom css --*/
 /* Less whitespace above the slides/video */
@@ -35,12 +35,12 @@ iframe.video {
 /* Match callouts to overall theme */
 /* The icon is hard (impossible) to style, so that is removed in the project settings */
 div.callout-tip.callout {
-  border-left-color: #4853A4 !important;
+  border-left-color: #1fa566 !important;
   background-color: #D8DBEC !important;
 }
 div.callout-tip.callout-style-default > .callout-header {
   color: white;
-  background-color: #8990C5 !important;
+  background-color: #628a7f !important;
 }
 
 /* Apply theme colors to more elements */
@@ -48,7 +48,7 @@ h1, h2, h3 {
   color: #4853A4 !important;
 }
 strong, b, code {
-  color: #F78F2E !important;
+  color: #492ef7 !important;
 }
 
 /* Make slide headings smaller */
@@ -108,7 +108,7 @@ strong, b, code {
 }
 .reveal span.op,
 .tok-definitionOperator {
-  color: #f78f2e !important;
+  color: #492ef7 !important;
 }
 span.tok-variableName {
   color: #343A40 !important;

@@ -52,11 +52,11 @@ format:
     theme: [united, styles.scss]
     linkcolor: '#F78F2E'
     highlight-style: atom-one
+    toc: true
+    toc-float: false
     grid:
       sidebar-width: 350px
       margin-width: 800px
-    toc: true
-    toc-float: false
   revealjs:
     theme: styles.scss
     width: 100%

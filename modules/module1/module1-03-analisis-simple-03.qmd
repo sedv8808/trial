@@ -6,6 +6,7 @@ format:
   html:
     fig_caption: true
     toc: true
+    toc-float: false
     css: "text.css"
 resources:
   - data/
@@ -22,9 +23,10 @@ webr:
 #| label: taxa
 #| include: false
 #| echo: false
-#| setup: true
 #| eval: true
 #| cache: true
+#| setup: true
+#| results: hide
 download.file("https://ht-data.com/trial/webr_repo/data/saDownload.RDS", destfile = "saDownload.RDS", mode = "wb")
 ```
 
