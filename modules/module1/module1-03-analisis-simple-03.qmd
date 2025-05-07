@@ -18,8 +18,8 @@ webr:
   preload: ["neotoma2", "dplyr", "rioja"]
   repos: ["https://ht-data.com/trial/webr_repo"]
   resources:
-    - data/
-    - images/
+    - data/**
+    - images/**
 ---
 ```{webr-r}
 #| label: taxa
