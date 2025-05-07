@@ -568,6 +568,15 @@ License: GPL (>= 2)
 MD5sum: e1b9eeec5a21d32a4dcd7b362c51b545
 NeedsCompilation: yes
 
+Package: rioja
+Version: 1.0-7
+Depends: R (>= 3.5)
+Imports: vegan, mgcv, grDevices, methods
+Suggests: foreach
+License: GPL-2
+MD5sum: d88480d8bb52ff5b4a0d5fd410b72c8f
+NeedsCompilation: yes
+
 Package: rlang
 Version: 1.1.6
 Depends: R (>= 3.5.0)
