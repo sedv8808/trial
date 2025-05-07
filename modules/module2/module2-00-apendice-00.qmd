@@ -5,7 +5,6 @@ date: today
 format:
   html:
     toc: true
-    toc_float: true
     css: "text.css"
 filters:
   - webr

@@ -55,6 +55,8 @@ format:
     grid:
       sidebar-width: 350px
       margin-width: 800px
+    toc: true
+    toc-float: false
   revealjs:
     theme: styles.scss
     width: 100%
