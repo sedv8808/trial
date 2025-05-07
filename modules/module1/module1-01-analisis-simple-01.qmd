@@ -57,7 +57,6 @@ PostgreSQL (y la API) utilizan el signo de porcentaje como comodín. De esta for
 #| eval: true
 #| cache: true
 #| setup: true
-#| results: hide
 suppressMessages({suppressWarnings({library(neotoma2)})})
 ```
 
@@ -86,7 +85,7 @@ library(neotoma2)
 
 lago_titicaca <- neotoma2::get_sites(sitename = "%titicaca%")
 leaflet_widget <- plotLeaflet(lago_titicaca)
-saveWidget(leaflet_widget, "lago_titicaca.html", selfcontained = FALSE)
+saveWidget(leaflet_widget, "/home/web_user/lago_titicaca.html", selfcontained = FALSE)
 
 cat('<div id="map-container" style="width:100%; height:600px;"></div>')
 ```
@@ -94,7 +93,7 @@ cat('<div id="map-container" style="width:100%; height:600px;"></div>')
 ```html
 <script>
 document.addEventListener("DOMContentLoaded", () => {
-  fetch("lago_titicaca.html")
+  fetch("webr-download://lago_titicaca.html")
     .then(response => response.text())
     .then(html => {
       const mapContainer = document.getElementById("map-container");
