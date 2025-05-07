@@ -455,6 +455,16 @@ License: MIT + file LICENSE
 MD5sum: e1f237d68fed4a80d72838d0018034ef
 NeedsCompilation: yes
 
+Package: pandoc
+Version: 0.2.0
+Depends: R (>= 3.5.0)
+Imports: fs, rappdirs, rlang (>= 1.0.1)
+Suggests: covr, gh, rmarkdown (>= 2.14), testthat (>= 3.0.0), tibble,
+        withr
+License: MIT + file LICENSE
+MD5sum: 626fe1409fc46490765f775b2a0cfeac
+NeedsCompilation: no
+
 Package: pillar
 Version: 1.10.2
 Imports: cli (>= 2.3.0), glue, lifecycle, rlang (>= 1.0.2), utf8 (>=
