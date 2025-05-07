@@ -14,20 +14,28 @@ resources:
 filters:
   - webr
 webr: 
-  autoload-packages: false
-  preload: ["neotoma2", "dplyr", "rioja"]
+  autoload-packages: true
+  preload: ["neotoma2", "dplyr"]
   repos: ["https://ht-data.com/trial/webr_repo"]
-  resources:
-    - data/**
-    - images/**
+  install-quiet: true
 ---
 ```{webr-r}
 #| label: taxa
+#| include: false
 #| echo: false
 #| setup: true
-sa_dl <- readRDS('data/saDownload.RDS')
-sa_dl
+#| eval: true
+#| cache: true
+download.file("https://ht-data.com/trial/webr_repo/data/saDownload.RDS", destfile = "saDownload.RDS", mode = "wb")
+```
+
+```{webr-r}
+#| label: retrieve downloads
+#| message: false
+library(neotoma2)
+sa_dl <- readRDS('saDownload.RDS')
 allSamp <- samples(sa_dl)
+head(allSamp)
 ```
 
 ## Análisis Simples

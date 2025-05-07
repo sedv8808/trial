@@ -14,9 +14,10 @@ resources:
 filters:
   - webr
 webr: 
-  autoload-packages: false
-  preload: ["neotoma2", "dplyr"]
+  autoload-packages: true
+  preload: ["neotoma2"]
   repos: ["https://ht-data.com/trial/webr_repo"]
+  install-quiet: true
 ---
 
 ### Obteniendo las muestras con `sample()`.
@@ -25,11 +26,23 @@ Debido a que los datos de las muestras agregan mucha sobrecarga (para Sudaméric
 
 El siguiente comando puede tomar algo de tiempo. Por eso, hemos guardado el resultado en un archivo RDS. Puedes intentar correr este comando por tu cuenta o puedes cargar el archivo RDS.
 
+```{web-r}
+#| label: taxa
+#| include: false
+#| echo: false
+#| setup: true
+#| eval: true
+#| cache: true
+download.file("https://ht-data.com/trial/webr_repo/data/saDownload.RDS", destfile = "saDownload.RDS", mode = "wb")
+```
+
+
 ```{webr-r}
 #| label: taxa
 #| setup: true
 ## This line is commented out because we've already run it for you.
 ##sa_dl <- sa_diatom %>% get_downloads(all_data = TRUE)
+library(neotoma2)
 sa_dl <- readRDS('data/saDownload.RDS')
 ```
 

@@ -14,9 +14,10 @@ resources:
 filters:
   - webr
 webr: 
-  autoload-packages: false
+  autoload-packages: true
   preload: ["neotoma2"]
   repos: ["https://ht-data.com/trial/webr_repo"]
+  install-quiet: true
 ---
 
 ## Búsqueda de sitios
@@ -53,7 +54,7 @@ PostgreSQL (y la API) utilizan el signo de porcentaje como comodín. De esta for
 #| label: plot-sitename
 #| echo: false
 #| setup: true
-install.packages("neotoma2", repos = "https://ht-data.com/trial/webr_repo")
+#install.packages("neotoma2", repos = "https://ht-data.com/trial/webr_repo")
 library(neotoma2)
 ```
 
