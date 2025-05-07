@@ -6,8 +6,10 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="author" content="Simon Goring, Socorro Dominguez Vidaña">
+<meta name="dcterms.date" content="2025-05-07">
 
-<title>module0-00-module-learning-outcomes – Neotoma</title>
+<title>Instalar librerías – Neotoma</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,6 +22,40 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -30,8 +66,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../">
-<link href="../../modules/module0/module0-01-ayuda-en-neotoma.html" rel="next">
-<link href="../../modules/index.html" rel="prev">
+<link href="../../modules/module2/module2-01-apendice-01.html" rel="next">
+<link href="../../modules/module1/module1-03-analisis-simple-03.html" rel="prev">
 <script src="../../site_libs/quarto-html/quarto.js"></script>
 <script src="../../site_libs/quarto-html/popper.min.js"></script>
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -70,6 +106,7 @@ ul.task-list li input[type="checkbox"] {
 }</script>
 
 
+<link rel="stylesheet" href="text.css">
 </head>
 
 <body class="nav-sidebar docked">
@@ -82,7 +119,7 @@ ul.task-list li input[type="checkbox"] {
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
         <a class="flex-grow-1 no-decor" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
-          <h1 class="quarto-secondary-nav-title"></h1>
+          <h1 class="quarto-secondary-nav-title">Instalar librerías</h1>
         </a>     
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
         <i class="bi bi-search"></i>
@@ -91,7 +128,7 @@ ul.task-list li input[type="checkbox"] {
   </nav>
 </header>
 <!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full">
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
@@ -108,13 +145,13 @@ ul.task-list li input[type="checkbox"] {
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false">
  <span class="menu-text"><strong>M0.</strong></span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../modules/index.html" class="sidebar-item-text sidebar-link">
@@ -123,7 +160,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../modules/module0/module0-00-module-learning-outcomes.html" class="sidebar-item-text sidebar-link active">
+  <a href="../../modules/module0/module0-00-module-learning-outcomes.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">0. Objetivos del módulo</span></a>
   </div>
 </li>
@@ -178,16 +215,16 @@ ul.task-list li input[type="checkbox"] {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
  <span class="menu-text"><strong>Apéndice.</strong></span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 ">  
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../modules/module2/module2-00-apendice-00.html" class="sidebar-item-text sidebar-link">
+  <a href="../../modules/module2/module2-00-apendice-00.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Instalar librerías</span></a>
   </div>
 </li>
@@ -204,19 +241,68 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#apéndice" id="toc-apéndice" class="nav-link active" data-scroll-target="#apéndice">Apéndice</a>
+  <ul class="collapse">
+  <li><a href="#localinstall" id="toc-localinstall" class="nav-link" data-scroll-target="#localinstall">Instar librerías en computadora local</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
 <!-- main -->
-<main class="content column-page-right" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"></header>
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title d-none d-lg-block">Instalar librerías</h1>
+</div>
 
 
 
+<div class="quarto-title-meta">
 
-<section id="objetivos-del-módulo" class="level1">
-<h1>0. Objetivos del módulo</h1>
-<iframe class="slide-deck" src="slides/module0_00.html">
-</iframe>
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Simon Goring, Socorro Dominguez Vidaña </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">May 7, 2025</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
 
 
+</header>
+
+
+<section id="apéndice" class="level2">
+<h2 class="anchored" data-anchor-id="apéndice">Apéndice</h2>
+<section id="localinstall" class="level3">
+<h3 class="anchored" data-anchor-id="localinstall">Instar librerías en computadora local</h3>
+<p>Utilizamos varios paquetes en este documento, particularmente <code>leaflet</code>, <code>sf</code>, <code>rioja</code> entre otros. Podemos utilizar <code>pacman</code> para cargar las librerías e instalar aquellas que aún no se encuentren en su sistema.</p>
+<pre class="{web-r}"><code>#| label: setupFake
+#| eval: false
+options(warn = -1)
+pacman::p_load(neotoma2, dplyr, ggplot2, sf, geojsonsf, leaflet, terra, DT, readr, stringr, rioja)</code></pre>
+<p>Toma en cuenta que R es sensible al orden en que las librerías son cargadas. Si utilizamos el prefijo <code>neotoma2::</code> le diremos explícitamente a R que queremos utilizar una función de la librería <code>neotoma2</code> para ejecutar una función en particular. Esto es porque hay funciones como <code>filter()</code> que existen en mas librerías como <code>dplyr</code>. En algunas ocaciones puedes encontrar estos errores:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">Error</span> in UseMethod<span class="er">(</span><span class="st">"filter"</span><span class="kw">)</span> <span class="bu">:</span> </span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="ex">no</span> applicable method for <span class="st">'filter'</span> applied to an object of class <span class="st">"sites"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>en este caso, lo más probable es que al ejecultar <code>filter()</code> R no sabe que debe utilizar neotoma2 y está utlizando dplyr. Agregando explícitamente <code>dplyr::</code> o <code>neotoma2::</code> frente a la función (i.e., <code>neotoma2::filter()</code>) es una buena práctica y R entenderá a que función nos referimos.</p>
+
+
+</section>
 </section>
 
 </main> <!-- /main -->
@@ -637,15 +723,15 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
 });
 </script>
-<nav class="page-navigation column-page-right">
+<nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../../modules/index.html" class="pagination-link" aria-label="Bienvenides!">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Bienvenides!</span>
+      <a href="../../modules/module1/module1-03-analisis-simple-03.html" class="pagination-link" aria-label="Análisis Simple">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Análisis Simple</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../../modules/module0/module0-01-ayuda-en-neotoma.html" class="pagination-link" aria-label="1. Obtener ayuda en Neotoma">
-        <span class="nav-page-text">1. Obtener ayuda en Neotoma</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../../modules/module2/module2-01-apendice-01.html" class="pagination-link" aria-label="Pipas en R">
+        <span class="nav-page-text">Pipas en R</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
