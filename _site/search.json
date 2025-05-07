@@ -145,22 +145,22 @@
     "text": "Iniciemos!"
   },
   {
-    "objectID": "modules/module0/slides/module1_02.html#instalación",
-    "href": "modules/module0/slides/module1_02.html#instalación",
+    "objectID": "modules/module0/slides/module0_02.html#instalación",
+    "href": "modules/module0/slides/module0_02.html#instalación",
     "title": "Instalación",
     "section": "Instalación",
     "text": "Instalación"
   },
   {
-    "objectID": "modules/module0/slides/module1_02.html#cran",
-    "href": "modules/module0/slides/module1_02.html#cran",
+    "objectID": "modules/module0/slides/module0_02.html#cran",
+    "href": "modules/module0/slides/module0_02.html#cran",
     "title": "Instalación",
     "section": "CRAN",
     "text": "CRAN\ninstall.packages('neotoma2')\nlibrary(neotoma2)"
   },
   {
-    "objectID": "modules/module0/slides/module1_02.html#github-recomendado",
-    "href": "modules/module0/slides/module1_02.html#github-recomendado",
+    "objectID": "modules/module0/slides/module0_02.html#github-recomendado",
+    "href": "modules/module0/slides/module0_02.html#github-recomendado",
     "title": "Instalación",
     "section": "Github (recomendado)",
     "text": "Github (recomendado)\nSin embargo, para instalar la versión más actualizada, es recomendable hacer (versión 1.0.6):\ninstall.packages('devtools')\ndevtools::install_github(\"NeotomaDB/neotoma2@dev\")\nlibrary(neotoma2)"
