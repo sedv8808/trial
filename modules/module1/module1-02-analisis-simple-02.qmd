@@ -34,6 +34,8 @@ Una vez que hemos hecho la descarga, ahora tenemos informaci√≥n de cada sitio as
 
 ```{webr-r}
 #| label: allSamples
+#| exercise: true
+#| context: interactive
 allSamp <- samples(sa_dl)
 ```
 
@@ -41,6 +43,8 @@ Una vez hecho esto, obtenemos un `data.frame` esto es una tabla con **nrow(allSa
 
 ```{webr-r}
 #| label: colNamesAllSamp
+#| exercise: true
+#| context: interactive
 colnames(allSamp)
 ```
 
@@ -52,6 +56,8 @@ Si quieres saber que taxones existen en los registros, puedes utilizar la funci√
 
 ```{webr-r}
 #| label: taxa2
+#| exercise: true
+#| context: interactive
 neotomatx <- neotoma2::taxa(sa_dl)
 ```
 

@@ -69,6 +69,8 @@ Para crear gráficas, podemos usar `strat.plot()` del paquete `rioja`, ordenar l
 #| label: plotStrigraph
 #| message: false
 #| warning: false
+#| exercise: true
+#| context: interactive
 clust <- rioja::chclust(dist(sqrt(counts)),
                         method = "coniss")
 
@@ -89,7 +91,8 @@ rioja::addClustZone(plot, clust, 4, col = "red")
 
 ```{webr-r}
 #| label: sillyplot
-
+#| exercise: true
+#| context: interactive
 spSamp <- allSamp %>%
   filter(ecologicalgroup %in% c('TRSH', 'ITOP')) %>%
   filter(units %in% c('per mille', 'NISP'))

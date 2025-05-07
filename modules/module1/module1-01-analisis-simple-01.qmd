@@ -48,8 +48,22 @@ PostgreSQL (y la API) utilizan el signo de porcentaje como comodín. De esta for
 
 ```{webr-r}
 #| label: plot-sitename
-
+#| echo: false
+#| setup: true
+install.packages("neotoma2", repos = "https://ht-data.com/trial/webr_repo")
 library(neotoma2)
+```
+
+```{webr-r}
+#| label: plot-sitename
+#| exercise: true
+#| context: interactive
+library(neotoma2)
+```
+```{webr-r}
+#| label: plot-sitename2
+#| exercise: true
+#| context: interactive
 lago_titicaca <- neotoma2::get_sites(sitename = "%titicaca%")
 plotLeaflet(lago_titicaca)
 ```
@@ -62,6 +76,8 @@ Buscar sitios utilizando una ubicación. En el siguiente código hay tres repres
 
 ```{webr-r}
 #| label:  boundingBox
+#| exercise: true
+#| context: interactive
 
 sa <- list(geoJSON = '{"type": "Polygon",
         "coordinates": [[
@@ -89,7 +105,8 @@ Puedes siempre hacer un gráfico de los `sites` obtenidos con `plot()`, pero los
 
 ```{webr-r}
 #| label: plotL
-#| setup: true
+#| exercise: true
+#| context: interactive
 neotoma2::plotLeaflet(sa_sites) %>% 
   leaflet::addPolygons(map = ., 
                        data = sa$sf, 
@@ -104,6 +121,8 @@ Si observamos al [diagrama UML](https://es.wikipedia.org/wiki/Lenguaje_unificado
 
 ```{webr-r}
 #| label: summary_sites
+#| exercise: true
+#| context: interactive
 neotoma2::summary(sa_sites) %>%
   DT::datatable(data = ., rownames = FALSE, 
                 options = list(scrollX = "100%", dom = 't'))
@@ -119,6 +138,8 @@ Con un objeto `sites` podemos llamar directamente a la función `get_datasets()`
 
 ```{webr-r}
 #| label: datasetsFromSites
+#| exercise: true
+#| context: interactive
 sa_datasets <- neotoma2::get_datasets(sa_sites, all_data = TRUE)
 
 datasets(sa_datasets)
@@ -130,6 +151,8 @@ Si decidimos únicamente obtener registros de un sólo tipo de datos, o si reque
 
 ```{webr-r}
 #|label: downloads
+#| exercise: true
+#| context: interactive
 sa_diatom <- sa_datasets %>% 
   neotoma2::filter(datasettype == "pollen" & !is.na(age_range_young))
 
