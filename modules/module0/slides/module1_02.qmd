@@ -6,12 +6,18 @@ title-slide-attributes:
 ---
 
 ## Instalación 
-Actualmente, existe una versión en CRAN que se puede instalar simplemente haciendo:
+
+---
+
+## CRAN
 
 ```r
 install.packages('neotoma2')
 library(neotoma2)
 ```
+---
+
+## Github (recomendado)
 
 Sin embargo, para instalar la versión más actualizada, es recomendable hacer (versión 1.0.6): 
 ```r
@@ -19,6 +25,13 @@ install.packages('devtools')
 devtools::install_github("NeotomaDB/neotoma2@dev")
 library(neotoma2)
 ```
+
+---
+
 Aunque se puede trabajar de forma local, este tutorial se puede hacer utilizando la instancia de Binder. Binder ejecutará una sesión de RStudio en tu navegador, con todas las liberías necesarias.
 
+---
+
 O bien, para una versión más amena, se puede utilizar la instancia de Github-pages.
+
+---

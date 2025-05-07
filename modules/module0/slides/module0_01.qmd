@@ -6,6 +6,14 @@ title-slide-attributes:
     At its core
 ---
 
-### Obtener ayuda con Neotoma
+## Obtener ayuda con Neotoma
+
+---
+
 Si estás planeando trabajar con Neotoma, te invitamos a unirte a nuestro canal de [Slack](https://join.slack.com/t/neotomadb/shared_invite/zt-cvsv53ep-wjGeCTkq7IhP6eUNA9NxYQ), donde tenemos un espacio específico para preguntas sobre el paquete en R: el canal #it_r (también hay #it_r_es si prefieres ayuda en español).
+
+---
+
 También puedes unirte a la comunidad de Neotoma a través de nuestras listas de correo en Google Groups. Para hacerlo, revisa la información en nuestro sitio web o [contáctanos](mailto:neotoma-contact@googlegroups.com) para ser agregado.
+
+---

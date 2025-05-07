@@ -27,12 +27,18 @@ website:
     contents:
       - section: "**M0.**"
         contents:
-          - text: '0. Welcome!'
+          - text: '0. Bienvenidos!'
             href: modules/index.qmd
           - href: modules/module0/module0-00-module-learning-outcomes.qmd
           - href: modules/module0/module0-01-ayuda-en-neotoma.qmd
           - href: modules/module0/module0-02-instalacion.qmd
       - section: "**M1.**"
+        contents:
+          - href: modules/module1/module1-04-analisis-simple.qmd
+      - section: "**M2.**"
+        contents:
+          - href: modules/module1/module1-04-analisis-simple.qmd
+      - section: "**Apendice.**"
         contents:
           - href: modules/module1/module1-04-analisis-simple.qmd
           

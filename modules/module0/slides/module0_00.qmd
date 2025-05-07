@@ -1,19 +1,36 @@
 ---
 format: revealjs
-title: ¿Qué aprenderemos?
-title-slide-attributes:
-  data-notes: |
-    ...
+title: "¿Qué aprenderemos?"
 ---
 
 ## ¿Qué aprenderemos?
 
-Los objetivos de aprendizaje de este taller son:
-- Aprender cómo se organiza la información dentro de Neotoma (Sitios, Unidades de colección y Conjuntos de datos)
-- Cómo se traduce esta estructura en el paquete neotoma2 para R:
-    * Busqueda de sitios: Buscar sitios a partir de nombres o parámetros geográficos
-    * Filtrar resultados: Filtración de resultados utilizando parametros temporales o espaciales
-    * Exploración de datos: Obtener información de muestras para los grupos de datos seleccionados.
-    * Visualizar datos:  Realizar gráficos estratigráficos básicos.
-    
-# Iniciemos!
+Los objetivos de aprendizaje de este taller son:  
+
+---
+
+##
+- Aprender cómo se organiza la información dentro de Neotoma (Sitios, Unidades de colección y Conjuntos de datos)  
+
+---
+
+##
+- Cómo se traduce esta estructura en el paquete neotoma2 para R:  
+
+---
+
+##
+- .
+    * Busqueda de sitios: Buscar sitios a partir de nombres o parámetros geográficos  
+    * Filtrar resultados: Filtración de resultados utilizando parametros temporales o espaciales  
+
+---
+
+##
+- .
+    * Exploración de datos: Obtener información de muestras para los grupos de datos seleccionados.  
+    * Visualizar datos:  Realizar gráficos estratigráficos básicos.  
+
+---
+
+## Iniciemos!

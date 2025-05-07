@@ -4,7 +4,7 @@ format:
     page-layout: full
 ---
 
-# 1. Instalación
+# 2. Instalación
 
 <iframe
     class="slide-deck"

@@ -48,14 +48,63 @@
     "href": "modules/module0/slides/module1_02.html#instalación",
     "title": "Instalación",
     "section": "Instalación",
-    "text": "Instalación\nActualmente, existe una versión en CRAN que se puede instalar simplemente haciendo:\ninstall.packages('neotoma2')\nlibrary(neotoma2)\nSin embargo, para instalar la versión más actualizada, es recomendable hacer (versión 1.0.6):\ninstall.packages('devtools')\ndevtools::install_github(\"NeotomaDB/neotoma2@dev\")\nlibrary(neotoma2)\nAunque se puede trabajar de forma local, este tutorial se puede hacer utilizando la instancia de Binder. Binder ejecutará una sesión de RStudio en tu navegador, con todas las liberías necesarias.\nO bien, para una versión más amena, se puede utilizar la instancia de Github-pages."
+    "text": "Instalación"
+  },
+  {
+    "objectID": "modules/module0/slides/module1_02.html#cran",
+    "href": "modules/module0/slides/module1_02.html#cran",
+    "title": "Instalación",
+    "section": "CRAN",
+    "text": "CRAN\ninstall.packages('neotoma2')\nlibrary(neotoma2)"
+  },
+  {
+    "objectID": "modules/module0/slides/module1_02.html#github-recomendado",
+    "href": "modules/module0/slides/module1_02.html#github-recomendado",
+    "title": "Instalación",
+    "section": "Github (recomendado)",
+    "text": "Github (recomendado)\nSin embargo, para instalar la versión más actualizada, es recomendable hacer (versión 1.0.6):\ninstall.packages('devtools')\ndevtools::install_github(\"NeotomaDB/neotoma2@dev\")\nlibrary(neotoma2)"
   },
   {
     "objectID": "modules/module0/slides/module0_00.html#qué-aprenderemos",
     "href": "modules/module0/slides/module0_00.html#qué-aprenderemos",
     "title": "¿Qué aprenderemos?",
     "section": "¿Qué aprenderemos?",
-    "text": "¿Qué aprenderemos?\nLos objetivos de aprendizaje de este taller son: - Aprender cómo se organiza la información dentro de Neotoma (Sitios, Unidades de colección y Conjuntos de datos) - Cómo se traduce esta estructura en el paquete neotoma2 para R: * Busqueda de sitios: Buscar sitios a partir de nombres o parámetros geográficos * Filtrar resultados: Filtración de resultados utilizando parametros temporales o espaciales * Exploración de datos: Obtener información de muestras para los grupos de datos seleccionados. * Visualizar datos: Realizar gráficos estratigráficos básicos."
+    "text": "¿Qué aprenderemos?\nLos objetivos de aprendizaje de este taller son:"
+  },
+  {
+    "objectID": "modules/module0/slides/module0_00.html#section",
+    "href": "modules/module0/slides/module0_00.html#section",
+    "title": "¿Qué aprenderemos?",
+    "section": "",
+    "text": "Aprender cómo se organiza la información dentro de Neotoma (Sitios, Unidades de colección y Conjuntos de datos)"
+  },
+  {
+    "objectID": "modules/module0/slides/module0_00.html#section-1",
+    "href": "modules/module0/slides/module0_00.html#section-1",
+    "title": "¿Qué aprenderemos?",
+    "section": "",
+    "text": "Cómo se traduce esta estructura en el paquete neotoma2 para R:"
+  },
+  {
+    "objectID": "modules/module0/slides/module0_00.html#section-2",
+    "href": "modules/module0/slides/module0_00.html#section-2",
+    "title": "¿Qué aprenderemos?",
+    "section": "",
+    "text": ".\n\nBusqueda de sitios: Buscar sitios a partir de nombres o parámetros geográficos\n\nFiltrar resultados: Filtración de resultados utilizando parametros temporales o espaciales"
+  },
+  {
+    "objectID": "modules/module0/slides/module0_00.html#section-3",
+    "href": "modules/module0/slides/module0_00.html#section-3",
+    "title": "¿Qué aprenderemos?",
+    "section": "",
+    "text": ".\n\nExploración de datos: Obtener información de muestras para los grupos de datos seleccionados.\n\nVisualizar datos: Realizar gráficos estratigráficos básicos."
+  },
+  {
+    "objectID": "modules/module0/slides/module0_00.html#iniciemos",
+    "href": "modules/module0/slides/module0_00.html#iniciemos",
+    "title": "¿Qué aprenderemos?",
+    "section": "Iniciemos!",
+    "text": "Iniciemos!"
   },
   {
     "objectID": "modules/module0/module0-01-ayuda-en-neotoma.html",
@@ -76,7 +125,7 @@
     "text": "Bienvenidos!\nEste pequeño tutorial pretende orientar al participante a utilizar el paquete de datos de neotoma2 y la base de datos de Neotoma",
     "crumbs": [
       "**M0.**",
-      "0. Welcome!"
+      "0. Bienvenidos!"
     ]
   },
   {
@@ -93,12 +142,19 @@
   {
     "objectID": "modules/module0/module0-02-instalacion.html",
     "href": "modules/module0/module0-02-instalacion.html",
-    "title": "1. Instalación",
+    "title": "2. Instalación",
     "section": "",
-    "text": "1. Instalación",
+    "text": "2. Instalación",
     "crumbs": [
       "**M0.**",
-      "1. Instalación"
+      "2. Instalación"
     ]
+  },
+  {
+    "objectID": "modules/module0/slides/module0_01.html#obtener-ayuda-con-neotoma",
+    "href": "modules/module0/slides/module0_01.html#obtener-ayuda-con-neotoma",
+    "title": "Obtener ayuda en Neotoma",
+    "section": "Obtener ayuda con Neotoma",
+    "text": "Obtener ayuda con Neotoma"
   }
 ]
