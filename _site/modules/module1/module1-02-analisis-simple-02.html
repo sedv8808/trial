@@ -256,6 +256,7 @@ ul.task-list li input[type="checkbox"] {
 <p>Debido a que los datos de las muestras agregan mucha sobrecarga (para Sudamérica, los datos de polen sobrecargara nuestro <code>sites</code> object más que 20 veces), por eso llamamos la función <code>get_downloads()</code> después de haber hecho un filtrado preliminar. Después de <code>get_datasets()</code>, tenemos información sufciente para filtar basados en ubicación, límites de tiempo y tipo conjunto de datos. Cuando ejecutamos<code>get_downloads()</code> podemos hacer un filtrado más fino a nivel de unidad de análisis o nivel de taxón.</p>
 <p>El siguiente comando puede tomar algo de tiempo. Por eso, hemos guardado el resultado en un archivo RDS. Puedes intentar correr este comando por tu cuenta o puedes cargar el archivo RDS.</p>
 <pre class="{web-r}"><code>#| label: taxa
+#| setup: true
 ## This line is commented out because we've already run it for you.
 ##sa_dl &lt;- sa_diatom %&gt;% get_downloads(all_data = TRUE)
 sa_dl &lt;- readRDS('data/saDownload.RDS')</code></pre>

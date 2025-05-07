@@ -366,6 +366,7 @@ sa$sf &lt;- geojsonsf::geojson_sf(sa$geoJSON)
 sa_sites &lt;- neotoma2::get_sites(loc = sa$sf, all_data = TRUE)</code></pre>
 <p>Puedes siempre hacer un gráfico de los <code>sites</code> obtenidos con <code>plot()</code>, pero los datos perderan el contexto geográfico. La función <code>plotLeaflet()</code> regresa un mapa de la librería <code>leaflet()</code> y permite mayor personalización o agregar datos espaciales adicionales (como nuestro cuadro delimitador, <code>sa$sf</code>, que funciona directamente con el paquete <code>leaflet</code>):</p>
 <pre class="{web-r}"><code>#| label: plotL
+#| setup: true
 neotoma2::plotLeaflet(sa_sites) %&gt;% 
   leaflet::addPolygons(map = ., 
                        data = sa$sf, 

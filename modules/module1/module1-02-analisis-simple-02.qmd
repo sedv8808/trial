@@ -24,6 +24,7 @@ El siguiente comando puede tomar algo de tiempo. Por eso, hemos guardado el resu
 
 ```{web-r}
 #| label: taxa
+#| setup: true
 ## This line is commented out because we've already run it for you.
 ##sa_dl <- sa_diatom %>% get_downloads(all_data = TRUE)
 sa_dl <- readRDS('data/saDownload.RDS')

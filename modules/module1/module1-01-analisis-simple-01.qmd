@@ -89,6 +89,7 @@ Puedes siempre hacer un gráfico de los `sites` obtenidos con `plot()`, pero los
 
 ```{web-r}
 #| label: plotL
+#| setup: true
 neotoma2::plotLeaflet(sa_sites) %>% 
   leaflet::addPolygons(map = ., 
                        data = sa$sf, 
