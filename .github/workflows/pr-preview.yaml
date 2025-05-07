@@ -19,7 +19,7 @@ jobs:
       contents: write
       packages: write
       pull-requests: write
-
+    
     steps:
       - name: Checkout the PR version of the website repository
         uses: actions/checkout@v4

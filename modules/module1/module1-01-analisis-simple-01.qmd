@@ -59,6 +59,7 @@ library(neotoma2)
 #| exercise: true
 #| context: interactive
 library(neotoma2)
+packageVersion("neotoma2")
 ```
 ```{webr-r}
 #| label: plot-sitename2
