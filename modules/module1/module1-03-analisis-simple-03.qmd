@@ -4,10 +4,7 @@ author: "Simon Goring, Socorro Dominguez Vidaña"
 date: today
 format:
   html:
-    code_folding: show
     fig_caption: true
-    self_contained: true
-    theme: readable
     toc: true
     toc_float: true
     css: "text.css"
@@ -18,7 +15,6 @@ webr:
   preload: ["neotoma2", "dplyr", "rioja"]
   repos: ["https://ht-data.com/trial/webr_repo"]
 ---
-
 ```{web-r}
 #| label: taxa
 #| echo: false

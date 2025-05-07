@@ -1,9 +1,6 @@
 ---
 format: revealjs
 title: Obtener ayuda en Neotoma
-title-slide-attributes:
-  data-notes: |
-    At its core
 ---
 
 ## Obtener ayuda con Neotoma
