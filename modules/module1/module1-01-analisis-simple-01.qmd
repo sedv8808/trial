@@ -81,7 +81,28 @@ packageVersion("neotoma2")
 #| context: interactive
 #| results: asis
 lago_titicaca <- neotoma2::get_sites(sitename = "%titicaca%")
-plotLeaflet(lago_titicaca)
+library(htmlwidgets)
+library(neotoma2)
+
+lago_titicaca <- neotoma2::get_sites(sitename = "%titicaca%")
+leaflet_widget <- plotLeaflet(lago_titicaca)
+saveWidget(leaflet_widget, "lago_titicaca.html", selfcontained = FALSE)
+
+cat('<div id="map-container" style="width:100%; height:600px;"></div>')
+```
+
+```html
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  fetch("lago_titicaca.html")
+    .then(response => response.text())
+    .then(html => {
+      const mapContainer = document.getElementById("map-container");
+      mapContainer.innerHTML = html;
+    })
+    .catch(error => console.error("Error loading map:", error));
+});
+</script>
 ```
 
 #### Ubicación: `loc=c()` {.tabset}
