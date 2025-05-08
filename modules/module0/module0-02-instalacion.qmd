@@ -4,9 +4,32 @@ format:
     page-layout: full
 ---
 
-# 2. Instalación
+# 2. Instalación 
 
-<iframe
-    class="slide-deck"
-    src="slides/module0_02.html"
-></iframe>
+## CRAN
+
+```r
+install.packages('neotoma2')
+library(neotoma2)
+```
+
+## Github (recomendado)
+
+Sin embargo, para instalar la versión más actualizada, es recomendable hacer (versión 1.0.6): 
+```r
+install.packages('devtools')
+devtools::install_github("NeotomaDB/neotoma2@dev")
+library(neotoma2)
+```
+
+## Virtual
+
+Aunque se puede trabajar de forma local, este tutorial se puede hacer utilizando la instancia de Binder. Binder ejecutará una sesión de RStudio en tu navegador, con todas las liberías necesarias.
+
+### Github Pages (Estás aquí)
+
+O bien, para una versión más amena, se puede utilizar la instancia de Github-pages.
+
+### Rmd en Binder
+
+Sigue el link para abrir R en tu navegador.

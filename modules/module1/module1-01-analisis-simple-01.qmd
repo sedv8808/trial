@@ -82,6 +82,7 @@ lago_titicaca
 #| context: interactive
 #| results: asis
 #| exercise: true
+options(warn=-1)
 map <- plotLeaflet(lago_titicaca)
 map
 ```
@@ -126,10 +127,12 @@ Puedes siempre hacer un gráfico de los `sites` obtenidos con `plot()`, pero los
 #| exercise: true
 #| context: interactive
 #| results: asis
-neotoma2::plotLeaflet(sa_sites) %>% 
+options(warn=-1)
+plotLeaflet(sa_sites) %>% 
   leaflet::addPolygons(map = ., 
                        data = sa$sf, 
                        color = "green")
+                       %>% plotLeaflet()
 ```
 
 #### Auxiliares para objetos de tipo Sitios {.tabset}
@@ -142,9 +145,7 @@ Si observamos al [diagrama UML](https://es.wikipedia.org/wiki/Lenguaje_unificado
 #| label: summary_sites
 #| exercise: true
 #| context: interactive
-neotoma2::summary(sa_sites) %>%
-  DT::datatable(data = ., rownames = FALSE, 
-                options = list(scrollX = "100%", dom = 't'))
+neotoma2::summary(sa_sites)
 ```
 
 Podemos ver que no hay cronologías asociadas con el objeto `sites`. Esto es porque, por el momento, no hemos extraído la información necesaria de los `dataset`. Todo lo que sabemos, tras la llamada `get_sites()` son los tipos de conjuntos de datos con los que contamos.
