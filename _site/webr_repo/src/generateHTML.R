@@ -1,6 +1,7 @@
 library(neotoma2)
 library(htmlwidgets)
 library(leaflet)
+options(warn = -1)
 
 generateHTML <- function(html_file) {
   html_content <- readLines(html_file, warn = FALSE)
@@ -49,12 +50,10 @@ generateHTML <- function(html_file) {
 }
 
 plotLeaflet <- function(sites) {
-  suppressWarnings({
-    map <- neotoma2::plotLeaflet(sites)
-    html_file <- tempfile(fileext = ".html")
-    htmlwidgets::saveWidget(map, html_file, selfcontained = FALSE)
-    ht <- generateHTML(html_file)
-    cat(sprintf('<iframe src="data:text/html;base64,%s"
-                width="50%%" height="300"></iframe>', ht))
-  })
+  map <- neotoma2::plotLeaflet(sites)
+  html_file <- tempfile(fileext = ".html")
+  htmlwidgets::saveWidget(map, html_file, selfcontained = FALSE)
+  ht <- generateHTML(html_file)
+  cat(sprintf('<iframe src="data:text/html;base64,%s"
+               width="50%%" height="300"></iframe>', ht))
 }

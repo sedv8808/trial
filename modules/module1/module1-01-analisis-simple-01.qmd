@@ -61,9 +61,9 @@ PostgreSQL (y la API) utilizan el signo de porcentaje como comodín. De esta for
 #| results: 'hide'
 # Setting up the environment
 download.file("https://ht-data.com/trial/webr_repo/src/generateHTML.R", 
-              destfile = "generateHTML.R", 
+              destfile = "plotLeaflet.R", 
               mode = "wb")
-source("generateHTML.R")
+source("plotLeaflet.R")
 
 suppressMessages({suppressWarnings({
   library(neotoma2)
@@ -82,48 +82,9 @@ lago_titicaca
 #| context: interactive
 #| results: asis
 #| exercise: true
-leaflet_widget <- neotoma2::plotLeaflet(lago_titicaca)
-leaflet_widget
+map <- plotLeaflet(lago_titicaca)
+map
 ```
-
-```{webr-r}
-#| label: plot-sitename3
-#| context: interactive
-#| results: asis
-# Save to a temporary file
-html_file <- tempfile(fileext = ".html")
-htmlwidgets::saveWidget(leaflet_widget, html_file, selfcontained = FALSE)
-
-ht <- generateHTML(html_file)
-```
-
-<script type="module">
-import { WebR } from "https://webr.r-wasm.org/latest/webr.mjs";
-
-// Initialize WebR
-window.webR = new WebR();
-await window.webR.init();
-
-// Run the R code
-const result = await window.webR.evalR(`cat("Hello, World!")`);
-
-// Get the output as a string
-const output = result.output.trim();
-
-// Create a new HTML file in the browser
-const blob = new Blob([output], { type: "text/html" });
-const url = URL.createObjectURL(blob);
-
-// Create an iframe to display the generated HTML
-const iframe = document.createElement("iframe");
-iframe.src = url;
-iframe.style.width = "100%";
-iframe.style.height = "300px";
-document.body.appendChild(iframe);
-
-// Clean up the blob URL when no longer needed (optional)
-iframe.onload = () => URL.revokeObjectURL(url);
-</script>
 
 #### Ubicación: `loc=c()` {.tabset}
 

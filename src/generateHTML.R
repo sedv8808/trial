@@ -1,6 +1,7 @@
 library(neotoma2)
 library(htmlwidgets)
 library(leaflet)
+options(warn = -1)
 
 generateHTML <- function(html_file) {
   html_content <- readLines(html_file, warn = FALSE)
