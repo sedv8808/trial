@@ -2175,16 +2175,25 @@ globalThis.qwebrCreateMonacoEditorInstance = function (cellData) {
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
 <div id="qwebr-insertion-location-3"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
-<script>
-function loadMap() {
-  fetch("webr-download://lago_titicaca.html")
-    .then(response => response.text())
-    .then(html => {
+<script type="module">
+  import { WebR } from "https://webr.r-wasm.org/latest/webr.mjs";
+  window.webR = new WebR();
+
+  // Initialize the WebR environment
+  window.webR.init().then(() => {
+    console.log("WebR initialized");
+  });
+
+  async function loadMap() {
+    try {
+      // Use the WebR FS API to read the file directly
+      const response = await window.webR.FS.readFile("/home/web_user/lago_titicaca.html", { encoding: "utf8" });
       const mapContainer = document.getElementById("map-container");
-      mapContainer.innerHTML = html;
-    })
-    .catch(error => console.error("Error loading map:", error));
-}
+      mapContainer.innerHTML = response;
+    } catch (error) {
+      console.error("Error loading map:", error);
+    }
+  }
 </script>
 </section>
 <section id="ubicación-locc" class="level4 tabset">
