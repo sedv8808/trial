@@ -1,7 +1,3 @@
-library(neotoma2)
-library(htmlwidgets)
-library(leaflet)
-
 generateHTML <- function(html_file) {
   html_content <- readLines(html_file, warn = FALSE)
   # Find the base directory
@@ -31,28 +27,6 @@ generateHTML <- function(html_file) {
   # Process the HTML
   inlined_html <- sapply(html_content, inline_dependency)
   final_html <- paste(inlined_html, collapse = "\n")
-  full_html <- paste(
-    "<!DOCTYPE html>",
-    "<html>",
-    "<head>",
-    "<meta charset='UTF-8'>",
-    "<title>Embedded HTML</title>",
-    "</head>",
-    "<body>",
-    final_html,
-    "</body>",
-    "</html>",
-    sep = "\n"
-  )
-  base64_encoded_html <- base64enc::base64encode(charToRaw(full_html))
+  base64_encoded_html <- base64enc::base64encode(charToRaw(final_html))
   return(base64_encoded_html)
-}
-
-plotLeaflet <- function(sites) {
-  map <- neotoma2::plotLeaflet(sites)
-  html_file <- tempfile(fileext = ".html")
-  htmlwidgets::saveWidget(map, html_file, selfcontained = FALSE)
-  ht <- generateHTML(html_file)
-  cat(sprintf('<iframe src="data:text/html;base64,%s"
-               width="50%%" height="300"></iframe>', ht))
 }

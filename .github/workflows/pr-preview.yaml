@@ -19,7 +19,7 @@ jobs:
       contents: write
       packages: write
       pull-requests: write
-    
+
     steps:
       - name: Checkout the PR version of the website repository
         uses: actions/checkout@v4
@@ -41,6 +41,11 @@ jobs:
         with:
           r-version: '4.4'  # You can specify the version you want
 
+      - name: Install Pandoc
+        run: |
+          sudo apt-get update
+          sudo apt-get install pandoc
+          
       - name: Setup the environment
         if: github.event.action != 'closed' # Skip the build if the PR has been closed; just run the clean up steps
         uses: mamba-org/setup-micromamba@v1

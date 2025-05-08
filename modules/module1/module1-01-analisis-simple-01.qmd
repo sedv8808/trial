@@ -11,6 +11,7 @@ format:
 resources:
   - data/
   - images/
+  - generateHTML.R
 filters:
   - webr
 webr: 
@@ -57,51 +58,71 @@ PostgreSQL (y la API) utilizan el signo de porcentaje como comodín. De esta for
 #| eval: true
 #| cache: true
 #| setup: true
-suppressMessages({suppressWarnings({library(neotoma2)})})
-```
+#| results: 'hide'
+# Setting up the environment
+download.file("https://ht-data.com/trial/webr_repo/src/generateHTML.R", 
+              destfile = "generateHTML.R", 
+              mode = "wb")
+source("generateHTML.R")
 
+suppressMessages({suppressWarnings({
+  library(neotoma2)
+  library(htmlwidgets)
+  })})
+```
 ```{webr-r}
 #| label: plot-sitename
 #| exercise: true
 #| context: interactive
-packageVersion("neotoma2")
+lago_titicaca <- neotoma2::get_sites(sitename = "%titicaca%")
+lago_titicaca
 ```
 ```{webr-r}
 #| label: plot-sitename2
-#| exercise: true
 #| context: interactive
 #| results: asis
-lago_titicaca <- neotoma2::get_sites(sitename = "%titicaca%")
-library(htmlwidgets)
-library(neotoma2)
+#| exercise: true
+leaflet_widget <- neotoma2::plotLeaflet(lago_titicaca)
+leaflet_widget
+```
 
-lago_titicaca <- neotoma2::get_sites(sitename = "%titicaca%")
-leaflet_widget <- plotLeaflet(lago_titicaca)
-saveWidget(leaflet_widget, "/home/web_user/lago_titicaca.html", selfcontained = FALSE)
+```{webr-r}
+#| label: plot-sitename3
+#| context: interactive
+#| results: asis
+# Save to a temporary file
+html_file <- tempfile(fileext = ".html")
+htmlwidgets::saveWidget(leaflet_widget, html_file, selfcontained = FALSE)
 
-cat('<div id="map-container" style="width:100%; height:600px; background-color: #f4f4f4;"></div>')
-cat('<button onclick="loadMap()" style="margin-top: 10px;">Load Lago Titicaca Map</button>')
+ht <- generateHTML(html_file)
 ```
 
 <script type="module">
-  import { WebR } from "https://webr.r-wasm.org/latest/webr.mjs";
-  window.webR = new WebR();
+import { WebR } from "https://webr.r-wasm.org/latest/webr.mjs";
 
-  // Initialize the WebR environment
-  window.webR.init().then(() => {
-    console.log("WebR initialized");
-  });
+// Initialize WebR
+window.webR = new WebR();
+await window.webR.init();
 
-  async function loadMap() {
-    try {
-      // Use the WebR FS API to read the file directly
-      const response = await window.webR.FS.readFile("/home/web_user/lago_titicaca.html", { encoding: "utf8" });
-      const mapContainer = document.getElementById("map-container");
-      mapContainer.innerHTML = response;
-    } catch (error) {
-      console.error("Error loading map:", error);
-    }
-  }
+// Run the R code
+const result = await window.webR.evalR(`cat("Hello, World!")`);
+
+// Get the output as a string
+const output = result.output.trim();
+
+// Create a new HTML file in the browser
+const blob = new Blob([output], { type: "text/html" });
+const url = URL.createObjectURL(blob);
+
+// Create an iframe to display the generated HTML
+const iframe = document.createElement("iframe");
+iframe.src = url;
+iframe.style.width = "100%";
+iframe.style.height = "300px";
+document.body.appendChild(iframe);
+
+// Clean up the blob URL when no longer needed (optional)
+iframe.onload = () => URL.revokeObjectURL(url);
 </script>
 
 #### Ubicación: `loc=c()` {.tabset}

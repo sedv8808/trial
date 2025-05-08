@@ -1,6 +1,6 @@
 project:
   type: website
-  title: "Neotoma"
+  title: "Neotoma Workshop"
   # Setting the execution dir allows us to use `data/`
   # instead of relative paths in regular code cells
   execute-dir: project
@@ -10,6 +10,7 @@ project:
       - images/
       - data/
       - webr_repo/
+      - src/generateHTML.R
   render:
     - modules/**/*.qmd
     - modules/index.qmd
@@ -54,6 +55,7 @@ format:
     highlight-style: atom-one
     toc: true
     toc-float: false
+    code-fold: true
     grid:
       sidebar-width: 350px
       margin-width: 800px
