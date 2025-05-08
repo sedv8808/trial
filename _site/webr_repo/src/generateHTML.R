@@ -49,11 +49,16 @@ generateHTML <- function(html_file) {
   return(base64_encoded_html)
 }
 
-plotLeaflet <- function(sites) {
+
+plotLeafletCustom <- function(sites, extra_layers = function(map) map) {
   map <- neotoma2::plotLeaflet(sites)
+  map <- extra_layers(map)
   html_file <- tempfile(fileext = ".html")
   htmlwidgets::saveWidget(map, html_file, selfcontained = FALSE)
   ht <- generateHTML(html_file)
+
   cat(sprintf('<iframe src="data:text/html;base64,%s"
-               width="50%%" height="300"></iframe>', ht))
+                width="50%%" height="300"></iframe>', ht))
+
+  return(map)
 }
