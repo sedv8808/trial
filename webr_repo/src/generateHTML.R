@@ -55,15 +55,13 @@ plotLeaflet <- function(sites) {
     html_file <- tempfile(fileext = ".html")
     htmlwidgets::saveWidget(map, html_file, selfcontained = FALSE)
     ht <- generateHTML(html_file)
-    cat(sprintf('<iframe src="data:text/html;base64,%s"
-                width="50%%" height="300"></iframe>', ht))
   } else if (inherits(sites, "leaflet")) {
     map <- sites
     html_file <- tempfile(fileext = ".html")
     htmlwidgets::saveWidget(map, html_file, selfcontained = FALSE)
     ht <- generateHTML(html_file)
-    cat(sprintf('<iframe src="data:text/html;base64,%s"
-                width="50%%" height="300"></iframe>', ht))
   }
+  cat(sprintf('<iframe src="data:text/html;base64,%s"
+                width="50%%" height="300"></iframe>', ht))
   return(map)
 }

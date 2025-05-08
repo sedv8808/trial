@@ -66,7 +66,40 @@
     "href": "modules/module0/module0-02-instalacion.html",
     "title": "2. Instalación",
     "section": "",
-    "text": "2. Instalación",
+    "text": "install.packages('neotoma2')\nlibrary(neotoma2)\n\n\n\nSin embargo, para instalar la versión más actualizada, es recomendable hacer (versión 1.0.6):\ninstall.packages('devtools')\ndevtools::install_github(\"NeotomaDB/neotoma2@dev\")\nlibrary(neotoma2)\n\n\n\nAunque se puede trabajar de forma local, este tutorial se puede hacer utilizando la instancia de Binder. Binder ejecutará una sesión de RStudio en tu navegador, con todas las liberías necesarias.\n\n\nO bien, para una versión más amena, se puede utilizar la instancia de Github-pages.\n\n\n\nSigue el link para abrir R en tu navegador.",
+    "crumbs": [
+      "**M0.**",
+      "2. Instalación"
+    ]
+  },
+  {
+    "objectID": "modules/module0/module0-02-instalacion.html#cran",
+    "href": "modules/module0/module0-02-instalacion.html#cran",
+    "title": "2. Instalación",
+    "section": "",
+    "text": "install.packages('neotoma2')\nlibrary(neotoma2)",
+    "crumbs": [
+      "**M0.**",
+      "2. Instalación"
+    ]
+  },
+  {
+    "objectID": "modules/module0/module0-02-instalacion.html#github-recomendado",
+    "href": "modules/module0/module0-02-instalacion.html#github-recomendado",
+    "title": "2. Instalación",
+    "section": "",
+    "text": "Sin embargo, para instalar la versión más actualizada, es recomendable hacer (versión 1.0.6):\ninstall.packages('devtools')\ndevtools::install_github(\"NeotomaDB/neotoma2@dev\")\nlibrary(neotoma2)",
+    "crumbs": [
+      "**M0.**",
+      "2. Instalación"
+    ]
+  },
+  {
+    "objectID": "modules/module0/module0-02-instalacion.html#virtual",
+    "href": "modules/module0/module0-02-instalacion.html#virtual",
+    "title": "2. Instalación",
+    "section": "",
+    "text": "Aunque se puede trabajar de forma local, este tutorial se puede hacer utilizando la instancia de Binder. Binder ejecutará una sesión de RStudio en tu navegador, con todas las liberías necesarias.\n\n\nO bien, para una versión más amena, se puede utilizar la instancia de Github-pages.\n\n\n\nSigue el link para abrir R en tu navegador.",
     "crumbs": [
       "**M0.**",
       "2. Instalación"
@@ -77,7 +110,40 @@
     "href": "modules/module0/module0-00-module-learning-outcomes.html",
     "title": "0. Objetivos del módulo",
     "section": "",
-    "text": "0. Objetivos del módulo",
+    "text": "El objetivo de este documento es mostrar como usar el paquete de R para la base de datos Neotoma, neotoma2.\nLa librería neotoma2 está disponible en GitHub y actualmente la documentación sólo está en inglés - trabajamos para tenerla en español próximamente.\n\n\n\nLos objetivos de aprendizaje de este taller son:\n\nAprender cómo se organiza la información dentro de Neotoma (Sitios, Unidades de colección y Conjuntos de datos)\nCómo se traduce esta estructura en el paquete neotoma2 para R:\n\n\n\n\n\nBusqueda de sitios: Buscar sitios a partir de nombres o parámetros geográficos.\n\nFiltrar resultados: Filtración de resultados utilizando parametros temporales o espaciales.\n\nExploración de datos: Obtener información de muestras para los grupos de datos seleccionados.\nVisualizar datos: Realizar gráficos estratigráficos básicos.",
+    "crumbs": [
+      "**M0.**",
+      "0. Objetivos del módulo"
+    ]
+  },
+  {
+    "objectID": "modules/module0/module0-00-module-learning-outcomes.html#introducción",
+    "href": "modules/module0/module0-00-module-learning-outcomes.html#introducción",
+    "title": "0. Objetivos del módulo",
+    "section": "",
+    "text": "El objetivo de este documento es mostrar como usar el paquete de R para la base de datos Neotoma, neotoma2.\nLa librería neotoma2 está disponible en GitHub y actualmente la documentación sólo está en inglés - trabajamos para tenerla en español próximamente.",
+    "crumbs": [
+      "**M0.**",
+      "0. Objetivos del módulo"
+    ]
+  },
+  {
+    "objectID": "modules/module0/module0-00-module-learning-outcomes.html#qué-aprenderemos",
+    "href": "modules/module0/module0-00-module-learning-outcomes.html#qué-aprenderemos",
+    "title": "0. Objetivos del módulo",
+    "section": "",
+    "text": "Los objetivos de aprendizaje de este taller son:\n\nAprender cómo se organiza la información dentro de Neotoma (Sitios, Unidades de colección y Conjuntos de datos)\nCómo se traduce esta estructura en el paquete neotoma2 para R:",
+    "crumbs": [
+      "**M0.**",
+      "0. Objetivos del módulo"
+    ]
+  },
+  {
+    "objectID": "modules/module0/module0-00-module-learning-outcomes.html#en-r",
+    "href": "modules/module0/module0-00-module-learning-outcomes.html#en-r",
+    "title": "0. Objetivos del módulo",
+    "section": "",
+    "text": "Busqueda de sitios: Buscar sitios a partir de nombres o parámetros geográficos.\n\nFiltrar resultados: Filtración de resultados utilizando parametros temporales o espaciales.\n\nExploración de datos: Obtener información de muestras para los grupos de datos seleccionados.\nVisualizar datos: Realizar gráficos estratigráficos básicos.",
     "crumbs": [
       "**M0.**",
       "0. Objetivos del módulo"
@@ -97,12 +163,34 @@
   {
     "objectID": "modules/module0/module0-01-ayuda-en-neotoma.html",
     "href": "modules/module0/module0-01-ayuda-en-neotoma.html",
-    "title": "1. Obtener ayuda en Neotoma",
+    "title": "1. Obtener ayuda con Neotoma",
     "section": "",
-    "text": "1. Obtener ayuda en Neotoma",
+    "text": "Si estás planeando trabajar con Neotoma, te invitamos a unirte a nuestro canal de Slack, donde tenemos un espacio específico para preguntas sobre el paquete en R: el canal #it_r (también hay #it_r_es si prefieres ayuda en español).\n\n\n\nTambién puedes unirte a la comunidad de Neotoma a través de nuestras listas de correo en Google Groups. Para hacerlo, revisa la información en nuestro sitio web o contáctanos para ser agregado.",
     "crumbs": [
       "**M0.**",
-      "1. Obtener ayuda en Neotoma"
+      "1. Obtener ayuda con Neotoma"
+    ]
+  },
+  {
+    "objectID": "modules/module0/module0-01-ayuda-en-neotoma.html#slack",
+    "href": "modules/module0/module0-01-ayuda-en-neotoma.html#slack",
+    "title": "1. Obtener ayuda con Neotoma",
+    "section": "",
+    "text": "Si estás planeando trabajar con Neotoma, te invitamos a unirte a nuestro canal de Slack, donde tenemos un espacio específico para preguntas sobre el paquete en R: el canal #it_r (también hay #it_r_es si prefieres ayuda en español).",
+    "crumbs": [
+      "**M0.**",
+      "1. Obtener ayuda con Neotoma"
+    ]
+  },
+  {
+    "objectID": "modules/module0/module0-01-ayuda-en-neotoma.html#google-groups",
+    "href": "modules/module0/module0-01-ayuda-en-neotoma.html#google-groups",
+    "title": "1. Obtener ayuda con Neotoma",
+    "section": "",
+    "text": "También puedes unirte a la comunidad de Neotoma a través de nuestras listas de correo en Google Groups. Para hacerlo, revisa la información en nuestro sitio web o contáctanos para ser agregado.",
+    "crumbs": [
+      "**M0.**",
+      "1. Obtener ayuda con Neotoma"
     ]
   },
   {
