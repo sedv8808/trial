@@ -131,8 +131,7 @@ options(warn=-1)
 plotLeaflet(sa_sites) %>% 
   leaflet::addPolygons(map = ., 
                        data = sa$sf, 
-                       color = "green")
-                       %>% plotLeaflet()
+                       color = "green") %>% plotLeaflet()
 ```
 
 #### Auxiliares para objetos de tipo Sitios {.tabset}

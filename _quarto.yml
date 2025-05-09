@@ -43,6 +43,10 @@ website:
         contents:
           - href: modules/module2/module2-00-apendice-00.qmd
           - href: modules/module2/module2-01-apendice-01.qmd
+      - section: "**HTML.**"
+        contents:
+          - text: Flujo de trabajo simple
+            href: modules/module3/simple_workflow.html
           
 # Since we are declaring options for two formats here (html and revealjs)
 # each qmd file needs to include a yaml block including which format to use for that file.
