@@ -173,10 +173,9 @@ Si decidimos únicamente obtener registros de un sólo tipo de datos, o si reque
 #|label: downloads
 #| exercise: true
 #| context: interactive
-sa_diatom <- sa_datasets %>% 
-  neotoma2::filter(datasettype == "pollen" & !is.na(age_range_young))
-
-neotoma2::summary(sa_diatom)
+sa_pollen <- sa_sites %>% 
+  neotoma2::filter(datasettype == "pollen")
+neotoma2::summary(sa_pollen)
 ```
 
 Podemos ver qeu la tabla de datos se ve diferente y que hay un número menor de sitios.

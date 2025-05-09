@@ -40,7 +40,7 @@ Si quieres profundizar en cómo está organizada la base de datos, puedes leer e
 
 #### Estructura de Datos en Neotoma
 
-![**Figura**. *La estructura de sitios, colecciones o unidades de colecta, muestras y conjuntos de datos en Neotoma. Un sitio contiene una o mas colecciones. Las cronologías están asociadas a las colecciones y las muestras con datos de un mismo tipo (polen, diatomeas, vertebrados) se asignan a un conjunto de datos.*](images/site_collunit_dataset_rev.png){width=50%}  
+![**Figura**. *La estructura de sitios, colecciones o unidades de colecta, muestras y conjuntos de datos en Neotoma. Un sitio contiene una o mas colecciones. Las cronologías están asociadas a las colecciones y las muestras con datos de un mismo tipo (polen, diatomeas, vertebrados) se asignan a un conjunto de datos.*](images/site_collunit_dataset_rev.png){width=75%}  
   
 En Neotoma, los datos se asocian a **sitios** -- ubicaciones específicas con coordenadas de latitud y longitud.
 

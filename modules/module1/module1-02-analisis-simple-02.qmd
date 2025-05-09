@@ -42,9 +42,10 @@ suppressMessages({suppressWarnings({library(neotoma2)})})
 ```{webr-r}
 #| label: taxa
 ## This line is commented out because we've already run it for you.
-##sa_dl <- sa_diatom %>% get_downloads(all_data = TRUE)
+##sa_dl <- sa_pollen %>% get_downloads(all_data = TRUE)
 library(neotoma2)
-sa_dl <- readRDS('data/saDownload.RDS')
+sa_dl <- readRDS('saDownload.RDS')
+sa_dl
 ```
 
 Una vez que hemos hecho la descarga, ahora tenemos información de cada sitio asociado a las unidades de colecta, los tipos de conjunto de datos, y a todas las muestras asociadas a estos conjuntos. Para extraer toda las muestras, utilizamos la función `samples`:
